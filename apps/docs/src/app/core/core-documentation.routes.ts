@@ -572,6 +572,11 @@ export const ROUTES: Routes = [
                     import('./component-docs/overflow-layout/overflow-layout-docs.module').then(
                         (m) => m.OverflowLayoutDocsModule
                     )
+            },
+            {
+                path: 'skeleton',
+                loadChildren: () =>
+                    import('./component-docs/skeleton/skeleton-docs.module').then((m) => m.SkeletonDocsModule)
             }
         ]
     }
