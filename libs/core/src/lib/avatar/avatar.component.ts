@@ -44,7 +44,6 @@ const ALTER_ICON_OPTIONS = {
     host: {
         '[attr.tabindex]': '_tabindex'
     },
-    // TODO: Import skeleton styles in the root
     providers: [DestroyedService, skeletonConsumer()]
 })
 export class AvatarComponent implements OnChanges, OnInit, CssClassBuilder, OnChanges {
