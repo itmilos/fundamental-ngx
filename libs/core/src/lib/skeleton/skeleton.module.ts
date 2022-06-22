@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SkeletonDirective } from './directives/skeleton.directive';
 import { SkeletonModuleConfig } from './skeleton.types';
-import { SkeletonService } from './services/skeleton.service';
+import { SkeletonGlobalService } from './services/skeleton-global.service';
 import { DEFAULT_SKELETON_STATE } from './tokens/default-skeleton-state.token';
 import { SkeletonComponent } from './components/skeleton.component';
 import { SkeletonTemplateDirective } from './public-api';
@@ -24,7 +24,7 @@ export class SkeletonModule {
                     provide: DEFAULT_SKELETON_STATE,
                     useValue: conf.defaultSkeletonState
                 },
-                SkeletonService
+                SkeletonGlobalService
             ]
         };
     }

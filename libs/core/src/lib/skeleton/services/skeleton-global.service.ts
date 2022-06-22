@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DEFAULT_SKELETON_STATE } from '../tokens/default-skeleton-state.token';
 
 @Injectable()
-export class SkeletonService {
+export class SkeletonGlobalService {
     /** @hidden */
     private _skeletonState: BehaviorSubject<boolean>;
 

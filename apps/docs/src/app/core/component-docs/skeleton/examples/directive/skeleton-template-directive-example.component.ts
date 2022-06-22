@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SkeletonService } from '@fundamental-ngx/core/skeleton';
+import { SkeletonGlobalService } from '@fundamental-ngx/core/skeleton';
 
 @Component({
     selector: 'fd-skeleton-template-directive-example',
@@ -9,9 +9,9 @@ import { SkeletonService } from '@fundamental-ngx/core/skeleton';
 export class SkeletonTemplateDirectiveExampleComponent {
     localLoading = false;
 
-    constructor(private readonly _skeletonService: SkeletonService) {}
+    constructor(private readonly _skeletonGlobalService: SkeletonGlobalService) {}
 
     changeGlobalState(): void {
-        this._skeletonService.setSkeletonState(!this._skeletonService.skeletonState);
+        this._skeletonGlobalService.setSkeletonState(!this._skeletonGlobalService.skeletonState);
     }
 }

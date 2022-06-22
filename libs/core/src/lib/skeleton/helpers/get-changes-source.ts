@@ -1,14 +1,14 @@
 import { Observable, of, switchMap } from 'rxjs';
 import { Nullable } from '@fundamental-ngx/core/shared';
 
-import { SkeletonService } from '../services/skeleton.service';
+import { SkeletonGlobalService } from '../services/skeleton-global.service';
 import { SkeletonStateGlobalKeyword, LocalSkeletonState } from '../skeleton.types';
 
 export const getChangesSource$ = (
     skeletonDirective?: Nullable<Observable<LocalSkeletonState>>,
-    skeletonService?: Nullable<SkeletonService>
+    skeletonGlobalService?: Nullable<SkeletonGlobalService>
 ): Observable<boolean> => {
-    const serviceValue$ = skeletonService ? skeletonService.skeletonStateObservable : of(false);
+    const serviceValue$ = skeletonGlobalService ? skeletonGlobalService.skeletonStateObservable : of(false);
     const changesSource$ = skeletonDirective ? skeletonDirective : serviceValue$;
 
     return changesSource$.pipe(

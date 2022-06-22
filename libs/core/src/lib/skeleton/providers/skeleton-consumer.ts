@@ -5,7 +5,7 @@ import { DestroyedService } from '@fundamental-ngx/core/utils';
 
 import { SkeletonConsumer } from '../classes/skeleton-consumer.class';
 import { SkeletonDirective } from '../directives/skeleton.directive';
-import { SkeletonService } from '../services/skeleton.service';
+import { SkeletonGlobalService } from '../services/skeleton-global.service';
 import { SkeletonConsumerConfig } from '../skeleton.types';
 import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
 import { defaultSkeletonConsumerConfig } from '../variables/default-skeleton-consumer-config';
@@ -25,9 +25,9 @@ export function skeletonConsumer(providedConfiguration?: SkeletonConsumerConfig)
             elementRef: ElementRef<Element>,
             destroy$: Observable<void>,
             skeletonDirective?: Nullable<SkeletonDirective>,
-            skeletonService?: Nullable<SkeletonService>
+            skeletonGlobalService?: Nullable<SkeletonGlobalService>
         ) => {
-            const changesSource$ = getChangesSource$(skeletonDirective, skeletonService).pipe(
+            const changesSource$ = getChangesSource$(skeletonDirective, skeletonGlobalService).pipe(
                 distinctUntilChanged(),
                 filter(() => !skeletonDirective?.fdSkeletonTemplate),
                 tap((skeletonState) => {
@@ -47,6 +47,11 @@ export function skeletonConsumer(providedConfiguration?: SkeletonConsumerConfig)
 
             return new SkeletonConsumer(changesSource$);
         },
-        deps: [ElementRef, DestroyedService, [new Optional(), SKELETON_DIRECTIVE], [new Optional(), SkeletonService]]
+        deps: [
+            ElementRef,
+            DestroyedService,
+            [new Optional(), SKELETON_DIRECTIVE],
+            [new Optional(), SkeletonGlobalService]
+        ]
     };
 }

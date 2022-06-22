@@ -13,7 +13,7 @@ import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { Nullable } from '@fundamental-ngx/core/shared';
 
 import { getChangesSource$ } from '../helpers/get-changes-source';
-import { SkeletonService } from '../public-api';
+import { SkeletonGlobalService } from '../public-api';
 import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
 import { SkeletonDirective } from './skeleton.directive';
 
@@ -32,7 +32,9 @@ export class SkeletonTemplateDirective implements OnInit, OnDestroy {
     /** @hidden */
     constructor(
         @Inject(SKELETON_DIRECTIVE) @Optional() private readonly _parentSkeletonDirective: Nullable<SkeletonDirective>,
-        @Inject(SkeletonService) @Optional() private readonly _skeletonService: Nullable<SkeletonService>,
+        @Inject(SkeletonGlobalService)
+        @Optional()
+        private readonly _skeletonGlobalService: Nullable<SkeletonGlobalService>,
         private readonly _cdr: ChangeDetectorRef,
         private readonly _templateRef: TemplateRef<any>,
         private readonly _vcr: ViewContainerRef
@@ -40,7 +42,7 @@ export class SkeletonTemplateDirective implements OnInit, OnDestroy {
 
     /** @hidden */
     ngOnInit(): void {
-        getChangesSource$(this._parentSkeletonDirective, this._skeletonService)
+        getChangesSource$(this._parentSkeletonDirective, this._skeletonGlobalService)
             .pipe(distinctUntilChanged(), takeUntil(this._onDestroy$))
             .subscribe((loadingState) => this._updateView(loadingState));
     }
@@ -51,7 +53,7 @@ export class SkeletonTemplateDirective implements OnInit, OnDestroy {
     }
 
     /** @hidden */
-    _updateView(loadingState: boolean): void {
+    private _updateView(loadingState: boolean): void {
         this._vcr.clear();
 
         if (loadingState && this.fdSkeletonTemplate) {

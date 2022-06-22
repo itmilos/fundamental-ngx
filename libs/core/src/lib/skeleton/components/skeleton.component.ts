@@ -10,14 +10,10 @@ export type SkeletonHeight = 'auto' | string;
     template: `<ng-content></ng-content>`,
     styleUrls: ['skeleton.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-    host: {
-        class: 'fd-skeleton'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkeletonComponent {
-    /** Wight of the skeleton */
+    /** Width of the skeleton */
     @Input()
     set width(value: SkeletonWidth) {
         if (value === 'rand') {
@@ -66,6 +62,10 @@ export class SkeletonComponent {
     get _circleClass(): boolean {
         return this.type === 'circle';
     }
+
+    /** @hidden */
+    @HostBinding('class')
+    private readonly _initialClass = 'fd-skeleton';
 }
 
 function getRandomWidth(): string {

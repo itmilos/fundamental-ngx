@@ -13,7 +13,7 @@ import { BehaviorSubject, distinctUntilChanged, Subject, takeUntil } from 'rxjs'
 import { Nullable } from '@fundamental-ngx/core/shared';
 
 import { getChangesSource$ } from '../helpers/get-changes-source';
-import { SkeletonService } from '../services/skeleton.service';
+import { SkeletonGlobalService } from '../services/skeleton-global.service';
 import { LocalSkeletonState, SkeletonStateGlobalKeyword } from '../skeleton.types';
 import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
 
@@ -43,7 +43,9 @@ export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> imple
 
     /** @hidden */
     constructor(
-        @Inject(SkeletonService) @Optional() private readonly _skeletonService: Nullable<SkeletonService>,
+        @Inject(SkeletonGlobalService)
+        @Optional()
+        private readonly _skeletonGlobalService: Nullable<SkeletonGlobalService>,
         private readonly _vcr: ViewContainerRef,
         private readonly _templateRef: TemplateRef<any>
     ) {
@@ -52,7 +54,7 @@ export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> imple
 
     /** @hidden */
     ngOnInit(): void {
-        getChangesSource$(this, this._skeletonService)
+        getChangesSource$(this, this._skeletonGlobalService)
             .pipe(distinctUntilChanged(), takeUntil(this._onDestroy$))
             .subscribe((loadingState) => this._updateView(loadingState));
     }
@@ -65,7 +67,7 @@ export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> imple
     }
 
     /** @hidden */
-    _updateView(loadingState: boolean): void {
+    private _updateView(loadingState: boolean): void {
         this._vcr.clear();
 
         if (loadingState && this.fdSkeletonTemplate) {

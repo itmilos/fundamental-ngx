@@ -7,7 +7,7 @@ export * from './components/skeleton.component';
 
 export * from './providers/skeleton-consumer';
 
-export * from './services/skeleton.service';
+export * from './services/skeleton-global.service';
 
 export * from './skeleton.types';
 export * from './skeleton.module';
