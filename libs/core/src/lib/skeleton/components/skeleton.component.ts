@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { random } from 'lodash-es';
 
 export type SkeletonType = 'circle' | 'rectangle' | 'text';
 export type SkeletonWidth = 'rand' | string;
@@ -6,7 +7,7 @@ export type SkeletonHeight = 'auto' | string;
 
 @Component({
     selector: 'fd-skeleton',
-    template: ``,
+    template: `<ng-content></ng-content>`,
     styleUrls: ['skeleton.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,9 +22,10 @@ export class SkeletonComponent {
     set width(value: SkeletonWidth) {
         if (value === 'rand') {
             this._width = getRandomWidth();
+            return;
         }
 
-        this._width = value === 'rand' ? getRandomWidth() : value;
+        this._width = value;
     }
 
     /** Height of the skeleton. Relevant if type 'circle' or 'rectangle'. */
@@ -34,6 +36,10 @@ export class SkeletonComponent {
     @Input()
     type: SkeletonType = 'rectangle';
 
+    @Input()
+    @HostBinding('class.fd-skeleton--inherit')
+    inheritSize = false;
+
     /** Whether the skeleton has animation. */
     @Input()
     @HostBinding('class.fd-skeleton--animated')
@@ -41,7 +47,7 @@ export class SkeletonComponent {
 
     /** @hidden */
     @HostBinding('style.width')
-    _width = getRandomWidth();
+    _width: string;
 
     /** @hidden */
     @HostBinding('style.height')
@@ -62,10 +68,6 @@ export class SkeletonComponent {
     }
 }
 
-function getRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function getRandomWidth(): string {
-    return `${getRandomNumber(30, 90)}%`;
+    return `${random(30, 90)}%`;
 }

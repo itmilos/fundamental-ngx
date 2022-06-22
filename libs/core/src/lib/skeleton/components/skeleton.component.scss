@@ -7,47 +7,39 @@ $block: fd-skeleton;
     margin: 0;
     padding: 0;
 
+    position: relative;
     display: block;
     flex-shrink: 0;
-    background: var(--sapContent_Placeholderloading_Background);
+    height: auto;
+    width: 100%;
+    color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
 
-    &--animated {
-        background-image: var(--sapContent_Placeholderloading_Gradient);
-        background-size: 2000px 100%;
-        animation: shimmer 3.5s linear infinite;
+    * {
+        opacity: 0 !important;
+        visibility: hidden !important;
     }
 
-    &--mimic {
-        position: relative;
-        color: transparent !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
+    &::after {
+        background: var(--sapContent_Placeholderloading_Background);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        pointer-events: none;
+        user-select: none;
+    }
 
-        * {
-            opacity: 0;
-            visibility: hidden;
-        }
-
+    &--animated {
         &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            user-select: none;
-            border-radius: inherit;
-            background: var(--sapContent_Placeholderloading_Background);
-        }
-
-        &.#{$block}--animated {
-            &::after {
-                background-image: var(--sapContent_Placeholderloading_Gradient);
-                background-size: 2000px 100%;
-                animation: shimmer 2.5s linear infinite;
-            }
+            background-image: var(--sapContent_Placeholderloading_Gradient);
+            background-size: 2000px 100%;
+            animation: shimmer 3.5s linear infinite;
         }
     }
 
@@ -57,11 +49,14 @@ $block: fd-skeleton;
 
     &--text {
         height: auto;
-        flex-shrink: 1;
 
         &::before {
             content: '\a0';
         }
+    }
+
+    &--inherit {
+        width: fit-content;
     }
 }
 

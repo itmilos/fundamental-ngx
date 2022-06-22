@@ -1,6 +1,7 @@
 import {
     Directive,
     forwardRef,
+    Inject,
     Input,
     OnDestroy,
     OnInit,
@@ -9,12 +10,14 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { Nullable } from '@fundamental-ngx/core/shared';
+
 import { getChangesSource$ } from '../helpers/get-changes-source';
 import { SkeletonService } from '../services/skeleton.service';
 import { LocalSkeletonState, SkeletonStateGlobalKeyword } from '../skeleton.types';
 import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
 
-/** Directive to set the skeleton state for the components subtree. Optionally renders skeleton template, if passed. */
+/** Directive to set the skeleton state for the component subtree. Optionally renders the skeleton template, if passed. */
 @Directive({
     selector: '[fdSkeleton]',
     providers: [
@@ -25,7 +28,7 @@ import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
     ]
 })
 export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> implements OnInit, OnDestroy {
-    /** Set the skeleton state for the components subtree. If set to 'global' then global skeleton state will be used. */
+    /** Set the skeleton state for the component subtree. If set to 'global', then the global skeleton state will be used. */
     @Input()
     set fdSkeleton(value: LocalSkeletonState) {
         this.next(value);
@@ -40,7 +43,7 @@ export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> imple
 
     /** @hidden */
     constructor(
-        @Optional() private readonly _skeletonService: SkeletonService,
+        @Inject(SkeletonService) @Optional() private readonly _skeletonService: Nullable<SkeletonService>,
         private readonly _vcr: ViewContainerRef,
         private readonly _templateRef: TemplateRef<any>
     ) {

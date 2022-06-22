@@ -212,6 +212,7 @@ export class AvatarComponent implements OnChanges, OnInit, CssClassBuilder, OnCh
         private _elementRef: ElementRef,
         private _cdr: ChangeDetectorRef,
         @Attribute('tabindex') private hostTabindex: number | null,
+        private readonly _destroyedService: DestroyedService,
         private readonly _skeletonConsumer: SkeletonConsumer
     ) {}
 

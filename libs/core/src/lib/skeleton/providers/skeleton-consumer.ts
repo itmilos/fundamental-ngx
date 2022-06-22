@@ -1,6 +1,8 @@
 import { ElementRef, Optional, Provider } from '@angular/core';
+import { Nullable } from '@fundamental-ngx/core/shared';
 import { distinctUntilChanged, filter, Observable, takeUntil, tap } from 'rxjs';
 import { DestroyedService } from '@fundamental-ngx/core/utils';
+
 import { SkeletonConsumer } from '../classes/skeleton-consumer.class';
 import { SkeletonDirective } from '../directives/skeleton.directive';
 import { SkeletonService } from '../services/skeleton.service';
@@ -12,7 +14,7 @@ import { getChangesSource$ } from '../helpers/get-changes-source';
 /**
  *  Skeleton consumer provider that adds skeleton classes to the component where it provided.
  *  To be used on the basic components where only one (!) skeleton should be rendered instead the component itself.
- *  Otherwise use the SkeletonTemplateDirective.
+ *  Otherwise, use the SkeletonTemplateDirective.
  */
 export function skeletonConsumer(providedConfiguration?: SkeletonConsumerConfig): Provider {
     const configuration = { ...defaultSkeletonConsumerConfig, ...providedConfiguration };
@@ -22,10 +24,10 @@ export function skeletonConsumer(providedConfiguration?: SkeletonConsumerConfig)
         useFactory: (
             elementRef: ElementRef<Element>,
             destroy$: Observable<void>,
-            skeletonDirective?: SkeletonDirective,
-            contentDensityService?: SkeletonService
+            skeletonDirective?: Nullable<SkeletonDirective>,
+            skeletonService?: Nullable<SkeletonService>
         ) => {
-            const changesSource$ = getChangesSource$(skeletonDirective, contentDensityService).pipe(
+            const changesSource$ = getChangesSource$(skeletonDirective, skeletonService).pipe(
                 distinctUntilChanged(),
                 filter(() => !skeletonDirective?.fdSkeletonTemplate),
                 tap((skeletonState) => {

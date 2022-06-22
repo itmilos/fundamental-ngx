@@ -10,6 +10,8 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { Nullable } from '@fundamental-ngx/core/shared';
+
 import { getChangesSource$ } from '../helpers/get-changes-source';
 import { SkeletonService } from '../public-api';
 import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
@@ -29,8 +31,8 @@ export class SkeletonTemplateDirective implements OnInit, OnDestroy {
 
     /** @hidden */
     constructor(
-        @Inject(SKELETON_DIRECTIVE) @Optional() private readonly _parentSkeletonDirective: SkeletonDirective,
-        @Optional() private readonly _skeletonService: SkeletonService,
+        @Inject(SKELETON_DIRECTIVE) @Optional() private readonly _parentSkeletonDirective: Nullable<SkeletonDirective>,
+        @Inject(SkeletonService) @Optional() private readonly _skeletonService: Nullable<SkeletonService>,
         private readonly _cdr: ChangeDetectorRef,
         private readonly _templateRef: TemplateRef<any>,
         private readonly _vcr: ViewContainerRef

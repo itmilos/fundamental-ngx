@@ -55,7 +55,7 @@
 <ng-template #skeletonCardContent>
     <ul fd-list [noBorder]="true">
         <li *ngFor="let i of [1, 2, 3, 4]; let index = index" fd-list-item>
-            <fd-skeleton type="text"></fd-skeleton>
+            <fd-skeleton type="text" width="rand"></fd-skeleton>
         </li>
     </ul>
 </ng-template>
