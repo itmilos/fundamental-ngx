@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    HostBinding,
+    Input,
+    OnChanges,
+    SimpleChanges,
+    ViewEncapsulation
+} from '@angular/core';
 import { random } from 'lodash-es';
 
 export type SkeletonType = 'circle' | 'rectangle' | 'text';
@@ -12,17 +20,10 @@ export type SkeletonHeight = 'auto' | string;
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkeletonComponent {
+export class SkeletonComponent implements OnChanges {
     /** Width of the skeleton */
     @Input()
-    set width(value: SkeletonWidth) {
-        if (value === 'rand') {
-            this._width = getRandomWidth();
-            return;
-        }
-
-        this._width = value;
-    }
+    width: SkeletonWidth;
 
     /** Height of the skeleton. Relevant if type 'circle' or 'rectangle'. */
     @Input()
@@ -47,9 +48,7 @@ export class SkeletonComponent {
 
     /** @hidden */
     @HostBinding('style.height')
-    get _height(): string {
-        return this.type === 'text' ? 'auto' : this.height;
-    }
+    _height: string;
 
     /** @hidden */
     @HostBinding('class.fd-skeleton--text')
@@ -65,7 +64,30 @@ export class SkeletonComponent {
 
     /** @hidden */
     @HostBinding('class')
-    private readonly _initialClass = 'fd-skeleton';
+    private readonly _class = 'fd-skeleton';
+
+    /** @hidden */
+    ngOnChanges(changes: SimpleChanges): void {
+        const type = changes['type']?.currentValue || this.type;
+
+        if (changes['type'] && type === 'text') {
+            this._height = 'auto';
+        } else if (changes['height'] && type !== 'text') {
+            this._height = changes['height'].currentValue;
+        }
+
+        if (changes['width']) {
+            this._width = changes['width'].currentValue === 'rand' ? getRandomWidth() : changes['width'].currentValue;
+        }
+
+        if (type === 'circle') {
+            if (this._width && !this._height) {
+                this._height = this._width;
+            } else if (this._height && !this._width) {
+                this._width = this._height;
+            }
+        }
+    }
 }
 
 function getRandomWidth(): string {

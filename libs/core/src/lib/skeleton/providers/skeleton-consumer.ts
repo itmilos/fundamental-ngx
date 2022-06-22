@@ -1,6 +1,6 @@
 import { ElementRef, Optional, Provider } from '@angular/core';
-import { Nullable } from '@fundamental-ngx/core/shared';
 import { distinctUntilChanged, filter, Observable, takeUntil, tap } from 'rxjs';
+import { Nullable } from '@fundamental-ngx/core/shared';
 import { DestroyedService } from '@fundamental-ngx/core/utils';
 
 import { SkeletonConsumer } from '../classes/skeleton-consumer.class';

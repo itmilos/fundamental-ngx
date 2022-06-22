@@ -6,7 +6,7 @@ import { SkeletonModuleConfig } from './skeleton.types';
 import { SkeletonGlobalService } from './services/skeleton-global.service';
 import { DEFAULT_SKELETON_STATE } from './tokens/default-skeleton-state.token';
 import { SkeletonComponent } from './components/skeleton.component';
-import { SkeletonTemplateDirective } from './public-api';
+import { SkeletonTemplateDirective } from './directives/skeleton-template.directive';
 
 @NgModule({
     imports: [CommonModule],

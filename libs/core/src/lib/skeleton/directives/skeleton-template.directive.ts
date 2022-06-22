@@ -13,7 +13,7 @@ import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { Nullable } from '@fundamental-ngx/core/shared';
 
 import { getChangesSource$ } from '../helpers/get-changes-source';
-import { SkeletonGlobalService } from '../public-api';
+import { SkeletonGlobalService } from '../services/skeleton-global.service';
 import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
 import { SkeletonDirective } from './skeleton.directive';
 
