@@ -40,7 +40,7 @@
 
         <fd-card-content>
             <ul fd-list [noBorder]="true">
-                <li *ngFor="let i of [1, 2, 3, 4]; let index = index" fd-list-item>
+                <li *fdRepeat="4; let i = index" fd-list-item>
                     <span fd-list-title> item {{ i }} </span>
                 </li>
             </ul>
