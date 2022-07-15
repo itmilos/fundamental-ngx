@@ -13,6 +13,7 @@ import { I18nModule } from '@fundamental-ngx/i18n';
 import { PaginationComponent } from './pagination.component';
 import { PaginationService } from './pagination.service';
 import { DeprecatedPaginationCompactDirective } from './deprecated-pagination-compact.directive';
+import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
 
 @NgModule({
     declarations: [PaginationComponent, DeprecatedPaginationCompactDirective],
@@ -26,7 +27,8 @@ import { DeprecatedPaginationCompactDirective } from './deprecated-pagination-co
         FormModule,
         OnlyDigitsModule,
         FocusKeyManagerHelpersModule,
-        ContentDensityModule
+        ContentDensityModule,
+        SkeletonModule
     ],
     providers: [PaginationService],
     exports: [PaginationComponent, DeprecatedPaginationCompactDirective]

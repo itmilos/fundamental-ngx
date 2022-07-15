@@ -1,4 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
+import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundamental-ngx/core/skeleton';
 
 /**
  * The action bar description.
@@ -16,7 +17,8 @@ import { Directive, HostBinding, Input } from '@angular/core';
     selector: '[fd-action-bar-description]',
     host: {
         class: 'fd-action-bar__description'
-    }
+    },
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class ActionBarDescriptionDirective {
     /*
@@ -25,4 +27,9 @@ export class ActionBarDescriptionDirective {
     @Input()
     @HostBinding('class.fd-action-bar__description--back')
     withBackBtn = false;
+
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 }

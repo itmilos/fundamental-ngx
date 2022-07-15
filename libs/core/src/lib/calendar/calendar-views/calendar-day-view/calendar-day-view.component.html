@@ -3,6 +3,7 @@
         <tr class="fd-calendar__row" role="row">
             <th
                 *ngIf="showWeekNumbers"
+                fdSkeletonConsumer
                 class="fd-calendar__item fd-calendar__item--side-helper"
                 role="columnheader"
                 [attr.id]="_weekNumbersColumnHeaderId"
@@ -12,6 +13,7 @@
                 class="fd-calendar__item fd-calendar__item--side-helper"
                 role="columnheader"
                 *ngFor="let day of shortWeekDays; index as i"
+                fdSkeletonConsumer
                 [attr.aria-label]="longWeekDays[i]"
             >
                 <span class="fd-calendar__text">{{ day }}</span>
@@ -22,6 +24,7 @@
         <tr class="fd-calendar__row" role="row" *ngFor="let row of _dayViewGrid; let rowIndex = index">
             <th
                 *ngIf="showWeekNumbers"
+                fdSkeletonConsumer
                 class="fd-calendar__item fd-calendar__item--side-helper"
                 role="rowheader"
                 scope="row"
@@ -37,6 +40,7 @@
             <td
                 class="fd-calendar__item"
                 role="gridcell"
+                fdSkeletonConsumer
                 *ngFor="let cell of row; let cellIndex = index"
                 [class.is-active]="cell.selectedFirst || cell.selectedLast || cell.selected"
                 [class.fd-calendar__item--range]="

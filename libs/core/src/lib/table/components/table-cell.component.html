@@ -1,0 +1,7 @@
+<ng-template [fdSkeletonTemplate]="skeletonTemplate">
+    <ng-content></ng-content>
+</ng-template>
+
+<ng-template #skeletonTemplate>
+    <fd-skeleton width="rand" height="50%"></fd-skeleton>
+</ng-template>

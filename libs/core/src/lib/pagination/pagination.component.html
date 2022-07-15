@@ -183,7 +183,7 @@
         ></button>
     </nav>
 
-    <span *ngIf="displayTotalItems" class="fd-pagination__total" [attr.id]="_totalPagesElementId">
+    <span *ngIf="displayTotalItems" class="fd-pagination__total" [attr.id]="_totalPagesElementId" fdSkeletonConsumer>
         <ng-container
             [ngTemplateOutlet]="displayTextTemplate || total"
             [ngTemplateOutletContext]="{ showing: _currentShowing }"
@@ -193,6 +193,7 @@
 
 <ng-template #more>
     <span
+        fdSkeletonConsumer
         class="fd-pagination__more"
         [class.fd-pagination__more--compact]="_contentDensityObserver.isCompact$ | async"
         aria-hidden="true"

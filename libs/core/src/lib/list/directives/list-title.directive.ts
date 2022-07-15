@@ -1,7 +1,9 @@
 import { Directive, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
-    selector: '[fd-list-title], [fdListTitle]'
+    selector: '[fd-list-title], [fdListTitle]',
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class ListTitleDirective implements OnInit {
     /** @hidden */
@@ -14,7 +16,9 @@ export class ListTitleDirective implements OnInit {
     wrap = false;
 
     /** @hidden */
-    constructor(public elRef: ElementRef) {}
+    constructor(public elRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     ngOnInit(): void {

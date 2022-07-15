@@ -1,5 +1,5 @@
 <div #toolbar [tabindex]="tabindex" [class.fd-toolbar--cozy]="_contentDensityObserver.isCozy$ | async">
-    <h4 *ngIf="title" class="fd-title fd-title--h4 fd-toolbar__title">{{ title }}</h4>
+    <h4 *ngIf="title" class="fd-title fd-title--h4 fd-toolbar__title" fdSkeletonConsumer>{{ title }}</h4>
 
     <ng-content></ng-content>
 

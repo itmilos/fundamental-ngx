@@ -1,61 +1,46 @@
-<div class="examples-wrapper">
-    <button fd-button (click)="localLoading = !localLoading">Toggle local loading</button>
+<div class="examples-wrapper" *fdSkeletonState="false">
+    <button fd-button (click)="localLoading = !localLoading">Toggle local state</button>
 
-    <button fd-button (click)="changeGlobalState()">Toggle global loading</button>
+    <button fd-button (click)="changeGlobalState()">Toggle global state</button>
 </div>
 
-<div class="examples-wrapper">
-    <fd-card badge="New" cardType="list" *fdSkeleton="localLoading; template: loadingCard">
-        <fd-card-header>
-            <h2 fd-card-title>Card reacts to local skeleton state and is has a template on the card level.</h2>
-        </fd-card-header>
+<p>Permanently in the skeleton state because of the value passed to the <code>fdSkeletonState</code> directives</p>
 
-        <fd-card-content>
-            <ul fd-list [noBorder]="true">
-                <li *ngFor="let i of [1, 2, 3, 4]; let index = index" fd-list-item>
-                    <span fd-list-title> item {{ i }} </span>
-                </li>
-            </ul>
-        </fd-card-content>
-    </fd-card>
+<p *fdSkeletonState="true; template: skeletonTemplate">Content</p>
 
-    <fd-card badge="New" cardType="list" *fdSkeleton="localLoading">
-        <fd-card-header>
-            <h2 fd-card-title>Card reacts to local skeleton state but it doesn't have a template on the card level.</h2>
-        </fd-card-header>
-
-        <fd-card-content *fdSkeletonTemplate="skeletonCardContent">
-            <ul fd-list [noBorder]="true">
-                <li *ngFor="let i of [1, 2, 3, 4]; let index = index" fd-list-item>
-                    <span fd-list-title> Instead it has template on the card content level.</span>
-                </li>
-            </ul>
-        </fd-card-content>
-    </fd-card>
-
-    <fd-card badge="New" cardType="list" *fdSkeleton="'global'; template: loadingCard">
-        <fd-card-header>
-            <h2 fd-card-title>Card reacts to global skeleton state and it has a template on the card level.</h2>
-        </fd-card-header>
-
-        <fd-card-content>
-            <ul fd-list [noBorder]="true">
-                <li *fdRepeat="4; let i = index" fd-list-item>
-                    <span fd-list-title> item {{ i }} </span>
-                </li>
-            </ul>
-        </fd-card-content>
-    </fd-card>
-</div>
-
-<ng-template #loadingCard>
-    <fd-skeleton width="250px" height="300px"></fd-skeleton>
+<ng-template #skeletonTemplate>
+    <p>
+        <fd-skeleton width="100%" height="25px"></fd-skeleton>
+    </p>
 </ng-template>
 
-<ng-template #skeletonCardContent>
-    <ul fd-list [noBorder]="true">
-        <li *ngFor="let i of [1, 2, 3, 4]; let index = index" fd-list-item>
-            <fd-skeleton type="text" width="rand"></fd-skeleton>
-        </li>
-    </ul>
+<p>
+    Will react to global skeleton state changes and render the template passed to
+    <code>fdSkeletonTemplate</code> directive instead
+</p>
+
+<p *fdSkeletonTemplate="globalSkeletonTemplate">Content</p>
+
+<ng-template #globalSkeletonTemplate>
+    <p>
+        <fd-skeleton width="100%" height="25px"></fd-skeleton>
+    </p>
 </ng-template>
+
+<p>
+    Element that listen to global skeleton state changes because of applying <code>fdSkeletonConsumer</code> directive
+    to it
+</p>
+
+<p>
+    <button fdSkeletonConsumer>Button</button>
+</p>
+
+<p>
+    Custom component that listen to global skeleton state changes because it has providers set using
+    <code>skeletonConsumerProviders</code> factory function
+</p>
+
+<p>
+    <fd-skeleton-consumer-example></fd-skeleton-consumer-example>
+</p>

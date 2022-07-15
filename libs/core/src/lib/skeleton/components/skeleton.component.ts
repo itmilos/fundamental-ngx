@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     HostBinding,
     Input,
     OnChanges,
@@ -33,10 +34,6 @@ export class SkeletonComponent implements OnChanges {
     @Input()
     type: SkeletonType = 'rectangle';
 
-    @Input()
-    @HostBinding('class.fd-skeleton--inherit')
-    inheritSize = false;
-
     /** Whether the skeleton has animation. */
     @Input()
     @HostBinding('class.fd-skeleton--animated')
@@ -49,6 +46,10 @@ export class SkeletonComponent implements OnChanges {
     /** @hidden */
     @HostBinding('style.height')
     _height: string;
+
+    /** @hidden */
+    @HostBinding('class.fd-skeleton--rand')
+    _randomWidthClass: boolean;
 
     /** @hidden */
     @HostBinding('class.fd-skeleton--text')
@@ -64,28 +65,40 @@ export class SkeletonComponent implements OnChanges {
 
     /** @hidden */
     @HostBinding('class')
-    private readonly _class = 'fd-skeleton';
+    private readonly _class = 'fd-skeleton fd-skeleton--component';
+
+    /** @hidden */
+    constructor(private readonly _elRef: ElementRef) {}
 
     /** @hidden */
     ngOnChanges(changes: SimpleChanges): void {
-        const type = changes['type']?.currentValue || this.type;
-
-        if (changes['type'] && type === 'text') {
+        if (changes['type'] && this.type === 'text') {
             this._height = 'auto';
-        } else if (changes['height'] && type !== 'text') {
+        } else if (changes['height'] && this.type !== 'text') {
             this._height = changes['height'].currentValue;
         }
 
         if (changes['width']) {
-            this._width = changes['width'].currentValue === 'rand' ? getRandomWidth() : changes['width'].currentValue;
+            this._width = this.width === 'rand' ? '100%' : this.width;
+            this._randomWidthClass = this.width === 'rand';
+            this._processRandomWidthVariable(this.width === 'rand');
         }
 
-        if (type === 'circle') {
+        if (this.type === 'circle') {
             if (this._width && !this._height) {
                 this._height = this._width;
             } else if (this._height && !this._width) {
                 this._width = this._height;
             }
+        }
+    }
+
+    /** @hidden */
+    private _processRandomWidthVariable(skeletonState: boolean): void {
+        if (skeletonState) {
+            this._elRef.nativeElement?.style.setProperty('--fdSkeletonWidth', getRandomWidth());
+        } else {
+            this._elRef.nativeElement?.style.removeProperty('--fdSkeletonWidth');
         }
     }
 }

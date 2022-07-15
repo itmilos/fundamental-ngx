@@ -8,6 +8,7 @@ import { TitleModule } from '@fundamental-ngx/core/title';
 import { ToolbarModule } from '@fundamental-ngx/core/toolbar';
 import { IconModule } from '@fundamental-ngx/core/icon';
 import { I18nModule } from '@fundamental-ngx/i18n';
+import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
 
 import { GridListComponent } from './components/grid-list/grid-list.component';
 import { GridListFilterBarComponent } from './components/grid-list-filter-bar/grid-list-filter-bar.component';
@@ -47,7 +48,8 @@ import { GridListItemImageDirective } from './directives/grid-list-item-image.di
         TitleModule,
         ToolbarModule,
         ObjectStatusModule,
-        I18nModule
+        I18nModule,
+        SkeletonModule
     ],
     exports: [
         GridListComponent,

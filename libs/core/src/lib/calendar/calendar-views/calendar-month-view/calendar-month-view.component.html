@@ -9,6 +9,7 @@
                 <td
                     class="fd-calendar__item"
                     role="gridcell"
+                    fdSkeletonConsumer
                     *ngFor="let monthCell of colMonths; let colIndex = index"
                     [class.fd-calendar__item--current]="monthCell.current"
                     [class.is-active]="monthCell.selected"

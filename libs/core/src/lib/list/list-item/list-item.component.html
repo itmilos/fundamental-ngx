@@ -7,7 +7,7 @@
 
 <ng-content></ng-content>
 
-<span *ngIf="counter || counter === 0" class="fd-list__item-counter">
+<span *ngIf="counter || counter === 0" class="fd-list__item-counter" fdSkeletonConsumer fdSkeletonConsumerText>
     {{ counter | number: '1.0-2' }}
 </span>
 

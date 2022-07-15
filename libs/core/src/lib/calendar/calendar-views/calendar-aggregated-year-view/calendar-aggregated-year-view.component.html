@@ -5,6 +5,7 @@
                 <td
                     class="fd-calendar__item"
                     role="gridcell"
+                    fdSkeletonConsumer
                     *ngFor="let cell of colYears; let colIndex = index"
                     [class.fd-calendar__item--current]="cell.current"
                     [class.is-active]="cell.selected"

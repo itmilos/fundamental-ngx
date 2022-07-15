@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * The component that represents a shellbar logo.
@@ -13,6 +14,12 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     selector: 'fd-shellbar-logo',
     templateUrl: './shellbar-logo.component.html',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: skeletonConsumerProviders()
 })
-export class ShellbarLogoComponent {}
+export class ShellbarLogoComponent {
+    /** @hidden */
+    constructor(private readonly _skeletonObsever: SkeletonConsumerDirective) {
+        _skeletonObsever.consume();
+    }
+}

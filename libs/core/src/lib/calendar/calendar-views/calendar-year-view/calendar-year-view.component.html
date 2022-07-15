@@ -9,6 +9,7 @@
                 <td
                     class="fd-button fd-button--transparent fd-calendar__item"
                     role="gridcell"
+                    fdSkeletonConsumer
                     *ngFor="let yearCell of colYears; let colIndex = index"
                     [class.fd-calendar__item--current]="yearCell.current"
                     [class.is-active]="yearCell.selected"

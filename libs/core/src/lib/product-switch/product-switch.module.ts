@@ -7,9 +7,10 @@ import { DragAndDropModule } from '@fundamental-ngx/core/utils';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { I18nModule } from '@fundamental-ngx/i18n';
 import { ProductSwitchBodyComponent } from './product-switch-body/product-switch-body.component';
+import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
 
 @NgModule({
-    imports: [PopoverModule, CommonModule, ButtonModule, DragAndDropModule, DragDropModule, I18nModule],
+    imports: [PopoverModule, CommonModule, ButtonModule, DragAndDropModule, DragDropModule, I18nModule, SkeletonModule],
     declarations: [ProductSwitchComponent, ProductSwitchBodyComponent],
     exports: [ProductSwitchComponent, ProductSwitchBodyComponent]
 })

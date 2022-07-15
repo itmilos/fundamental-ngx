@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Component({
     selector: 'fd-timeline-node-header',
@@ -7,6 +8,12 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'fd-timeline__post-header-container'
-    }
+    },
+    providers: [skeletonConsumerProviders()]
 })
-export class TimelineNodeHeaderComponent {}
+export class TimelineNodeHeaderComponent {
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
+}

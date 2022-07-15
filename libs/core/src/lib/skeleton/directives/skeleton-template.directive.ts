@@ -10,12 +10,11 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-import { Nullable } from '@fundamental-ngx/core/shared';
 
+import { Nullable } from '@fundamental-ngx/core/shared';
 import { getChangesSource$ } from '../helpers/get-changes-source';
 import { SkeletonGlobalService } from '../services/skeleton-global.service';
-import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
-import { SkeletonDirective } from './skeleton.directive';
+import { SkeletonStateDirective } from './skeleton-state.directive';
 
 /** Directive to listen to the skeleton state that set above (via directive or service) and render skeleton template. */
 @Directive({
@@ -31,7 +30,9 @@ export class SkeletonTemplateDirective implements OnInit, OnDestroy {
 
     /** @hidden */
     constructor(
-        @Inject(SKELETON_DIRECTIVE) @Optional() private readonly _parentSkeletonDirective: Nullable<SkeletonDirective>,
+        @Inject(SkeletonStateDirective)
+        @Optional()
+        private readonly _parentSkeletonDirective: Nullable<SkeletonStateDirective>,
         @Inject(SkeletonGlobalService)
         @Optional()
         private readonly _skeletonGlobalService: Nullable<SkeletonGlobalService>,

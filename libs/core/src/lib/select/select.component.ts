@@ -43,6 +43,7 @@ import { FdOptionSelectionChange, OptionComponent } from './option/option.compon
 import { SelectMobileComponent } from './select-mobile/select-mobile.component';
 import { SelectMobileModule } from './select-mobile/select-mobile.module';
 import { ContentDensityObserver, contentDensityObserverProviders } from '@fundamental-ngx/core/content-density';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 let selectUniqueId = 0;
 
@@ -77,7 +78,8 @@ export const SELECT_ITEM_HEIGHT_EM = 4;
         },
         registerFormItemControl(SelectComponent),
         SelectKeyManagerService,
-        contentDensityObserverProviders()
+        contentDensityObserverProviders(),
+        skeletonConsumerProviders()
     ]
 })
 export class SelectComponent
@@ -390,12 +392,16 @@ export class SelectComponent
         @Optional() private readonly _dynamicComponentService: DynamicComponentService,
         @Optional() @Self() private readonly ngControl: NgControl,
         @Optional() private readonly _injector: Injector,
-        readonly _contentDensityObserver: ContentDensityObserver
+        readonly _contentDensityObserver: ContentDensityObserver,
+        private readonly _skeletonConsumer: SkeletonConsumerDirective
     ) {
         if (this.ngControl) {
             this.ngControl.valueAccessor = this;
         }
+
         this._tabIndex = parseInt(_tabIndex, 10) || 0;
+
+        _skeletonConsumer.consume();
     }
 
     /** @hidden */

@@ -20,11 +20,10 @@ import {
     Size,
     applyCssClass,
     getRandomColorAccent,
-    CssClassBuilder,
-    DestroyedService
+    CssClassBuilder
 } from '@fundamental-ngx/core/utils';
 import { Nullable } from '@fundamental-ngx/core/shared';
-import { SkeletonConsumer, skeletonConsumer } from '@fundamental-ngx/core/skeleton';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 let avatarUniqueId = 0;
 
@@ -44,7 +43,7 @@ const ALTER_ICON_OPTIONS = {
     host: {
         '[attr.tabindex]': '_tabindex'
     },
-    providers: [DestroyedService, skeletonConsumer()]
+    providers: skeletonConsumerProviders()
 })
 export class AvatarComponent implements OnChanges, OnInit, CssClassBuilder, OnChanges {
     /** User's custom classes */
@@ -212,9 +211,10 @@ export class AvatarComponent implements OnChanges, OnInit, CssClassBuilder, OnCh
         private _elementRef: ElementRef,
         private _cdr: ChangeDetectorRef,
         @Attribute('tabindex') private hostTabindex: number | null,
-        private readonly _destroyedService: DestroyedService,
-        private readonly _skeletonConsumer: SkeletonConsumer
-    ) {}
+        private readonly _skeletonConsumer: SkeletonConsumerDirective
+    ) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     ngOnInit(): void {

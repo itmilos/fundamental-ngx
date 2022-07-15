@@ -1,29 +1,29 @@
+<p>Types</p>
+
 <fd-skeleton width="100px" height="50px"></fd-skeleton>
 
-<!-- For the circle skeleton one dimension is enough -->
 <fd-skeleton type="circle" height="50px"></fd-skeleton>
 
 <fd-skeleton type="text" width="rand"></fd-skeleton>
 
-<h3>No animation</h3>
+<p>No animation</p>
 
 <fd-skeleton width="100px" height="50px" [animation]="false"></fd-skeleton>
 
-<!-- For the circle skeleton one dimension is enough -->
 <fd-skeleton type="circle" width="50px" [animation]="false"></fd-skeleton>
 
 <fd-skeleton type="text" width="rand" [animation]="false"></fd-skeleton>
 
-<h3>Inherited size from content</h3>
+<p>Inherited size from content</p>
 
-<fd-skeleton [inheritSize]="true">
+<fd-skeleton>
     <div style="width: 100px; height: 100px"></div>
 </fd-skeleton>
 
-<fd-skeleton [inheritSize]="true">
+<fd-skeleton>
     <div style="width: 150px; height: 50px"></div>
 </fd-skeleton>
 
-<fd-skeleton [inheritSize]="true">
+<fd-skeleton>
     <div style="width: 300px; height: 50px"></div>
 </fd-skeleton>

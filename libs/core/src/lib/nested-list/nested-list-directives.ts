@@ -18,11 +18,13 @@ import { CssClassBuilder } from '@fundamental-ngx/core/utils';
 import { RtlService } from '@fundamental-ngx/core/utils';
 import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 let uniqueId = 0;
 
 @Directive({
-    selector: '[fdNestedDirectivesHeader], [fd-nested-list-header]'
+    selector: '[fdNestedDirectivesHeader], [fd-nested-list-header]',
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class NestedListHeaderDirective {
     @Input()
@@ -33,7 +35,10 @@ export class NestedListHeaderDirective {
     @HostBinding('class.fd-nested-list__group-header')
     fdNestedListHeaderClass = true;
 
-    constructor(private _elementRef: ElementRef) {}
+    /** @hidden */
+    constructor(private _elementRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 
     /** Get the header title */
     get title(): string {
@@ -42,7 +47,8 @@ export class NestedListHeaderDirective {
 }
 
 @Directive({
-    selector: '[fdNestedDirectivesIcon], [fd-nested-list-icon]'
+    selector: '[fdNestedDirectivesIcon], [fd-nested-list-icon]',
+    providers: skeletonConsumerProviders()
 })
 export class NestedListIconDirective implements CssClassBuilder, OnChanges, OnInit {
     /** The property allows user to pass additional css classes */
@@ -65,7 +71,9 @@ export class NestedListIconDirective implements CssClassBuilder, OnChanges, OnIn
     fdNestedListIconClass = true;
 
     /** @hidden */
-    constructor(private _elementRef: ElementRef) {}
+    constructor(private _elementRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     ngOnChanges(): void {
@@ -90,7 +98,8 @@ export class NestedListIconDirective implements CssClassBuilder, OnChanges, OnIn
 }
 
 @Directive({
-    selector: '[fdNestedDirectivesTitle], [fd-nested-list-title]'
+    selector: '[fdNestedDirectivesTitle], [fd-nested-list-title]',
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class NestedListTitleDirective {
     /** @hidden */
@@ -98,7 +107,9 @@ export class NestedListTitleDirective {
     fdNestedListTitleClass = true;
 
     /** @hidden */
-    constructor(private elementRef: ElementRef) {}
+    constructor(private elementRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 
     /** Returns element's InnerText */
     getInnerText(): string {

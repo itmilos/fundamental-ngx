@@ -1,15 +1,22 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef } from '@angular/core';
 
 import { QuickViewGroupItemContentElementDirective } from './quick-view-group-item-content-element.directive';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Component({
     selector: 'fd-quick-view-group-item-content',
     templateUrl: './quick-view-group-item-content.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: skeletonConsumerProviders()
 })
 export class QuickViewGroupItemContentComponent implements AfterViewInit {
     /** @hidden */
-    constructor(private readonly _elRef: ElementRef<Element>) {}
+    constructor(
+        private readonly _elRef: ElementRef<Element>,
+        private readonly _skeletonConsumer: SkeletonConsumerDirective
+    ) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     ngAfterViewInit(): void {

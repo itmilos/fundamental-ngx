@@ -19,6 +19,8 @@ import { I18nModule } from '@fundamental-ngx/i18n';
 import { FormsModule } from '@angular/forms';
 import { FormControlModule } from '@fundamental-ngx/core/form';
 import { UploadCollectionItemDirective } from './upload-collection-item.directive';
+import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
+import { RepeatModule } from '@fundamental-ngx/core/utils';
 
 @NgModule({
     declarations: [
@@ -34,7 +36,17 @@ import { UploadCollectionItemDirective } from './upload-collection-item.directiv
         UploadCollectionFormItemComponent,
         UploadCollectionTitleContainerDirective
     ],
-    imports: [CommonModule, ListModule, ButtonModule, LinkModule, FormsModule, FormControlModule, I18nModule],
+    imports: [
+        CommonModule,
+        ListModule,
+        ButtonModule,
+        LinkModule,
+        FormsModule,
+        FormControlModule,
+        I18nModule,
+        SkeletonModule,
+        RepeatModule
+    ],
     exports: [
         UploadCollectionComponent,
         UploadCollectionItemDirective,

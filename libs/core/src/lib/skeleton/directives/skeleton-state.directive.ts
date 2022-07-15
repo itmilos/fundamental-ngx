@@ -1,42 +1,25 @@
-import {
-    Directive,
-    forwardRef,
-    Inject,
-    Input,
-    OnDestroy,
-    OnInit,
-    Optional,
-    TemplateRef,
-    ViewContainerRef
-} from '@angular/core';
+import { Directive, Inject, Input, OnDestroy, OnInit, Optional, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { Nullable } from '@fundamental-ngx/core/shared';
 
 import { getChangesSource$ } from '../helpers/get-changes-source';
 import { SkeletonGlobalService } from '../services/skeleton-global.service';
 import { LocalSkeletonState, SkeletonStateGlobalKeyword } from '../skeleton.types';
-import { SKELETON_DIRECTIVE } from '../tokens/skeleton-directive.token';
 
 /** Directive to set the skeleton state for the component subtree. Optionally renders the skeleton template, if passed. */
 @Directive({
-    selector: '[fdSkeleton]',
-    providers: [
-        {
-            provide: SKELETON_DIRECTIVE,
-            useExisting: forwardRef(() => SkeletonDirective)
-        }
-    ]
+    selector: '[fdSkeletonState]'
 })
-export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> implements OnInit, OnDestroy {
+export class SkeletonStateDirective extends BehaviorSubject<LocalSkeletonState> implements OnInit, OnDestroy {
     /** Set the skeleton state for the component subtree. If set to 'global', then the global skeleton state will be used. */
     @Input()
-    set fdSkeleton(value: LocalSkeletonState) {
+    set fdSkeletonState(value: LocalSkeletonState) {
         this.next(value);
     }
 
     /** Skeleton Template to render instead. */
     @Input()
-    fdSkeletonTemplate: TemplateRef<any>;
+    fdSkeletonStateTemplate: TemplateRef<any>;
 
     /** @hidden */
     private readonly _onDestroy$ = new Subject<void>();
@@ -70,9 +53,9 @@ export class SkeletonDirective extends BehaviorSubject<LocalSkeletonState> imple
     private _updateView(loadingState: boolean): void {
         this._vcr.clear();
 
-        if (loadingState && this.fdSkeletonTemplate) {
-            this._vcr.createEmbeddedView(this.fdSkeletonTemplate);
-        } else if (this._templateRef) {
+        if (loadingState && this.fdSkeletonStateTemplate) {
+            this._vcr.createEmbeddedView(this.fdSkeletonStateTemplate);
+        } else {
             this._vcr.createEmbeddedView(this._templateRef);
         }
     }

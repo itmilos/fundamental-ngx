@@ -19,7 +19,7 @@ class TestComponent {
     cell: TableCellDirective;
 }
 
-describe('TableCellDirective', () => {
+describe('TableCellComponent', () => {
     let component: TestComponent;
     let fixture: ComponentFixture<TestComponent>;
 

@@ -10,6 +10,7 @@ import { TableHeaderDirective } from './directives/table-header.directive';
 import { TableBodyDirective } from './directives/table-body.directive';
 import { TableRowDirective } from './directives/table-row.directive';
 import { TableCellDirective } from './directives/table-cell.directive';
+import { TableCellComponent } from './components/table-cell.component';
 import { TableWrapperComponent } from './table-wrapper.component';
 import { TableFooterDirective } from './directives/table-footer.directive';
 import { TableStatusIndicatorDirective } from './directives/table-status-indicator.directive';
@@ -32,6 +33,7 @@ import { DeprecatedTableCondensedDirective } from './deprecated-table-condensed.
         TableBodyDirective,
         TableRowDirective,
         TableCellDirective,
+        TableCellComponent,
         TableStatusIndicatorDirective,
         TablePopoverDirective,
         TableInnerDirective,
@@ -49,6 +51,7 @@ import { DeprecatedTableCondensedDirective } from './deprecated-table-condensed.
         TableBodyDirective,
         TableRowDirective,
         TableCellDirective,
+        TableCellComponent,
         TableStatusIndicatorDirective,
         TablePopoverDirective,
         TableInnerDirective,

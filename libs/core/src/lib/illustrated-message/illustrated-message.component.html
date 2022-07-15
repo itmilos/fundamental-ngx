@@ -1,0 +1,14 @@
+<svg
+    class="fd-illustrated-message__illustration"
+    *ngIf="!noSvg || _inlineSvg"
+    fdSkeletonConsumer
+    fdSkeletonConsumerNative
+>
+    <use [attr.href]="_href"></use>
+</svg>
+
+<div *ngIf="_inlineSvg" style="display: none;" [innerHTML]="_inlineSvg"></div>
+
+<ng-content select="[fd-illustrated-message-figcaption]"></ng-content>
+
+<ng-content select="fd-illustrated-message-actions"></ng-content>

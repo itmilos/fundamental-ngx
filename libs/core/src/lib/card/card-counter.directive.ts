@@ -5,10 +5,12 @@ import { applyCssClass } from '@fundamental-ngx/core/utils';
 import { CssClassBuilder } from '@fundamental-ngx/core/utils';
 
 import { CLASS_NAME } from './constants';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[fd-card-counter]'
+    selector: '[fd-card-counter]',
+    providers: [skeletonConsumerProviders({ text: true })]
 })
 export class CardCounterDirective implements OnInit, OnChanges, CssClassBuilder {
     /**
@@ -22,7 +24,12 @@ export class CardCounterDirective implements OnInit, OnChanges, CssClassBuilder 
     class: string;
 
     /** @hidden */
-    constructor(private _elementRef: ElementRef<HTMLElement>) {}
+    constructor(
+        private _elementRef: ElementRef<HTMLElement>,
+        private readonly _skeletonConsumer: SkeletonConsumerDirective
+    ) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     ngOnChanges(): void {

@@ -16,9 +16,12 @@ import { fromEvent, Subject, takeUntil } from 'rxjs';
 import { Nullable } from '@fundamental-ngx/core/shared';
 import { NumberInput } from '@angular/cdk/coercion';
 import { FdTable } from '../fd-table.interface';
+import { TableCellComponent, TableCellPosition } from '../components/table-cell.component';
 
+/** @deprecated use TableCellComponent instead */
 @Directive({
-    selector: '[fdTableCell], [fd-table-cell]'
+    selector: '[fdTableCell], [fd-table-cell]',
+    providers: [{ provide: TableCellDirective, useExisting: forwardRef(() => TableCellComponent) }]
 })
 export class TableCellDirective implements AfterContentInit, OnDestroy {
     /** Whether or not to show the table cell's horizontal borders */
@@ -171,12 +174,4 @@ export class TableCellDirective implements AfterContentInit, OnDestroy {
     private _defaultCellFocusedEventAnnouncer(data: TableCellPosition): string {
         return `Column ${data.col + 1} of ${data.totalCols}, row: ${data.row + 1} of ${data.totalRows}`;
     }
-}
-
-export interface TableCellPosition {
-    row: number;
-    col: number;
-    totalRows: number;
-    totalCols: number;
-    origin: HTMLTableSectionElement;
 }

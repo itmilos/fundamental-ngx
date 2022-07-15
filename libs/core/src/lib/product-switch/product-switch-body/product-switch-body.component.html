@@ -13,6 +13,7 @@
         <li
             fd-dnd-item
             *ngFor="let product of products"
+            fdSkeletonConsumer
             tabindex="0"
             class="fd-product-switch__item"
             [class.selected]="product.selected"

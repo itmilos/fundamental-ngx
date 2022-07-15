@@ -1,7 +1,9 @@
 import { Directive, HostBinding } from '@angular/core';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
-    selector: '[fd-list-navigation-item-arrow], [fdListNavigaitonItemArrow]'
+    selector: '[fd-list-navigation-item-arrow], [fdListNavigaitonItemArrow]',
+    providers: skeletonConsumerProviders({ native: true })
 })
 export class ListNavigationItemArrowDirective {
     /** @hidden */
@@ -19,6 +21,11 @@ export class ListNavigationItemArrowDirective {
     /** @hidden */
     @HostBinding('class.is-expanded')
     expanded = false;
+
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     _setExpanded(expanded: boolean): void {

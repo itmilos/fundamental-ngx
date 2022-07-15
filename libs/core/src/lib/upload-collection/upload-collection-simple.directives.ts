@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { ObjectMarkerComponent } from '@fundamental-ngx/core/object-marker';
 import { ObjectStatusComponent } from '@fundamental-ngx/core/object-status';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
@@ -30,9 +31,15 @@ export class UploadCollectionTitleDirective {
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-upload-collection-description]',
-    host: { class: 'fd-upload-collection__description' }
+    host: { class: 'fd-upload-collection__description' },
+    providers: [skeletonConsumerProviders({ text: true })]
 })
-export class UploadCollectionDescriptionDirective {}
+export class UploadCollectionDescriptionDirective {
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
+}
 
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector

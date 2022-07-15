@@ -1,14 +1,19 @@
 import { Directive, ElementRef, HostBinding } from '@angular/core';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
-    selector: '[fd-list-navigation-item-text], [fdListNavigaitonItemText]'
+    selector: '[fd-list-navigation-item-text], [fdListNavigaitonItemText]',
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class ListNavigationItemTextDirective {
     /** @hidden */
     @HostBinding('class.fd-list__navigation-item-text')
     navigationItemTextClass = true;
 
-    constructor(private _elementRef: ElementRef) {}
+    /** @hidden */
+    constructor(private _elementRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 
     /** @hidden */
     get elementRef(): ElementRef<HTMLElement> {

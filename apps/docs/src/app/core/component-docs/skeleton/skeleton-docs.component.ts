@@ -4,6 +4,7 @@ import { ExampleFile } from '../../../documentation/core-helpers/code-example/ex
 
 import skeletonDirectiveHtml from '!./examples/directive/skeleton-template-directive-example.component.html?raw';
 import skeletonDirectiveTs from '!./examples/directive/skeleton-template-directive-example.component.ts?raw';
+import skeletonConsumerDirectiveTs from '!./examples/directive/skeleton-consumer-example.component.ts?raw';
 import skeletonComponentHtml from '!./examples/component/skeleton-component-example.component.html?raw';
 
 @Component({
@@ -21,6 +22,12 @@ export class SkeletonDocsComponent {
             language: 'typescript',
             code: skeletonDirectiveTs,
             fileName: 'skeleton-template-directive-example'
+        },
+        {
+            language: 'typescript',
+            code: skeletonConsumerDirectiveTs,
+            fileName: 'skeleton-consumer-example',
+            name: 'Skeleton consumer'
         }
     ];
 
