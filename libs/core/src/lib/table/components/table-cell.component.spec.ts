@@ -6,17 +6,29 @@ import { TableCellDirective, TableModule } from '@fundamental-ngx/core/table';
 
 @Component({
     template: `
-        <td fd-table-cell>
+        <td
+            fd-table-cell
+            [activable]="activable"
+            [hoverable]="hoverable"
+            [fitContent]="fitContent"
+            [noPadding]="noPadding"
+            [noBorderX]="noBorderX"
+            [noBorderY]="noBorderY"
+        >
             <fd-checkbox></fd-checkbox>
         </td>
-        <td fd-table-cell [key]="key">{{ key }}</td>
     `
 })
 class TestComponent {
-    key = 'key1';
-
     @ViewChild(TableCellDirective)
     cell: TableCellDirective;
+
+    activable = false;
+    hoverable = false;
+    fitContent = false;
+    noPadding = false;
+    noBorderX = false;
+    noBorderY = false;
 }
 
 describe('TableCellComponent', () => {
@@ -41,15 +53,15 @@ describe('TableCellComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should assign classes', () => {
+    it('should assign classes', async () => {
         expect(component.cell.elementRef.nativeElement.classList.length).toBe(2);
 
-        component.cell.activable = true;
-        component.cell.hoverable = true;
-        component.cell.fitContent = true;
-        component.cell.noPadding = true;
-        component.cell.noBorderX = true;
-        component.cell.noBorderY = true;
+        component.activable = true;
+        component.hoverable = true;
+        component.fitContent = true;
+        component.noPadding = true;
+        component.noBorderX = true;
+        component.noBorderY = true;
 
         fixture.detectChanges();
 

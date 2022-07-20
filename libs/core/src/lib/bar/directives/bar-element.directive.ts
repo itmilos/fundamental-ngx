@@ -24,7 +24,7 @@ export class BarElementDirective {
     barElement = true;
 
     /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+    constructor(protected readonly _skeletonConsumer: SkeletonConsumerDirective) {
         _skeletonConsumer.consume();
     }
 }
