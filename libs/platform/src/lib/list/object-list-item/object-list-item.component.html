@@ -70,7 +70,9 @@
 <ng-template #objectTemplate>
     <div class="fd-object-list__container">
         <!--Optional text-->
-        <div class="fd-object-list__intro" *ngIf="introductionText">{{ introductionText }}</div>
+        <div class="fd-object-list__intro" *ngIf="introductionText" fdSkeletonConsumer fdSkeletonConsumerText>
+            {{ introductionText }}
+        </div>
         <!--header content-->
         <div class="fd-object-list__header">
             <fd-avatar

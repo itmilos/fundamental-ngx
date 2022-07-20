@@ -22,6 +22,7 @@ import {
 import { NgControl, NgForm } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
 import { BaseInput, FormField, FormFieldControl } from '@fundamental-ngx/platform/shared';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 import { InputComponent } from '../input/input.component';
 
 import { CSS_CLASS_NAME, INPUT_GROUP_CHILD_TOKEN } from './constants';
@@ -47,7 +48,10 @@ import { InputGroupInputComponent } from './input.component';
     styleUrls: ['./input-group.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [{ provide: FormFieldControl, useExisting: forwardRef(() => InputGroupComponent), multi: true }]
+    providers: [
+        { provide: FormFieldControl, useExisting: forwardRef(() => InputGroupComponent), multi: true },
+        skeletonConsumerProviders()
+    ]
 })
 export class InputGroupComponent extends BaseInput implements OnInit, AfterContentInit, AfterViewInit {
     /** Input value */
@@ -94,9 +98,12 @@ export class InputGroupComponent extends BaseInput implements OnInit, AfterConte
         @Optional() @SkipSelf() @Host() formControl: FormFieldControl<any>,
         private _renderer: Renderer2,
         protected _hostElementRef: ElementRef<HTMLElement>,
-        protected _inputGroupConfig: InputGroupConfig
+        protected _inputGroupConfig: InputGroupConfig,
+        private readonly _skeletonConsumer: SkeletonConsumerDirective
     ) {
         super(cd, ngControl, ngForm, formField, formControl);
+
+        _skeletonConsumer.consume();
     }
 
     /** @hidden */

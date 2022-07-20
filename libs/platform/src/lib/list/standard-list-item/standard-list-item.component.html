@@ -132,7 +132,7 @@
         <div class="fd-list__byline fd-list__byline--2-col">
             <span
                 *ngIf="description"
-                class="fd-list__byline-left"
+                fdListBylineLeft
                 [attr.aria-label]="description"
                 [attr.title]="description"
                 [attr.nowrap]="titleWrap"
@@ -141,11 +141,11 @@
             <span
                 #rt
                 *ngIf="secondary && !inverted"
-                [attr.aria-label]="secondary"
-                class="fd-list__byline-right"
+                fdListBylineRight
                 [class]="statusType ? 'fd-list__byline-right--' + statusType : ''"
                 [attr.title]="secondary"
                 [attr.nowrap]="secondaryWrap"
+                [attr.aria-label]="secondary"
             >
                 {{ secondary }}
             </span>

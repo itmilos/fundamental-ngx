@@ -8,7 +8,7 @@
         (thumbnailClicked)="thumbnailClickHandle($event)"
         (openDetailsDialog)="openDialog($event)"
     ></fdp-thumbnail-image>
-    <div class="fdp-media-container">
+    <div class="fdp-media-container" fdSkeletonConsumer>
         <img
             tabindex="0"
             *ngIf="selectedMedia.mediaType === 'image'"
@@ -21,6 +21,7 @@
         />
         <video
             tabindex="0"
+            fdSkeletonConsumer
             *ngIf="selectedMedia.mediaType === 'video'"
             [src]="selectedMedia.mediaUrl"
             (click)="openDialog()"

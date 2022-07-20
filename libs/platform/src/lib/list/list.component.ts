@@ -814,9 +814,11 @@ export class ListComponent<T> extends CollectionBaseInput implements OnInit, Aft
 
 @Component({
     selector: 'fdp-list-footer',
-    template: ` <li #listfooter class="fd-list__footer" [attr.id]="id" role="option">
-        <ng-content></ng-content>
-    </li>`
+    template: `
+        <li #listfooter fd-list-footer [attr.id]="id" role="option">
+            <ng-content></ng-content>
+        </li>
+    `
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ListFooter extends BaseComponent {}

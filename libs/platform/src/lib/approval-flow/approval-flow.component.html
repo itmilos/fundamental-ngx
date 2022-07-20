@@ -32,7 +32,7 @@
             *ngIf="_approvalProcess?.watchers?.length || _isEditMode"
             [attr.aria-label]="watchersLabel"
         >
-            <p class="fdp-approval-flow__watchers-title">
+            <p class="fdp-approval-flow__watchers-title" fdSkeletonConsumer>
                 {{ watchersLabel || ('platformApprovalFlow.defaultWatchersLabel' | fdTranslate) }}
             </p>
 
@@ -75,6 +75,7 @@
                     >
                         <button
                             *ngIf="_carouselStepsLeft > 0"
+                            fdSkeletonConsumer
                             class="fdp-approval-flow-carousel-controls__button--prev-slide"
                             [attr.aria-label]="'platformApprovalFlow.prevButtonAriaLabel' | fdTranslate"
                             (click)="nextSlide(-1)"
@@ -84,7 +85,8 @@
                         </button>
 
                         <button
-                            *ngIf="_carouselStepsRight > 0"
+                            *ngIf="_carouselStepsRight > 0
+                            fdSkeletonConsumer
                             class="fdp-approval-flow-carousel-controls__button--next-slide"
                             [attr.aria-label]="'platformApprovalFlow.nextButtonAriaLabel' | fdTranslate"
                             (click)="nextSlide()"
