@@ -25,7 +25,7 @@ export interface SkeletonObserverConfig {
     animation?: boolean;
     /**
      * Whether skeleton should be created without pseudo-elements.
-     * Useful for inputs, images, etc. where we cannot use ::before & ::after pseudo elements.
+     * Useful for inputs, etc. where we cannot use ::before & ::after pseudo elements.
      * Cannot be used together with text flag!
      */
     native?: boolean;

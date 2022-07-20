@@ -18,7 +18,7 @@ const defaultSkeletonConfig: SkeletonObserverConfig = {
     apply: true,
     modifiers: undefined,
     animation: true,
-    text: true,
+    text: false,
     native: false
 };
 
@@ -85,7 +85,7 @@ export class SkeletonConsumerDirective {
 
     /**
      * Whether skeleton should be created without pseudo-elements.
-     * Useful for inputs, images, etc. where we cannot use ::before & ::after pseudo elements.
+     * Useful for inputs, etc. where we cannot use ::before & ::after pseudo elements.
      * Cannot be used together with text flag!
      */
     @Input()
@@ -98,7 +98,7 @@ export class SkeletonConsumerDirective {
     }
 
     /** @hidden */
-    get _apply(): boolean {
+    protected get _apply(): boolean {
         return this._config?.apply ?? true;
     }
 
@@ -136,6 +136,10 @@ export class SkeletonConsumerDirective {
         }
 
         if (this._config?.native) {
+            classesToManage.push(SKELETON_NATIVE_CLASS);
+        }
+
+        if (this._config?.text) {
             classesToManage.push(SKELETON_NATIVE_CLASS);
         }
 
@@ -282,11 +286,10 @@ export class SkeletonConsumerDirective {
                 this._elementRef.nativeElement.style.width = '100%';
             }
 
-            if (computeStyle.height === '0px') {
-                this._originalHeight = true;
-                this._elementRef.nativeElement.style.height = 'auto';
-
-                if (!this._config?.modifiers && this._config?.text) {
+            if (!this._config?.modifiers && this._config?.text) {
+                if (computeStyle.height === '0px' || this._elementRef.nativeElement.textContent === '') {
+                    this._originalHeight = true;
+                    this._elementRef.nativeElement.style.height = 'auto';
                     this._elementRef.nativeElement.classList.add(SKELETON_TEXT_CLASS);
                 }
             }
@@ -304,10 +307,7 @@ export class SkeletonConsumerDirective {
             if (this._originalHeight) {
                 this._originalHeight = false;
                 this._elementRef.nativeElement.style.removeProperty('height');
-
-                if (!this._config?.modifiers && this._config?.text) {
-                    this._elementRef.nativeElement.classList.remove(SKELETON_TEXT_CLASS);
-                }
+                this._elementRef.nativeElement.classList.remove(SKELETON_TEXT_CLASS);
             }
         }
     }
