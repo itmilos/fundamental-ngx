@@ -1,4 +1,4 @@
-<button fd-button (click)="openPage()">Click to open full screen</button>
+<button fd-button (click)="openPage()" *fdSkeletonState="false">Click to open full screen</button>
 <div class="fd-docs-overlay-page" *ngIf="visible">
     <fd-dynamic-page size="large" ariaLabel="Example Dynamic Page" [autoResponsive]="false">
         <fd-dynamic-page-header title="Resizable card layout." subtitle="Here each card can be assigned properties.">
@@ -56,7 +56,14 @@
                     >
                         <i class="sap-icon--exitfullscreen"></i>
                     </button>
-                    <button fd-button fdType="transparent" aria-label="Close" (click)="closePage()" title="Close">
+                    <button
+                        *fdSkeletonState="false"
+                        fd-button
+                        fdType="transparent"
+                        aria-label="Close"
+                        (click)="closePage()"
+                        title="Close"
+                    >
                         <i class="sap-icon--decline"></i>
                     </button>
                 </fd-toolbar>
@@ -64,11 +71,11 @@
         </fd-dynamic-page-header>
         <fd-dynamic-page-subheader [collapsible]="true" [pinnable]="true" [collapsed]="false">
             <!-- collapsible header content goes here -->
-            <span
-                >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam possimus corrupti architecto
+            <fd-text
+                text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam possimus corrupti architecto
                 perspiciatis, delectus necessitatibus incidunt numquam asperiores tenetur iure. Cum consequuntur impedit
-                repellendus esse, facere autem optio consequatur nobis?</span
-            >
+                repellendus esse, facere autem optio consequatur nobis?"
+            ></fd-text>
         </fd-dynamic-page-subheader>
         <fd-dynamic-page-content class="fd-docs-center-align" cdkScrollable>
             <fd-resizable-card-layout (stepChange)="onStepChange($event)">

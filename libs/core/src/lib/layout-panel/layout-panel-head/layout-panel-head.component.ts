@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
+import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * Container for title and description.
@@ -17,10 +18,16 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
     selector: 'fd-layout-panel-head',
     templateUrl: './layout-panel-head.component.html',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class LayoutPanelHeadComponent {
     /** @hidden */
     @HostBinding('class.fd-layout-panel__head')
     fdLayoutPanelHeadClass = true;
+
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 }

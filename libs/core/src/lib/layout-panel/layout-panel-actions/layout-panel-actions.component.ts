@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
+import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundamental-ngx/core/skeleton';
 
 /**
  * Layout Panel level actions such as add, remove, delete, sort, etc.
@@ -17,10 +18,16 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
     selector: 'fd-layout-panel-actions',
     templateUrl: './layout-panel-actions.component.html',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class LayoutPanelActionsComponent {
     /** @hidden */
     @HostBinding('class.fd-layout-panel__actions')
     fdLayoutPanelActionsClass = true;
+
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 }

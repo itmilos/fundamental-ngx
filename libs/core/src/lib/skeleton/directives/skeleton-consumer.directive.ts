@@ -146,6 +146,11 @@ export class SkeletonConsumerDirective {
         return classesToManage;
     }
 
+    /** Current skeleton state */
+    get skeletonState(): boolean {
+        return this._skeletonState;
+    }
+
     /** @hidden */
     constructor(
         protected readonly _injector: Injector,

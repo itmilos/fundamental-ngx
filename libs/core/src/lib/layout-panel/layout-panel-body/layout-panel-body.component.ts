@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundamental-ngx/core/skeleton';
 
 /**
  * Main content of the panel can that hold lists, table, tree, text, form or any other information.
@@ -18,7 +19,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
         '[class.fd-has-display-block]': 'true'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: skeletonConsumerProviders({ text: true })
 })
 export class LayoutPanelBodyComponent {
     /** @hidden */
@@ -29,4 +31,9 @@ export class LayoutPanelBodyComponent {
     @Input()
     @HostBinding('class.fd-layout-panel__body--bleed')
     bleed = false;
+
+    /** @hidden */
+    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
+        _skeletonConsumer.consume();
+    }
 }
