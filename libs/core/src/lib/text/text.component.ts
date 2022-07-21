@@ -8,7 +8,6 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { Nullable } from '@fundamental-ngx/core/shared';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /** Type of hyphenation */
 export type HyphenationType = 'none' | 'manual' | 'auto' | null;
@@ -18,8 +17,7 @@ export type HyphenationType = 'none' | 'manual' | 'auto' | null;
     templateUrl: './text.component.html',
     styleUrls: ['./text.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextComponent {
     /**
@@ -92,12 +90,7 @@ export class TextComponent {
     _hasMore = false;
 
     /** @hidden */
-    constructor(
-        private readonly _changeDetectorRef: ChangeDetectorRef,
-        private readonly _skeletonConsumer: SkeletonConsumerDirective
-    ) {
-        _skeletonConsumer.consume();
-    }
+    constructor(private readonly _changeDetectorRef: ChangeDetectorRef) {}
 
     /** @hidden */
     toggleTextView(): void {

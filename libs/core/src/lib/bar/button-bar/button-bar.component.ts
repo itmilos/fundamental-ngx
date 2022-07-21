@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, HostBinding, Input, OnDestroy, ViewChild 
 import { BaseButton, ButtonComponent, ButtonType } from '@fundamental-ngx/core/button';
 import { Subscription } from 'rxjs';
 import { Nullable } from '@fundamental-ngx/core/shared';
+import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundamental-ngx/core/skeleton';
 
 let randomButtonBarId = 0;
 
@@ -23,7 +24,8 @@ let randomButtonBarId = 0;
         >
             <ng-content></ng-content>
         </button>
-    `
+    `,
+    providers: skeletonConsumerProviders()
 })
 export class ButtonBarComponent extends BaseButton implements OnDestroy {
     /** Whether the element should take the whole width of the container. */
@@ -81,8 +83,11 @@ export class ButtonBarComponent extends BaseButton implements OnDestroy {
     /** @hidden */
     private _subscriptions = new Subscription();
 
-    constructor(private _cdRef: ChangeDetectorRef) {
+    /** @hidden */
+    constructor(private _cdRef: ChangeDetectorRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
         super();
+
+        _skeletonConsumer.consume();
     }
 
     /** @hidden */
