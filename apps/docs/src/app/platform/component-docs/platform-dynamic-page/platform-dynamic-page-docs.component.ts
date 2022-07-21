@@ -5,23 +5,19 @@ import { ExampleFile } from '../../../documentation/core-helpers/code-example/ex
 import { PlatformDynamicPagePageOverflowService } from './platform-dynamic-page-examples/platform-dynamic-page-page-overflow.service';
 
 import dynamicPageBasicExample from '!./platform-dynamic-page-examples/platform-dynamic-page-example.component.html?raw';
-import dynamicPageBasicExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-example.component.scss?raw';
+import dynamicPageBasicExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page.scss?raw';
 import dynamicPageBasicExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-example.component.ts?raw';
 
 import dynamicPageTabbedExample from '!./platform-dynamic-page-examples/platform-dynamic-page-tabbed-example.component.html?raw';
-import dynamicPageTabbedExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-tabbed-example.component.scss?raw';
 import dynamicPageTabbedExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-tabbed-example.component.ts?raw';
 
 import dynamicPageSnapScrollExample from '!./platform-dynamic-page-examples/platform-dynamic-page-snap-scroll-example.component.html?raw';
-import dynamicPageSnapScrollExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-snap-scroll-example.component.scss?raw';
 import dynamicPageSnapScrollExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-snap-scroll-example.component.ts?raw';
 
 import dynamicPageResponsivePaddingExample from '!./platform-dynamic-page-examples/platform-dynamic-page-responsive-padding-example.component.html?raw';
-import dynamicPageResponsivePaddingExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-responsive-padding-example.component.scss?raw';
 import dynamicPageResponsivePaddingExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-responsive-padding-example.component.ts?raw';
 
 import dynamicPageNonCollapsibleExample from '!./platform-dynamic-page-examples/platform-dynamic-page-non-collapsible-example.component.html?raw';
-import dynamicPageNonCollapsibleExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-non-collapsible-example.component.scss?raw';
 import dynamicPageNonCollapsibleExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-non-collapsible-example.component.ts?raw';
 
 import dynamicPageFlexibleColumnExample from '!./platform-dynamic-page-examples/platform-dynamic-page-flexible-column-example.component.html?raw';
@@ -71,7 +67,7 @@ export class PlatformDynamicPageDocsComponent implements OnInit, OnDestroy {
             language: 'html',
             code: dynamicPageSnapScrollExample,
             fileName: 'platform-dynamic-page-snap-scroll-example',
-            scssFileCode: dynamicPageSnapScrollExampleScss
+            scssFileCode: dynamicPageBasicExampleScss
         },
         {
             language: 'typescript',
@@ -94,7 +90,7 @@ export class PlatformDynamicPageDocsComponent implements OnInit, OnDestroy {
             language: 'html',
             code: dynamicPageTabbedExample,
             fileName: 'platform-dynamic-page-tabbed-example',
-            scssFileCode: dynamicPageTabbedExampleScss
+            scssFileCode: dynamicPageBasicExampleScss
         },
         {
             language: 'typescript',
@@ -117,7 +113,7 @@ export class PlatformDynamicPageDocsComponent implements OnInit, OnDestroy {
             language: 'html',
             code: dynamicPageResponsivePaddingExample,
             fileName: 'platform-dynamic-page-responsive-padding-example',
-            scssFileCode: dynamicPageResponsivePaddingExampleScss
+            scssFileCode: dynamicPageBasicExampleScss
         },
         {
             language: 'typescript',
@@ -140,7 +136,7 @@ export class PlatformDynamicPageDocsComponent implements OnInit, OnDestroy {
             language: 'html',
             code: dynamicPageNonCollapsibleExample,
             fileName: 'platform-dynamic-page-non-collapsible-example',
-            scssFileCode: dynamicPageNonCollapsibleExampleScss
+            scssFileCode: dynamicPageBasicExampleScss
         },
         {
             language: 'typescript',
