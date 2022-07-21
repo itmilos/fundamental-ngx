@@ -1,4 +1,4 @@
-<button fd-button (click)="openPage()">Click to open full screen</button>
+<button fd-button (click)="openPage()" *fdSkeletonState="false">Click to open full screen</button>
 <div class="overlay" *ngIf="visible">
     <fd-dynamic-page size="large" ariaLabel="Example Dynamic Page" [autoResponsive]="false">
         <fd-dynamic-page-header
@@ -66,69 +66,68 @@
             </fd-dynamic-page-layout-actions>
         </fd-dynamic-page-header>
         <fd-dynamic-page-subheader [collapsible]="false" [pinnable]="false" [collapsed]="false">
-            <span>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam possimus corrupti architecto
+            <fd-text
+                text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam possimus corrupti architecto
                 perspiciatis, delectus necessitatibus incidunt numquam asperiores tenetur iure. Cum consequuntur impedit
-                repellendus esse, facere autem optio consequatur nobis?
-            </span>
+                repellendus esse, facere autem optio consequatur nobis?"
+            ></fd-text>
         </fd-dynamic-page-subheader>
         <fd-dynamic-page-content cdkScrollable>
-            <div class="fd-dynamic-page-section-example">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            <fd-text
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-                <fd-icon
-                    glyph="question-mark"
-                    fd-inline-help="Inline Help Tooltip"
-                    tabindex="0"
-                    aria-describedby="fd-inline-help-default"
-                    ariaLabel="Inline Help Tooltip"
-                ></fd-icon>
-            </div>
-            <div class="fd-dynamic-page-section-example">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                deserunt mollit anim id est laborum."
+                class="fd-dynamic-page-section-example"
+            ></fd-text>
+            <fd-text
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </div>
-            <div class="fd-dynamic-page-section-example">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                deserunt mollit anim id est laborum."
+                class="fd-dynamic-page-section-example"
+            ></fd-text>
+            <fd-text
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </div>
-            <div class="fd-dynamic-page-section-example">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                deserunt mollit anim id est laborum."
+                class="fd-dynamic-page-section-example"
+            ></fd-text>
+            <fd-text
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </div>
-            <div class="fd-dynamic-page-section-example">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                deserunt mollit anim id est laborum."
+                class="fd-dynamic-page-section-example"
+            ></fd-text>
+            <fd-text
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </div>
-            <div class="fd-dynamic-page-section-example">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                deserunt mollit anim id est laborum."
+                class="fd-dynamic-page-section-example"
+            ></fd-text>
+            <fd-text
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </div>
+                deserunt mollit anim id est laborum."
+                class="fd-dynamic-page-section-example"
+            ></fd-text>
         </fd-dynamic-page-content>
         <fd-dynamic-page-footer>
             <!-- page footer content goes here -->
             <div fd-bar barDesign="floating-footer">
                 <div fd-bar-right>
                     <fd-button-bar label="Save" fdType="emphasized" (click)="closePage()"></fd-button-bar>
-                    <fd-button-bar label="Cancel" (click)="closePage()"></fd-button-bar>
+                    <fd-button-bar label="Cancel" (click)="closePage()" *fdSkeletonState="false"></fd-button-bar>
                 </div>
             </div>
         </fd-dynamic-page-footer>

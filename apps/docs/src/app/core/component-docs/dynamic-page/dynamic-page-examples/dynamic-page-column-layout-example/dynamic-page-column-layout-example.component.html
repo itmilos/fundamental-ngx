@@ -1,4 +1,4 @@
-<button fd-button (click)="openPage()">Click to open full screen</button>
+<button fd-button (click)="openPage()" *fdSkeletonState="false">Click to open full screen</button>
 <div class="overlay" *ngIf="visible">
     <fd-flexible-column-layout
         [separatorAriaLabel]="separatorAriaLabel"
@@ -84,11 +84,11 @@
                 </fd-dynamic-page-header>
                 <fd-dynamic-page-subheader [collapsible]="true" [pinnable]="true" [collapsed]="false">
                     <!-- collapsible header content goes here -->
-                    <span>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam possimus corrupti architecto
-                        perspiciatis, delectus necessitatibus incidunt numquam asperiores tenetur iure. Cum consequuntur
-                        impedit repellendus esse, facere autem optio consequatur nobis?
-                    </span>
+                    <fd-text
+                        text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam possimus corrupti architecto
+                        perspiciatis, delectus necessitatibus incidunt numquam asperiores tenetur iure. Cum consequuntur impedit
+                        repellendus esse, facere autem optio consequatur nobis?"
+                    ></fd-text>
                 </fd-dynamic-page-subheader>
                 <fd-dynamic-page-content cdkScrollable>
                     <div
@@ -99,48 +99,57 @@
                             Open Column 2
                         </button>
                     </div>
-                    <div class="fd-dynamic-page-section-example">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div class="fd-dynamic-page-section-example">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div class="fd-dynamic-page-section-example">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div class="fd-dynamic-page-section-example">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div class="fd-dynamic-page-section-example">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
+                    <fd-text
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum."
+                        class="fd-dynamic-page-section-example"
+                    ></fd-text>
+                    <fd-text
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum."
+                        class="fd-dynamic-page-section-example"
+                    ></fd-text>
+                    <fd-text
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum."
+                        class="fd-dynamic-page-section-example"
+                    ></fd-text>
+                    <fd-text
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum."
+                        class="fd-dynamic-page-section-example"
+                    ></fd-text>
+                    <fd-text
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum."
+                        class="fd-dynamic-page-section-example"
+                    ></fd-text>
                 </fd-dynamic-page-content>
                 <fd-dynamic-page-footer>
                     <!-- page footer content goes here -->
                     <div fd-bar barDesign="floating-footer">
                         <div fd-bar-right>
                             <fd-button-bar label="Save" fdType="emphasized" (click)="closePage()"></fd-button-bar>
-                            <fd-button-bar label="Cancel" (click)="closePage()"></fd-button-bar>
+                            <fd-button-bar
+                                *fdSkeletonState="false"
+                                label="Cancel"
+                                (click)="closePage()"
+                            ></fd-button-bar>
                         </div>
                     </div>
                 </fd-dynamic-page-footer>
@@ -161,13 +170,14 @@
                 </div>
                 <fd-tab-list>
                     <fd-tab *ngFor="let tab of [1, 2, 3, 4]" [title]="'Tab ' + tab">
-                        <div class="fd-dynamic-page-section-example">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
+                        <fd-text
+                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum."
+                            class="fd-dynamic-page-section-example"
+                        ></fd-text>
                     </fd-tab>
                 </fd-tab-list>
             </div>

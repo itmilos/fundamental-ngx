@@ -27,6 +27,7 @@ import { RatingIndicatorModule } from '@fundamental-ngx/core/rating-indicator';
 import { ObjectStatusModule } from '@fundamental-ngx/core/object-status';
 import { DynamicPageDynamicContainerHeightExampleComponent } from './dynamic-page-examples/dynamic-page-dynamic-container-height-example/dynamic-page-dynamic-container-height-example.component';
 import { moduleDeprecationsProvider } from '@fundamental-ngx/core/utils';
+import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
 
 const routes: Routes = [
     {
@@ -56,7 +57,8 @@ const routes: Routes = [
         ObjectNumberModule,
         ObjectStatusModule,
         CdkScrollableModule,
-        InlineHelpModule
+        InlineHelpModule,
+        SkeletonModule
     ],
     exports: [RouterModule],
     declarations: [

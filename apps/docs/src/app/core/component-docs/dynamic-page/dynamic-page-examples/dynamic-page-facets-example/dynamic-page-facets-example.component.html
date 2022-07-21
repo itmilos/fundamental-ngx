@@ -1,4 +1,4 @@
-<button fd-button (click)="openPage()">Click to open full screen</button>
+<button fd-button (click)="openPage()" *fdSkeletonState="false">Click to open full screen</button>
 <div class="overlay" *ngIf="visible">
     <fd-dynamic-page size="large" ariaLabel="Example Dynamic Page">
         <fd-dynamic-page-header
@@ -193,7 +193,7 @@
             <div fd-bar barDesign="floating-footer">
                 <div fd-bar-right>
                     <fd-button-bar label="Save" fdType="emphasized" (click)="closePage()"></fd-button-bar>
-                    <fd-button-bar label="Cancel" (click)="closePage()"></fd-button-bar>
+                    <fd-button-bar *fdSkeletonState="false" label="Cancel" (click)="closePage()"></fd-button-bar>
                 </div>
             </div>
         </fd-dynamic-page-footer>

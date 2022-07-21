@@ -17,6 +17,7 @@ import { MessageToastService } from '@fundamental-ngx/core/message-toast';
             }
             .fd-dynamic-page-section-example {
                 min-height: 20vh;
+                display: block;
             }
         `
     ]
