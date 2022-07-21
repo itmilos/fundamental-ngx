@@ -33,7 +33,6 @@ import { POPOVER_COMPONENT } from './popover.interface';
 import { PopoverMobileComponent } from './popover-mobile/popover-mobile.component';
 import { PopoverMobileModule } from './popover-mobile/popover-mobile.module';
 import { PopoverChildContent } from './popover-child-content.interface';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 export const SELECT_CLASS_NAMES = {
     selectControl: 'fd-select__control'
@@ -51,7 +50,7 @@ let cdkPopoverUniqueId = 0;
     templateUrl: './popover.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [PopoverService, skeletonConsumerProviders()],
+    providers: [PopoverService],
     host: {
         class: 'fd-popover-custom',
         '[class.fd-popover-custom--mobile]': 'mobile',
@@ -131,12 +130,9 @@ export class PopoverComponent
         private readonly _rendered: Renderer2,
         private readonly _viewContainerRef: ViewContainerRef,
         private readonly _injector: Injector,
-        @Optional() private readonly _dynamicComponentService: DynamicComponentService,
-        private readonly _skeletonConsumer: SkeletonConsumerDirective
+        @Optional() private readonly _dynamicComponentService: DynamicComponentService
     ) {
         super();
-
-        _skeletonConsumer.consume();
     }
 
     /** @hidden */
