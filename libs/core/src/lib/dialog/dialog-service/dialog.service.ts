@@ -5,6 +5,7 @@ import { DynamicComponentService, RtlService } from '@fundamental-ngx/core/utils
 import { DialogRef } from '../utils/dialog-ref.class';
 import { DialogBaseService } from '../base/dialog-base.service';
 import { DialogDefaultContent } from '../utils/dialog-default-content.class';
+import { SkeletonGlobalService } from '@fundamental-ngx/core/skeleton';
 
 export type DialogContentType = TemplateRef<any> | Type<any> | DialogDefaultContent;
 
@@ -14,9 +15,10 @@ export class DialogService extends DialogBaseService<DialogContainerComponent> {
     /** @hidden */
     constructor(
         @Inject(DynamicComponentService) dynamicComponentService: DynamicComponentService,
+        private _injector: Injector,
         @Optional() @Inject(DIALOG_DEFAULT_CONFIG) private _defaultConfig: DialogConfig,
         @Optional() private _rtlService: RtlService,
-        private _injector: Injector
+        @Optional() private _skeletonGlobalService: SkeletonGlobalService
     ) {
         super(dynamicComponentService);
     }
@@ -45,7 +47,8 @@ export class DialogService extends DialogBaseService<DialogContainerComponent> {
                 { provide: DialogConfig, useValue: dialogConfig },
                 { provide: DialogRef, useValue: dialogRef },
                 { provide: RtlService, useValue: this._rtlService },
-                { provide: DialogService, useValue: this }
+                { provide: DialogService, useValue: this },
+                { provide: SkeletonGlobalService, useValue: this._skeletonGlobalService }
             ],
             parent: parentInjector
         });
