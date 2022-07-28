@@ -6,12 +6,10 @@
         "entryFile": "./public_api.ts"
     },
     "allowedNonPeerDependencies": [
-        "@sap-theming/theming-base-content",
         "focus-trap",
-        "fundamental-styles",
-        "@fundamental-ngx/core",
-        "@fundamental-ngx/i18n",
+        "xml2js",
         "lodash-es",
-        "fast-deep-equal"
+        "fast-deep-equal",
+        "@fundamental-ngx/i18n"
     ]
 }
