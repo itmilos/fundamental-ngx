@@ -338,12 +338,16 @@ Try to replace theme in application manually, or use ThemingService to manage mu
                     throw new SchematicsException(`❌ No root module declaration found.`);
                 }
 
-                addModuleImportToModule(
-                    tree,
-                    appModulePath,
-                    `ThemingModule.withConfig({ defaultTheme: '${options.theme}', changeThemeOnQueryParamChange: false })`,
-                    '@fundamental-ngx/core/theming'
-                );
+                const themeModuleConfig =
+                    `ThemingModule.withConfig({ defaultTheme: '${options.theme}'` +
+                    (!options.readThemeFromURL ? `, loadStylesFromURL: false` : '') +
+                    ' })';
+
+                addModuleImportToModule(tree, appModulePath, themeModuleConfig, '@fundamental-ngx/core/theming');
+
+                if (options.readThemeFromURL && !hasModuleImport(tree, appModulePath, 'RouterModule')) {
+                    addModuleImportToModule(tree, appModulePath, 'RouterModule.forRoot([])', '@angular/router');
+                }
 
                 const changes: Change[] = [];
 

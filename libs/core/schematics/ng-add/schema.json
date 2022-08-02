@@ -73,6 +73,12 @@
                     }
                 ]
             }
+        },
+        "readThemeFromURL": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to read the theme from the URL.",
+            "x-prompt": "Read theme from URL? Makes difference if theme is not 'Custom'."
         }
     }
 }

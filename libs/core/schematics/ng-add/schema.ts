@@ -13,4 +13,5 @@ export interface Schema {
         | 'sap_horizon_hcb'
         | 'sap_horizon_hcw'
         | 'custom';
+    readThemeFromURL: boolean;
 }
