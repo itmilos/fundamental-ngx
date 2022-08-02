@@ -140,10 +140,10 @@ function addStylesToConfig(options: Schema): Rule {
         const workspaceJson = getWorkspaceJson(tree);
 
         try {
-            const additionalStyles = ['./node_modules/@fundamental-ngx/core/assets/fundamental-ngx-core.scss'];
+            const additionalStyles = ['./node_modules/@fundamental-ngx/core/styles/fundamental-ngx-core.css'];
 
             if (options.fonts) {
-                additionalStyles.push('./node_modules/@fundamental-ngx/core/assets/fundamental-ngx-core-fonts.scss');
+                additionalStyles.push('./node_modules/fundamental-styles/dist/fonts/sap_fonts.css');
             }
 
             let stylesArray: (string | AngularAssets)[] = (
@@ -299,7 +299,7 @@ Try to replace theme in application manually, or use ThemingService to manage mu
                 ) {
                     stylesUpdated = true;
                     stylesArray.push({
-                        input: `./node_modules/@fundamental-ngx/core/assets/fonts/${font}.css`,
+                        input: `./node_modules/fundamental-styles/dist/fonts/${font}.css`,
                         inject: false,
                         bundleName: font
                     });

@@ -36,16 +36,7 @@
   },
   "exports": {
     ".": {
-      "sass": "./assets/fundamental-ngx-core.scss"
-    },
-    "./assets/fundamental-ngx-core-fonts.scss": {
-      "sass": "./assets/fundamental-ngx-core-fonts.scss"
-    },
-    "./assets/fonts/sap_fiori_3_fonts.css": {
-      "style": "./assets/fonts/sap_fiori_3_fonts.css"
-    },
-    "./assets/fonts/sap_horizon_fonts.css": {
-      "style": "./assets/fonts/sap_horizon_fonts.css"
+      "sass": "./styles/fundamental-ngx-core.scss"
     }
   }
 }
