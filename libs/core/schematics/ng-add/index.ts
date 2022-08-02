@@ -246,7 +246,8 @@ function addTheming(options: Schema): Rule {
     return (tree, context) =>
         updateWorkspace(async (workspace) => {
             context.logger.info(
-                `⚠️ Currently, we don't automatically remove the deprecated Themes approach. If you have it applied you have to remove it by yourself.`
+                `⚠️ Currently, we don't automatically remove the deprecated Themes approach. If you have it applied you have to remove it by yourself.
+[Instructions: https://sap.github.io/fundamental-ngx/#/core/theming]`
             );
 
             if (options.theme === 'custom') {
