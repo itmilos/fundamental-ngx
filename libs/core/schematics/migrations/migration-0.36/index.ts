@@ -113,7 +113,7 @@ function removeFontStyles(): Rule {
         }
 
         context.logger.info(
-            `⚠️ Notice: If you have imported font styles from @sap-theming, please remove it since now it controlled by fundamental-ngx`
+            `⚠️ Notice: If you have imported font styles from @sap-theming, please remove it, since now it is controlled by fundamental-ngx`
         );
 
         return tree;
@@ -122,8 +122,7 @@ function removeFontStyles(): Rule {
 
 function noticeAddSchematics(): Rule {
     return (_: Tree, context: SchematicContext) => {
-        context.logger.info(`ℹ️ Now you have run ng-add schematics once again to setup things in the right way.`);
-
         // Unfortunately we cannot run it on our own because ng-update doesn't respect schema so there is no way to get options here and pass them further
+        context.logger.info(`ℹ️ Now you have to run ng-add schematics once again to set up things in the right way.`);
     };
 }
