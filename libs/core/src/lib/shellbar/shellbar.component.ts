@@ -58,7 +58,7 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
         if (this.comboboxComponent) {
             this.comboboxComponent.inShellbar = true;
             this.comboboxComponent.fullWidth = true;
-            this.comboboxComponent.hideInput = true;
+            this.comboboxComponent.showInput = false;
             this.comboboxComponent.hideShowInputField();
         }
     }
@@ -74,7 +74,7 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
 
     ngOnChanges(): void {
         if (this.size === 's') {
-            this.comboboxComponent.hideInput = false;
+            this.comboboxComponent.showInput = true;
             this.comboboxComponent.disableHideShowOfInput = true;
             this.comboboxComponent.hideShowInputField();
         } else {

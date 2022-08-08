@@ -336,10 +336,12 @@ export class ComboboxComponent
      */
     inShellbar = false;
 
-    fullWidth = true;
+    fullWidth = false;
 
-    hideInput = false;
+    @Input()
+    showInput = true;
 
+    @Input()
     disableHideShowOfInput = false;
 
     /** @hidden */
@@ -550,7 +552,7 @@ export class ComboboxComponent
         }
 
         if (this.inShellbar && this.isEmptyValue && !this.disableHideShowOfInput) {
-            this.hideInput = !this.hideInput;
+            this.showInput = !this.showInput;
             this.hideShowInputField();
         }
 
@@ -653,7 +655,7 @@ export class ComboboxComponent
     }
 
     hideShowInputField(): void {
-        if (this.hideInput) {
+        if (!this.showInput) {
             this.searchInputElement.nativeElement.style.display = 'none';
 
             if (this.searchInputElement.nativeElement.parentElement) {
