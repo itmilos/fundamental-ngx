@@ -96,11 +96,8 @@ export class ShellbarActionsComponent implements AfterViewInit {
     @Input()
     enableSearchComponentOnMobileMode = false;
 
-    showInput = false;
-
     handleClickSearch(data: boolean): void {
         this.enableSearchComponentOnMobileMode = data;
-        this.comboboxComponent.hideInput = false;
         this.applyComboboxFullLengthMode();
     }
 
@@ -132,11 +129,11 @@ export class ShellbarActionsComponent implements AfterViewInit {
     applyComboboxFullLengthMode(): void {
         if (this.enableSearchComponentOnMobileMode) {
             if (this.shellBarCombobox.nativeElement) {
-                this.shellBarCombobox.nativeElement.style.cssText = `width:100%; z-index:2; position: absolute; left: 0px; top: 0px;`;
+                this.shellBarCombobox.nativeElement.style.cssText = `width:100%; z-index:3; position: absolute; left: 0px; padding: 0 0.3rem; margin:0;`;
             }
         } else {
             if (this.shellBarCombobox.nativeElement) {
-                this.shellBarCombobox.nativeElement.style.cssText = '';
+                this.shellBarCombobox.nativeElement.style.cssText = 'width:100%;';
             }
         }
     }

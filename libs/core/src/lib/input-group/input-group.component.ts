@@ -182,6 +182,10 @@ export class InputGroupComponent implements ControlValueAccessor, AfterViewInit,
     addOnElement: InputGroupAddOnDirective;
 
     /** @hidden */
+    @ViewChild(InputGroupAddOnDirective)
+    localAddOnElement: InputGroupAddOnDirective;
+
+    /** @hidden */
     _inputTextValue: string;
 
     /** @hidden */
@@ -281,7 +285,8 @@ export class InputGroupComponent implements ControlValueAccessor, AfterViewInit,
     /** @hidden */
     setInShellbar(value: boolean): void {
         this.inShellbar = value;
-
+        this.localAddOnElement.elementRef().nativeElement.style.justifyContent = 'flex-end';
+        this.localAddOnElement.elementRef().nativeElement.style.cursor = 'default';
         this._changeDetectorRef.detectChanges();
     }
 

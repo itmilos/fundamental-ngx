@@ -4,11 +4,12 @@
     class="fd-shellbar__action"
     [class.fd-shellbar__action--desktop]="!enableSearchComponentOnMobileMode"
 >
-    <div>
+    <div style="display: flex; align-items: center">
         <ng-content select="fd-combobox"></ng-content>
         <button
             *ngIf="enableSearchComponentOnMobileMode"
             fd-button
+            style="padding: 0 1rem"
             fdType="transparent"
             class="fd-shellbar__button"
             [compact]="false"
@@ -34,7 +35,7 @@
 
 <ng-content select="fd-shellbar-action"></ng-content>
 
-<ng-container *ngIf="userItem">
+<ng-container *ngIf="userItem && !enableSearchComponentOnMobileMode">
     <ng-container *ngIf="!userComponent">
         <fd-shellbar-user-menu
             placement="bottom-end"
@@ -44,11 +45,11 @@
         ></fd-shellbar-user-menu>
     </ng-container>
 
-    <ng-container *ngIf="userComponent">
+    <ng-container *ngIf="userComponent && !enableSearchComponentOnMobileMode">
         <ng-content select="fd-shellbar-user-menu"></ng-content>
     </ng-container>
 </ng-container>
 
-<div *ngIf="productSwitchComponent" class="fd-shellbar__action">
+<div *ngIf="productSwitchComponent && !enableSearchComponentOnMobileMode" class="fd-shellbar__action">
     <ng-content select="fd-product-switch"></ng-content>
 </div>

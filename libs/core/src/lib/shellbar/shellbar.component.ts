@@ -57,15 +57,9 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     applyShellbarModeToCombobox(): void {
         if (this.comboboxComponent) {
             this.comboboxComponent.inShellbar = true;
-            if (this.size === 'xl' || this.size === 's') {
-                this.comboboxComponent.hideInput = false;
-                this.comboboxComponent.disableHideShowOfInput = true;
-                this.comboboxComponent.hideShowInputField();
-            } else {
-                this.comboboxComponent.hideInput = true;
-                this.comboboxComponent.disableHideShowOfInput = false;
-                this.comboboxComponent.hideShowInputField();
-            }
+            this.comboboxComponent.fullWidth = true;
+            this.comboboxComponent.hideInput = true;
+            this.comboboxComponent.hideShowInputField();
         }
     }
 
@@ -79,6 +73,12 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     }
 
     ngOnChanges(): void {
-        this.applyShellbarModeToCombobox();
+        if (this.size === 's') {
+            this.comboboxComponent.hideInput = false;
+            this.comboboxComponent.disableHideShowOfInput = true;
+            this.comboboxComponent.hideShowInputField();
+        } else {
+            this.comboboxComponent.disableHideShowOfInput = false;
+        }
     }
 }

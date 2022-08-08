@@ -4,7 +4,7 @@
     <fd-popover
         additionalBodyClass="fd-popover-custom-list"
         [class.fd-combobox-full-width]="isSearch"
-        [isOpen]="open && displayedValues && displayedValues.length > 0"
+        [isOpen]="open && displayedValues && displayedValues.length > 0 && !hideInput"
         (isOpenChange)="isOpenChangeHandle($event)"
         [fillControlMode]="fillControlMode"
         [focusTrapped]="true"

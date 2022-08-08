@@ -83,6 +83,7 @@ let comboboxUniqueId = 0;
     host: {
         '[class.fd-combobox-custom-class]': 'true',
         '[class.fd-combobox-input]': 'true',
+        '[class.fd-combobox-full-width]': 'fullWidth',
         '[class.fd-combobox-custom-class--mobile]': 'mobile'
     },
     encapsulation: ViewEncapsulation.None,
@@ -334,6 +335,8 @@ export class ComboboxComponent
      * @hidden
      */
     inShellbar = false;
+
+    fullWidth = true;
 
     hideInput = false;
 
