@@ -81,6 +81,7 @@ export class PopoverComponent
     @Input()
     mobile = false;
 
+    /** Config for the popover in mobile mode */
     @Input()
     mobileConfig: MobileModeConfig = { hasCloseButton: true };
 

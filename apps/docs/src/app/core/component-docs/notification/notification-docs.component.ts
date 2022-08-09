@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 
+import { ExampleFile } from '../../../documentation/core-helpers/code-example/example-file';
 import componentAsContentTs from '!./examples/component-as-content/notification-component-as-content-example.component.ts?raw';
 import contentTs from '!./examples/component-as-content/notification-content.component.ts?raw';
 import optionsTs from '!./examples/notification-options/notification-options-example.component.ts?raw';
 import optionsH from '!./examples/notification-options/notification-options-example.component.html?raw';
 import templateTs from '!./examples/template-as-content/notification-open-template-example.component.ts?raw';
 import templateH from '!./examples/template-as-content/notification-open-template-example.component.html?raw';
-import { ExampleFile } from '../../../documentation/core-helpers/code-example/example-file';
 import groupTs from '!./examples/notification-group/notification-group-example.component.ts?raw';
 import groupH from '!./examples/notification-group/notification-group-example.component.html?raw';
+import mobileTs from '!./examples/notification-mobile/notification-mobile-example.component.ts?raw';
+import mobileH from '!./examples/notification-mobile/notification-mobile-example.component.html?raw';
 
 @Component({
     selector: 'app-notification',
@@ -73,6 +75,20 @@ export class NotificationDocsComponent {
             language: 'html',
             code: groupH,
             fileName: 'notification-group-example'
+        }
+    ];
+
+    mobile: ExampleFile[] = [
+        {
+            language: 'typescript',
+            code: mobileTs,
+            fileName: 'notification-mobile-example',
+            component: 'NotificationMobileExampleComponent'
+        },
+        {
+            language: 'html',
+            code: mobileH,
+            fileName: 'notification-mobile-example'
         }
     ];
 }
