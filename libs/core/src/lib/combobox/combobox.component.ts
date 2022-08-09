@@ -47,7 +47,7 @@ import { MobileModeConfig } from '@fundamental-ngx/core/mobile-mode';
 
 import { ComboboxMobileModule } from './combobox-mobile/combobox-mobile.module';
 import { ComboboxMobileComponent } from './combobox-mobile/combobox-mobile.component';
-import { COMBOBOX_COMPONENT, ComboboxInterface } from './combobox.interface';
+import { COMBOBOX_COMPONENT } from './combobox.interface';
 import { ComboboxItem } from './combobox-item';
 import { GroupFunction } from './list-group.pipe';
 import { ContentDensityObserver, contentDensityObserverProviders } from '@fundamental-ngx/core/content-density';
@@ -90,7 +90,7 @@ let comboboxUniqueId = 0;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComboboxComponent
-    implements ComboboxInterface, ControlValueAccessor, OnInit, OnChanges, AfterViewInit, OnDestroy, FormItemControl
+    implements ControlValueAccessor, OnInit, OnChanges, AfterViewInit, OnDestroy, FormItemControl
 {
     /** Id for the Combobox. */
     @Input()
@@ -338,10 +338,8 @@ export class ComboboxComponent
 
     fullWidth = false;
 
-    @Input()
     showInput = true;
 
-    @Input()
     disableHideShowOfInput = false;
 
     /** @hidden */

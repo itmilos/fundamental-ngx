@@ -39,6 +39,12 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     @Input()
     sideNav = false;
 
+    @Input()
+    showComboboxInput = true;
+
+    @Input()
+    disableInputHide = false;
+
     /** @hidden */
     @ContentChild(ComboboxComponent, { static: false })
     comboboxComponent: ComboboxComponent;
@@ -58,7 +64,8 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
         if (this.comboboxComponent) {
             this.comboboxComponent.inShellbar = true;
             this.comboboxComponent.fullWidth = true;
-            this.comboboxComponent.showInput = false;
+            this.comboboxComponent.showInput = this.showComboboxInput;
+            this.comboboxComponent.disableHideShowOfInput = this.disableInputHide;
             this.comboboxComponent.hideShowInputField();
         }
     }
@@ -78,7 +85,7 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
             this.comboboxComponent.disableHideShowOfInput = true;
             this.comboboxComponent.hideShowInputField();
         } else {
-            this.comboboxComponent.disableHideShowOfInput = false;
+            this.comboboxComponent.disableHideShowOfInput = this.disableInputHide;
         }
     }
 }
