@@ -31,10 +31,6 @@ export class NotificationGroupComponent implements OnChanges, OnInit, CssClassBu
     width: string;
 
     /** @hidden */
-    @HostBinding('style.height')
-    _height = '100%';
-
-    /** @hidden */
     constructor(private _elementRef: ElementRef) {}
 
     /** @hidden */
