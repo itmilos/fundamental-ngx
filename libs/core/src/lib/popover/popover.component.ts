@@ -160,10 +160,6 @@ export class PopoverComponent
 
     /** @hidden */
     ngAfterContentInit(): void {
-        if (this.popoverBody && this.popoverBody.notificationGroup) {
-            super.focusTrapped = true;
-            super.focusAutoCapture = true;
-        }
         if (this.popoverControl && this.triggers.includes('click')) {
             this.popoverControl.makeTabbable();
         }
