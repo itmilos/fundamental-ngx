@@ -336,10 +336,22 @@ export class ComboboxComponent
      */
     inShellbar = false;
 
+    /**
+     * Make combobox of longer size covering the remaining space in shellbar-actions.For Shellbar mode and for internal use by combobox component
+     * @hidden
+     */
     fullWidth = false;
 
+    /**
+     * Show the input field of the combobox and hide if false. For Shellbar mode and for internal use by combobox component
+     * @hidden
+     */
     showInput = true;
 
+    /**
+     * Disable the input field hiding behaviour on search Icon click. For Shellbar mode and for internal use by combobox component
+     * @hidden
+     */
     disableHideShowOfInput = false;
 
     /** @hidden */
@@ -652,8 +664,9 @@ export class ComboboxComponent
         }
     }
 
+    /** Method that hide the input field on showInput=false and show it on showInput=true */
     hideShowInputField(): void {
-        if (!this.showInput) {
+        if (!this.showInput && this.searchInputElement.nativeElement) {
             this.searchInputElement.nativeElement.style.display = 'none';
 
             if (this.searchInputElement.nativeElement.parentElement) {

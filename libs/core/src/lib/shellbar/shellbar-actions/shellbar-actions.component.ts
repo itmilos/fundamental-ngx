@@ -128,17 +128,14 @@ export class ShellbarActionsComponent implements AfterViewInit {
 
     applyComboboxFullLengthMode(): void {
         if (this.enableSearchComponentOnMobileMode) {
-            if (this.shellBarCombobox.nativeElement) {
-                this.shellBarCombobox.nativeElement.style.cssText = `width:100%; z-index:3; position: absolute; left: 0px; padding: 0 0.3rem; margin:0;`;
-            }
+            this.shellBarCombobox.nativeElement.style.cssText = `width:100%; z-index:3; position: absolute; left: 0px; padding: 0 0.3rem; margin:0;`;
         } else {
-            if (this.shellBarCombobox.nativeElement) {
-                this.shellBarCombobox.nativeElement.style.cssText = 'width:100%;';
-            }
+            this.shellBarCombobox.nativeElement.style.cssText = 'width:100%;';
         }
     }
+
     /** @hidden */
     ngAfterViewInit(): void {
-        this.applyComboboxFullLengthMode();
+        this.shellBarCombobox && this.applyComboboxFullLengthMode();
     }
 }

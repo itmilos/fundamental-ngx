@@ -54,20 +54,28 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     buttons: QueryList<ButtonComponent>;
 
     /** @hidden */
-    ngAfterContentInit(): void {
-        this.applyShellbarModeToCombobox();
-        this.applyShellbarModeToButtons();
-    }
-
-    /** @hidden */
     applyShellbarModeToCombobox(): void {
         if (this.comboboxComponent) {
             this.comboboxComponent.inShellbar = true;
             this.comboboxComponent.fullWidth = true;
             this.comboboxComponent.showInput = this.showComboboxInput;
-            this.comboboxComponent.disableHideShowOfInput = this.disableInputHide;
-            this.comboboxComponent.hideShowInputField();
+            this.handleComboboxOnSizeChange();
         }
+    }
+
+    handleComboboxOnSizeChange(): void {
+        if (this.size === 's') {
+            this.comboboxComponent.showInput = true;
+            this.comboboxComponent.disableHideShowOfInput = true;
+        } else {
+            this.comboboxComponent.disableHideShowOfInput = this.disableInputHide;
+        }
+    }
+
+    /** @hidden */
+    ngAfterContentInit(): void {
+        this.applyShellbarModeToCombobox();
+        this.applyShellbarModeToButtons();
     }
 
     /** @hidden */
@@ -80,12 +88,9 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     }
 
     ngOnChanges(): void {
-        if (this.size === 's') {
-            this.comboboxComponent.showInput = true;
-            this.comboboxComponent.disableHideShowOfInput = true;
+        if (this.comboboxComponent) {
+            this.handleComboboxOnSizeChange();
             this.comboboxComponent.hideShowInputField();
-        } else {
-            this.comboboxComponent.disableHideShowOfInput = this.disableInputHide;
         }
     }
 }
