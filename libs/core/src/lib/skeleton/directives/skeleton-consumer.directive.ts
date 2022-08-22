@@ -140,7 +140,7 @@ export class SkeletonConsumerDirective {
         }
 
         if (this._config?.text) {
-            classesToManage.push(SKELETON_NATIVE_CLASS);
+            classesToManage.push(SKELETON_TEXT_CLASS);
         }
 
         return classesToManage;
@@ -192,7 +192,7 @@ export class SkeletonConsumerDirective {
         this._config = { ...defaultSkeletonConfig, ...this._config };
 
         // Consume automatically only if used as the directive
-        // Otherwise user has to manually consume
+        // Otherwise developer has to manually consume
         if (usedAsDirective) {
             this.consume();
         }
