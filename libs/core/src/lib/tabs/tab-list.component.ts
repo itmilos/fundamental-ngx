@@ -46,7 +46,7 @@ export type TabSizes = 's' | 'm' | 'l' | 'xl' | 'xxl';
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [contentDensityObserverProviders(), DestroyedService, TabsService, skeletonConsumerProviders()]
+    providers: [contentDensityObserverProviders(), DestroyedService, skeletonConsumerProviders()]
 })
 export class TabListComponent implements AfterContentInit, AfterViewInit, OnDestroy {
     /** Size of tab, it's mostly about adding spacing on tab container, available sizes 's' | 'm' | 'l' | 'xl' | 'xxl' */

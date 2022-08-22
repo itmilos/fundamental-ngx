@@ -332,7 +332,7 @@ export class SearchFieldComponent
         @Inject(FD_LANGUAGE) private readonly _language$: Observable<FdLanguage>,
         private readonly _liveAnnouncer: LiveAnnouncer,
         readonly _dynamicComponentService: DynamicComponentService,
-        readonly contentDensityObserver: ContentDensityObserver
+        readonly contentDensityObserver: ContentDensityObserver,
         private readonly _skeletonConsumer: SkeletonConsumerDirective
     ) {
         super(_cd);
