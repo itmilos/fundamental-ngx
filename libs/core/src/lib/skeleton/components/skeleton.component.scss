@@ -55,7 +55,7 @@ $block: fd-skeleton;
         &::after {
             background-image: var(--sapContent_Placeholderloading_Gradient) !important;
             background-size: 2000px 100% !important;
-            animation: shimmer 3.5s linear infinite;
+            animation: shimmer 2s linear infinite;
         }
     }
 
@@ -66,7 +66,7 @@ $block: fd-skeleton;
         }
     }
 
-    &:not(.#{$block}--text, .#{$block}--native) {
+    &:not(.#{$block}--text) {
         &::before {
             display: none !important;
         }
@@ -76,13 +76,6 @@ $block: fd-skeleton;
         &::before {
             position: relative !important;
             content: '\a0' !important;
-        }
-    }
-
-    &--rand {
-        &.#{$block}--native,
-        &::after {
-            width: var(--fdSkeletonWidth) !important;
         }
     }
 

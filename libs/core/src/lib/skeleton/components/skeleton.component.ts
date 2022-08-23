@@ -8,11 +8,8 @@ import {
     SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
-import { random } from 'lodash-es';
 
 export type SkeletonType = 'circle' | 'rectangle' | 'text';
-export type SkeletonWidth = 'rand' | string;
-export type SkeletonHeight = 'auto' | string;
 
 @Component({
     selector: 'fd-skeleton',
@@ -24,11 +21,11 @@ export type SkeletonHeight = 'auto' | string;
 export class SkeletonComponent implements OnChanges {
     /** Width of the skeleton */
     @Input()
-    width: SkeletonWidth;
+    width: string;
 
     /** Height of the skeleton. Relevant if type 'circle' or 'rectangle'. */
     @Input()
-    height: SkeletonHeight;
+    height = 'auto';
 
     /** Type of the skeleton. When set to 'text' height is automatically calculated. */
     @Input()
@@ -46,10 +43,6 @@ export class SkeletonComponent implements OnChanges {
     /** @hidden */
     @HostBinding('style.height')
     _height: string;
-
-    /** @hidden */
-    @HostBinding('class.fd-skeleton--rand')
-    _randomWidthClass: boolean;
 
     /** @hidden */
     @HostBinding('class.fd-skeleton--text')
@@ -79,9 +72,7 @@ export class SkeletonComponent implements OnChanges {
         }
 
         if (changes['width']) {
-            this._width = this.width === 'rand' ? '100%' : this.width;
-            this._randomWidthClass = this.width === 'rand';
-            this._processRandomWidthVariable(this.width === 'rand');
+            this._width = this.width;
         }
 
         if (this.type === 'circle') {
@@ -92,17 +83,4 @@ export class SkeletonComponent implements OnChanges {
             }
         }
     }
-
-    /** @hidden */
-    private _processRandomWidthVariable(skeletonState: boolean): void {
-        if (skeletonState) {
-            this._elRef.nativeElement?.style.setProperty('--fdSkeletonWidth', getRandomWidth());
-        } else {
-            this._elRef.nativeElement?.style.removeProperty('--fdSkeletonWidth');
-        }
-    }
-}
-
-function getRandomWidth(): string {
-    return `${random(30, 90)}%`;
 }
