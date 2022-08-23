@@ -10,8 +10,8 @@ export class ShellbarCollapsibleExampleComponent {
     currentSize: ShellbarSizes = 'm';
 
     sizesWidth = {
-        s: 320,
-        m: 720,
+        s: 414,
+        m: 601,
         l: 1024,
         xl: 1400
     };

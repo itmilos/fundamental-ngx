@@ -40,7 +40,7 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     sideNav = false;
 
     @Input()
-    showComboboxInput = true;
+    showComboboxInput = false;
 
     @Input()
     disableInputHide = false;

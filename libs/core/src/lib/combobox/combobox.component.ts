@@ -561,20 +561,22 @@ export class ComboboxComponent
             return;
         }
 
+        /* hide or show the input field on click. For Shellbar mode only */
         if (this.inShellbar && this.isEmptyValue && !this.disableHideShowOfInput) {
             this.showInput = !this.showInput;
             this.hideShowInputField();
         }
-
-        if (this.searchFn) {
-            this.searchFn();
-        }
-        this._resetDisplayedValues();
-        this.isOpenChangeHandle(!this.open);
-        this.searchInputElement.nativeElement.focus();
-        this.filterHighlight = false;
-        if (this.open && this.listComponent) {
-            this.listComponent.setItemActive(0);
+        if (this.showInput) {
+            if (this.searchFn) {
+                this.searchFn();
+            }
+            this._resetDisplayedValues();
+            this.isOpenChangeHandle(!this.open);
+            this.searchInputElement.nativeElement.focus();
+            this.filterHighlight = false;
+            if (this.open && this.listComponent) {
+                this.listComponent.setItemActive(0);
+            }
         }
     }
 
