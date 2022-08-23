@@ -44,7 +44,7 @@ import { IconComponent } from '@fundamental-ngx/core/icon';
                 [new Optional(), new Self(), RouterLink]
             ]
         },
-        skeletonConsumerProviders({ text: true })
+        skeletonConsumerProviders()
     ]
 })
 export class LinkComponent implements OnChanges, OnInit, CssClassBuilder, AfterViewInit, OnDestroy {

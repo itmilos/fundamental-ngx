@@ -18,7 +18,7 @@ import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundament
     host: {
         class: 'fd-action-bar__description'
     },
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ActionBarDescriptionDirective {
     /*

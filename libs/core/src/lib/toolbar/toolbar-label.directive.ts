@@ -9,7 +9,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     host: {
         class: 'fd-label fd-toolbar__overflow-label'
     },
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ToolbarLabelDirective extends ToolbarItemDirective {
     /** @hidden */

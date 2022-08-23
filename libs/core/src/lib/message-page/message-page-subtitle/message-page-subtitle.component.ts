@@ -6,7 +6,7 @@ import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundament
     template: `<ng-content></ng-content>`,
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class MessagePageSubtitleComponent {
     /** @hidden */

@@ -28,7 +28,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
         '[attr.tabindex]': 'clickable ? 0 : -1',
         '[attr.role]': 'clickable ? "link" :""'
     },
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ObjectMarkerComponent implements OnChanges, OnInit, CssClassBuilder {
     /** User's custom classes */

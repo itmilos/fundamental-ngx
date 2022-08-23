@@ -24,7 +24,7 @@ let uniqueId = 0;
 
 @Directive({
     selector: '[fdNestedDirectivesHeader], [fd-nested-list-header]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class NestedListHeaderDirective {
     @Input()
@@ -99,7 +99,7 @@ export class NestedListIconDirective implements CssClassBuilder, OnChanges, OnIn
 
 @Directive({
     selector: '[fdNestedDirectivesTitle], [fd-nested-list-title]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class NestedListTitleDirective {
     /** @hidden */

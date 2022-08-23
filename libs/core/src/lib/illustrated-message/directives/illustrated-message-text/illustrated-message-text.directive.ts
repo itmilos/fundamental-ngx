@@ -5,7 +5,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     // TODO to be discussed
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-illustrated-message-text]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class IllustratedMessageTextDirective {
     /** @hidden */

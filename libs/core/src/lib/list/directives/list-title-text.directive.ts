@@ -3,7 +3,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 
 @Directive({
     selector: '[fd-list-title-text], [fdListTitleText]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ListTitleTextDirective {
     /** @hidden */

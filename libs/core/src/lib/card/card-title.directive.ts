@@ -8,7 +8,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-card-title]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class CardTitleDirective implements OnInit, CssClassBuilder {
     /** @hidden */

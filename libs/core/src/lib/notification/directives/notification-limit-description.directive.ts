@@ -3,7 +3,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 
 @Directive({
     selector: '[fdNotificationLimitDescription], [fd-notification-limit-description]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class NotificationLimitDescriptionDirective {
     /** @hidden */

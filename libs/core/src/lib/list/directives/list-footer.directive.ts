@@ -3,7 +3,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 
 @Directive({
     selector: '[fdListFooter], [fd-list-footer]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ListFooterDirective {
     /** @hidden */

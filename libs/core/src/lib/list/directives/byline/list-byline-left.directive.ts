@@ -3,7 +3,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 
 @Directive({
     selector: '[fdListBylineLeft], [fd-list-byline-left]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ListBylineLeftDirective {
     /** @hidden */

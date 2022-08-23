@@ -15,11 +15,6 @@ export interface SkeletonObserverConfig {
      */
     modifiers?: string[];
     /**
-     * Whether to set skeleton's height to the font-size property.
-     * Handy, when needed to create skeleton for an empty text element.
-     */
-    text?: boolean;
-    /**
      * Whether to apply animation. True by default.
      */
     animation?: boolean;

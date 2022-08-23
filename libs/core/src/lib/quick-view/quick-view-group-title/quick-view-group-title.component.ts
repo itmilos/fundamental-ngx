@@ -7,7 +7,7 @@ let groupTitleUniqueId = 0;
     selector: 'fd-quick-view-group-title',
     templateUrl: './quick-view-group-title.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class QuickViewGroupTitleComponent {
     /** Id of the quick view group title. */

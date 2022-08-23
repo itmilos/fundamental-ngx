@@ -9,7 +9,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
-export type SkeletonType = 'circle' | 'rectangle' | 'text';
+export type SkeletonType = 'circle' | 'rectangle';
 
 @Component({
     selector: 'fd-skeleton',
@@ -19,15 +19,15 @@ export type SkeletonType = 'circle' | 'rectangle' | 'text';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkeletonComponent implements OnChanges {
-    /** Width of the skeleton */
+    /** Width of the skeleton. */
     @Input()
-    width: string;
+    width = '100%';
 
-    /** Height of the skeleton. Relevant if type 'circle' or 'rectangle'. */
+    /** Height of the skeleton. */
     @Input()
     height = 'auto';
 
-    /** Type of the skeleton. When set to 'text' height is automatically calculated. */
+    /** Type of the skeleton. */
     @Input()
     type: SkeletonType = 'rectangle';
 
@@ -45,12 +45,6 @@ export class SkeletonComponent implements OnChanges {
     _height: string;
 
     /** @hidden */
-    @HostBinding('class.fd-skeleton--text')
-    get _textClass(): boolean {
-        return this.type === 'text';
-    }
-
-    /** @hidden */
     @HostBinding('class.fd-skeleton--circle')
     get _circleClass(): boolean {
         return this.type === 'circle';
@@ -65,17 +59,15 @@ export class SkeletonComponent implements OnChanges {
 
     /** @hidden */
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['type'] && this.type === 'text') {
-            this._height = 'auto';
-        } else if (changes['height'] && this.type !== 'text') {
-            this._height = changes['height'].currentValue;
+        if (changes['height']) {
+            this._height = this.height;
         }
 
         if (changes['width']) {
             this._width = this.width;
         }
 
-        if (this.type === 'circle') {
+        if (changes['type'] && this.type === 'circle') {
             if (this._width && !this._height) {
                 this._height = this._width;
             } else if (this._height && !this._width) {

@@ -8,7 +8,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
         '[class.fd-list__byline--2-col]': 'twoCol',
         '[class.fd-list__byline--wrap]': 'wrap'
     },
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ListBylineDirective {
     /** Whether or not this is a 2-column byline. */

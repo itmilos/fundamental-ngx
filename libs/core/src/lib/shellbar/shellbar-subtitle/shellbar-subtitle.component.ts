@@ -22,7 +22,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
             }
         `
     ],
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ShellbarSubtitleComponent {
     /** @hidden */

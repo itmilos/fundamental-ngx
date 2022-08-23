@@ -5,7 +5,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     selector: 'fd-quick-view-subheader-subtitle',
     templateUrl: './quick-view-subheader-subtitle.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class QuickViewSubheaderSubtitleComponent {
     /** @hidden */

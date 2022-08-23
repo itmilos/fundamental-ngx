@@ -30,7 +30,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     styleUrls: ['./object-identifier.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ObjectIdentifierComponent implements AfterContentInit, OnDestroy {
     /** Description text */

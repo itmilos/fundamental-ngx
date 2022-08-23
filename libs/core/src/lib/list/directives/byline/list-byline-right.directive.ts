@@ -14,7 +14,7 @@ export type ListBylineStatus = 'neutral' | 'positive' | 'negative' | 'critical' 
         '[class.fd-list__byline-right--informative]': 'status === "informative"',
         '[class.fd-list__byline-right--wrap]': 'wrap'
     },
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ListBylineRightDirective {
     /** Semantic status of byline

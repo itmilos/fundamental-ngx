@@ -25,7 +25,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class ActionBarTitleComponent {
     /** @hidden */

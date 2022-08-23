@@ -15,12 +15,7 @@
 
             <div class="fd-dynamic-page__title-subtitle-container">
                 <div class="fd-dynamic-page__title-container">
-                    <span
-                        class="fd-dynamic-page__title"
-                        fdIgnoreClickOnSelection
-                        fdSkeletonConsumer
-                        fdSkeletonConsumerText
-                    >
+                    <span class="fd-dynamic-page__title" fdIgnoreClickOnSelection fdSkeletonConsumer>
                         {{ title }}
                     </span>
                     <ng-content select="fd-dynamic-page-title-content"></ng-content>
@@ -36,7 +31,6 @@
                     *ngIf="_collapsed && subtitle"
                     fdIgnoreClickOnSelection
                     fdSkeletonConsumer
-                    fdSkeletonConsumerText
                 >
                     {{ subtitle }}
                 </div>
@@ -44,13 +38,7 @@
         </div>
     </div>
 </div>
-<div
-    class="fd-dynamic-page__subtitle"
-    *ngIf="!_collapsed && subtitle"
-    fdIgnoreClickOnSelection
-    fdSkeletonConsumer
-    fdSkeletonConsumerText
->
+<div class="fd-dynamic-page__subtitle" *ngIf="!_collapsed && subtitle" fdIgnoreClickOnSelection fdSkeletonConsumer>
     {{ subtitle }}
 </div>
 

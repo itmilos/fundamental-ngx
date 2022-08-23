@@ -13,7 +13,7 @@ let panelTitleUniqueId = 0;
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-panel-title]',
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class PanelTitleDirective {
     /** @hidden */

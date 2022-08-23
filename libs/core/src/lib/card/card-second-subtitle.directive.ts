@@ -7,7 +7,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-card-second-subtitle]',
-    providers: [skeletonConsumerProviders({ text: true })]
+    providers: [skeletonConsumerProviders()]
 })
 export class CardSecondSubtitleDirective implements OnInit, CssClassBuilder {
     /** @hidden */

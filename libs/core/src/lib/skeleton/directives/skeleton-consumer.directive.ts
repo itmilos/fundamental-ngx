@@ -11,14 +11,12 @@ import { SkeletonTemplateDirective } from './skeleton-template.directive';
 
 const DEFAULT_SKELETON_CLASS = 'fd-skeleton';
 const SKELETON_ANIMATION_CLASS = 'fd-skeleton--animated';
-const SKELETON_TEXT_CLASS = 'fd-skeleton--text';
 const SKELETON_NATIVE_CLASS = 'fd-skeleton--native';
 
 const defaultSkeletonConfig: SkeletonObserverConfig = {
     apply: true,
     modifiers: undefined,
     animation: true,
-    text: false,
     native: false
 };
 
@@ -52,19 +50,6 @@ export class SkeletonConsumerDirective {
     @Input()
     set fdSkeletonConsumerModifiers(value: string[]) {
         this._config.modifiers = value;
-
-        if (this._callbacks.has(this._defaultCallbackFn)) {
-            this._defaultCallbackFn(this._skeletonState);
-        }
-    }
-
-    /**
-     * Whether to set skeleton's height to the font-size property.
-     * Handy, when needed to create skeleton for an empty text element.
-     */
-    @Input()
-    set fdSkeletonConsumerText(value: BooleanInput) {
-        this._config.text = coerceBooleanProperty(value);
 
         if (this._callbacks.has(this._defaultCallbackFn)) {
             this._defaultCallbackFn(this._skeletonState);
@@ -106,15 +91,6 @@ export class SkeletonConsumerDirective {
     protected _originalTabIndex: number;
 
     /** @hidden */
-    protected _originalDisplay = false;
-
-    /** @hidden */
-    protected _originalHeight = false;
-
-    /** @hidden */
-    protected _originalWidth = false;
-
-    /** @hidden */
     private _elementRef: ElementRef<HTMLElement>;
 
     /** @hidden */
@@ -137,10 +113,6 @@ export class SkeletonConsumerDirective {
 
         if (this._config?.native) {
             classesToManage.push(SKELETON_NATIVE_CLASS);
-        }
-
-        if (this._config?.text) {
-            classesToManage.push(SKELETON_TEXT_CLASS);
         }
 
         return classesToManage;
@@ -247,7 +219,6 @@ export class SkeletonConsumerDirective {
     protected _defaultCallbackFn = (skeletonState): void => {
         this._manageCssClasses(skeletonState);
         this._manageTabIndex(skeletonState);
-        this._manageVisibility(skeletonState);
     };
 
     /** @hidden */
@@ -270,50 +241,6 @@ export class SkeletonConsumerDirective {
             this._elementRef.nativeElement.tabIndex = -1;
         } else {
             this._elementRef.nativeElement.tabIndex = this._originalTabIndex;
-        }
-    }
-
-    /**
-     * Manage element's style properties to be able to show skeleton placeholder.
-     * @hidden
-     */
-    private _manageVisibility(skeletonState: boolean): void {
-        if (skeletonState && this._apply) {
-            const computeStyle = window.getComputedStyle(this._elementRef.nativeElement);
-
-            if (computeStyle.display === 'inline') {
-                this._originalDisplay = true;
-                this._elementRef.nativeElement.style.display = 'inline-block';
-            }
-
-            if (computeStyle.width === '0px') {
-                this._originalWidth = true;
-                this._elementRef.nativeElement.style.width = '100%';
-            }
-
-            if (!this._config?.modifiers && this._config?.text) {
-                if (computeStyle.height === '0px' || this._elementRef.nativeElement.textContent === '') {
-                    this._originalHeight = true;
-                    this._elementRef.nativeElement.style.height = 'auto';
-                    this._elementRef.nativeElement.classList.add(SKELETON_TEXT_CLASS);
-                }
-            }
-        } else {
-            if (this._originalDisplay) {
-                this._originalDisplay = false;
-                this._elementRef.nativeElement.style.removeProperty('display');
-            }
-
-            if (this._originalWidth) {
-                this._originalWidth = false;
-                this._elementRef.nativeElement.style.removeProperty('width');
-            }
-
-            if (this._originalHeight) {
-                this._originalHeight = false;
-                this._elementRef.nativeElement.style.removeProperty('height');
-                this._elementRef.nativeElement.classList.remove(SKELETON_TEXT_CLASS);
-            }
         }
     }
 }

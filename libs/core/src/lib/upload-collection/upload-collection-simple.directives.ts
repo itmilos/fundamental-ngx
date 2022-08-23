@@ -32,7 +32,7 @@ export class UploadCollectionTitleDirective {
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-upload-collection-description]',
     host: { class: 'fd-upload-collection__description' },
-    providers: [skeletonConsumerProviders({ text: true })]
+    providers: [skeletonConsumerProviders()]
 })
 export class UploadCollectionDescriptionDirective {
     /** @hidden */

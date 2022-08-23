@@ -10,7 +10,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-card-counter]',
-    providers: [skeletonConsumerProviders({ text: true })]
+    providers: [skeletonConsumerProviders()]
 })
 export class CardCounterDirective implements OnInit, OnChanges, CssClassBuilder {
     /**

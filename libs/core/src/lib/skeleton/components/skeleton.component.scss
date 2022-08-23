@@ -15,6 +15,7 @@ $block: fd-skeleton;
     user-select: none !important;
     opacity: 1 !important;
     border-radius: 0.25rem !important;
+    min-height: 1em !important;
 
     *,
     &::placeholder {
@@ -69,13 +70,6 @@ $block: fd-skeleton;
     &:not(.#{$block}--text) {
         &::before {
             display: none !important;
-        }
-    }
-
-    &--text {
-        &::before {
-            position: relative !important;
-            content: '\a0' !important;
         }
     }
 

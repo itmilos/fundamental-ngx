@@ -4,7 +4,8 @@
 
 <fd-skeleton type="circle" height="50px"></fd-skeleton>
 
-<fd-skeleton type="text" width="30%"></fd-skeleton>
+<!-- When no content & height is specified, the skeleton will be displayed as a line with height set to the font-size property. -->
+<fd-skeleton width="30%"></fd-skeleton>
 
 <p>No animation</p>
 
@@ -12,7 +13,8 @@
 
 <fd-skeleton type="circle" width="50px" [animation]="false"></fd-skeleton>
 
-<fd-skeleton type="text" width="30%" [animation]="false"></fd-skeleton>
+<!-- When no content & height is specified, the skeleton will be displayed as a line with height set to the font-size property. -->
+<fd-skeleton width="30%" [animation]="false"></fd-skeleton>
 
 <p>Size inherited from the content</p>
 

@@ -19,7 +19,7 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     templateUrl: './layout-panel-head.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class LayoutPanelHeadComponent {
     /** @hidden */

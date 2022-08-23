@@ -17,7 +17,7 @@ import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundament
     templateUrl: './layout-panel-footer.component.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders({ text: true })
+    providers: skeletonConsumerProviders()
 })
 export class LayoutPanelFooterComponent {
     /** @hidden */
