@@ -4,7 +4,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { PopoverComponent, PopoverModule, PopoverService } from '@fundamental-ngx/core/popover';
-import { skeletonConsumerProviders } from '../skeleton';
+import { skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 describe('PopoverComponent', () => {
     let component: PopoverComponent;
@@ -18,10 +18,7 @@ describe('PopoverComponent', () => {
         })
             .overrideComponent(PopoverComponent, {
                 set: {
-                    providers: [
-                        { provide: PopoverService, useClass: PopoverServiceStub },
-                        skeletonConsumerProviders()
-                    ]
+                    providers: [{ provide: PopoverService, useClass: PopoverServiceStub }, skeletonConsumerProviders()]
                 }
             })
             .compileComponents();

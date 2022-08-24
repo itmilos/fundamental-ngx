@@ -23,6 +23,7 @@ import { IconModule } from '@fundamental-ngx/core/icon';
 import { DeprecatedListContentDensityDirective } from './deprecated-list-content-density,directive';
 import { ContentDensityModule } from '@fundamental-ngx/core/content-density';
 import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
+import { RepeatModule } from '@fundamental-ngx/core/utils';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,7 @@ import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
         ListNavigationItemTextDirective,
         DeprecatedListContentDensityDirective
     ],
-    imports: [CommonModule, FormModule, IconModule, ContentDensityModule, SkeletonModule],
+    imports: [CommonModule, FormModule, IconModule, ContentDensityModule, SkeletonModule, RepeatModule],
     exports: [
         ListComponent,
         ListItemComponent,

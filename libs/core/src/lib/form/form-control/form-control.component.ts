@@ -30,7 +30,7 @@ import { FormItemControl, registerFormItemControl } from './../form-item-control
     styleUrls: ['./form-control.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [skeletonConsumerProviders({ native: true }), registerFormItemControl(FormControlComponent)]
+    providers: [skeletonConsumerProviders(), registerFormItemControl(FormControlComponent)]
 })
 export class FormControlComponent implements CssClassBuilder, OnInit, OnChanges, OnDestroy, FormItemControl {
     /**

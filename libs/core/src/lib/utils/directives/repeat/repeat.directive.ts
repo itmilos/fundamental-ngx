@@ -9,7 +9,7 @@ import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerR
 export class RepeatDirective implements OnChanges {
     /** Number of times to render a template. */
     @Input('fdRepeat')
-    readonly count = 0;
+    readonly count: number = 0;
 
     /** @hidden */
     constructor(private templateRef: TemplateRef<any>, private viewContainerRef: ViewContainerRef) {}

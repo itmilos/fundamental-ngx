@@ -1,5 +1,4 @@
 import { Directive, Input } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 export type ListBylineStatus = 'neutral' | 'positive' | 'negative' | 'critical' | 'informative';
 
@@ -13,8 +12,7 @@ export type ListBylineStatus = 'neutral' | 'positive' | 'negative' | 'critical' 
         '[class.fd-list__byline-right--critical]': 'status === "critical"',
         '[class.fd-list__byline-right--informative]': 'status === "informative"',
         '[class.fd-list__byline-right--wrap]': 'wrap'
-    },
-    providers: skeletonConsumerProviders()
+    }
 })
 export class ListBylineRightDirective {
     /** Semantic status of byline
@@ -27,9 +25,4 @@ export class ListBylineRightDirective {
     /** Whether or not this should be wrapped, when too much text. */
     @Input()
     wrap = false;
-
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
 }

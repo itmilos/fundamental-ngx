@@ -1,10 +1,8 @@
 import { Directive, ElementRef, HostBinding, Input, OnChanges, OnInit } from '@angular/core';
 import { applyCssClass } from '@fundamental-ngx/core/utils';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
-    selector: '[fdListIcon], [fd-list-icon]',
-    providers: skeletonConsumerProviders({ native: true })
+    selector: '[fdListIcon], [fd-list-icon]'
 })
 export class ListIconDirective implements OnChanges, OnInit {
     /** The icon name to display. See the icon page for the list of icons
@@ -23,9 +21,7 @@ export class ListIconDirective implements OnChanges, OnInit {
     role = 'presentation';
 
     /** @hidden */
-    constructor(private _elementRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
+    constructor(private _elementRef: ElementRef) {}
 
     /** @hidden */
     ngOnChanges(): void {

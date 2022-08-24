@@ -1,9 +1,7 @@
 import { Directive, ElementRef, HostBinding } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
-    selector: '[fd-list-navigation-item-text], [fdListNavigaitonItemText]',
-    providers: skeletonConsumerProviders()
+    selector: '[fd-list-navigation-item-text], [fdListNavigaitonItemText]'
 })
 export class ListNavigationItemTextDirective {
     /** @hidden */
@@ -11,9 +9,7 @@ export class ListNavigationItemTextDirective {
     navigationItemTextClass = true;
 
     /** @hidden */
-    constructor(private _elementRef: ElementRef, private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
+    constructor(private _elementRef: ElementRef) {}
 
     /** @hidden */
     get elementRef(): ElementRef<HTMLElement> {
