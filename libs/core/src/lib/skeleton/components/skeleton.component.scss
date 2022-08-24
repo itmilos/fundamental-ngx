@@ -4,6 +4,8 @@ $block: fd-skeleton;
 
 /* TODO: To be moved in Fund Styles */
 .#{$block} {
+    --fdSkeletonWidth: 100%;
+
     position: relative;
     color: transparent !important;
     background-color: transparent !important;
@@ -30,7 +32,7 @@ $block: fd-skeleton;
         border-radius: inherit !important;
         top: 0 !important;
         left: 0 !important;
-        width: 100% !important;
+        width: var(--fdSkeletonWidth) !important;
         height: 100% !important;
     }
 
@@ -39,6 +41,8 @@ $block: fd-skeleton;
     }
 
     &--native {
+        width: var(--fdSkeletonWidth) !important;
+
         &::after {
             display: none !important;
         }

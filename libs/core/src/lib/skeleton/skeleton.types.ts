@@ -24,6 +24,10 @@ export interface SkeletonObserverConfig {
      * Cannot be used together with text flag!
      */
     native?: boolean;
+    /**
+     * Width of the skeleton placeholder, preferably in percentages.
+     */
+    width?: string;
 }
 
 export interface SkeletonModuleConfig {

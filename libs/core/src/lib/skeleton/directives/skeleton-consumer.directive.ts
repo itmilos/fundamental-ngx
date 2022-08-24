@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Inject, InjectFlags, InjectionToken, Injector, Input, Optional } from '@angular/core';
 
 import { DestroyedService } from '@fundamental-ngx/core/utils';
+import { Nullable } from '@fundamental-ngx/core/shared';
 import { distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SkeletonGlobalService } from '../services/skeleton-global.service';
@@ -17,7 +18,8 @@ const defaultSkeletonConfig: SkeletonObserverConfig = {
     apply: true,
     modifiers: undefined,
     animation: true,
-    native: false
+    native: false,
+    width: undefined
 };
 
 const SKELETON_CONFIG_TOKEN = new InjectionToken<SkeletonObserverConfig>('SkeletonObserverConfig');
@@ -81,6 +83,17 @@ export class SkeletonConsumerDirective {
             this._defaultCallbackFn(this._skeletonState);
         }
     }
+    /**
+     * Width of the skeleton placeholder, preferably in percentages.
+     */
+    @Input()
+    set fdSkeletonConsumerWidth(value: string) {
+        this._config.width = value;
+
+        if (this._callbacks.has(this._defaultCallbackFn)) {
+            this._defaultCallbackFn(this._skeletonState);
+        }
+    }
 
     /** @hidden */
     protected get _apply(): boolean {
@@ -88,7 +101,7 @@ export class SkeletonConsumerDirective {
     }
 
     /** @hidden */
-    protected _originalTabIndex: number;
+    protected _originalTabIndex: Nullable<number>;
 
     /** @hidden */
     private _elementRef: ElementRef<HTMLElement>;
@@ -219,6 +232,7 @@ export class SkeletonConsumerDirective {
     protected _defaultCallbackFn = (skeletonState): void => {
         this._manageCssClasses(skeletonState);
         this._manageTabIndex(skeletonState);
+        this._manageWidth(skeletonState);
     };
 
     /** @hidden */
@@ -227,7 +241,7 @@ export class SkeletonConsumerDirective {
             Object.values(this._modifiers).forEach((className) => {
                 this._elementRef.nativeElement.classList.add(className);
             });
-        } else {
+        } else if (this._apply) {
             Object.values(this._modifiers).forEach((className) => {
                 this._elementRef.nativeElement.classList.remove(className);
             });
@@ -239,8 +253,18 @@ export class SkeletonConsumerDirective {
         if (skeletonState && this._apply) {
             this._originalTabIndex = this._elementRef.nativeElement.tabIndex;
             this._elementRef.nativeElement.tabIndex = -1;
-        } else {
+        } else if (this._originalTabIndex != null && this._apply) {
             this._elementRef.nativeElement.tabIndex = this._originalTabIndex;
+            this._originalTabIndex = null;
+        }
+    }
+
+    /** @hidden */
+    private _manageWidth(skeletonState: boolean): void {
+        if (skeletonState && this._apply && this._config.width) {
+            this._elementRef.nativeElement.style.setProperty('--fdSkeletonWidth', this._config.width);
+        } else if (this._apply && this._config.width) {
+            this._elementRef.nativeElement.style.removeProperty('--fdSkeletonWidth');
         }
     }
 }
