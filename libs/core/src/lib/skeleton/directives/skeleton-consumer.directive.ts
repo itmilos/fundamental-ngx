@@ -136,10 +136,10 @@ export class SkeletonConsumerDirective {
         this._elementRef = _injector.get(ElementRef);
         this._config = { ...defaultSkeletonConfig, ...this._config };
 
-        // eslint-disable-next-line no-bitwise
         const parentConsumer = _injector.get(
             SkeletonConsumerDirective,
             null,
+            // eslint-disable-next-line no-bitwise
             InjectFlags.Optional | InjectFlags.SkipSelf
         );
         const parentStateDirective = _injector.get(SkeletonStateDirective, null, InjectFlags.Optional);
