@@ -2,17 +2,17 @@
     #shellBarCombobox
     *ngIf="comboboxComponent"
     class="fd-shellbar__action"
-    [class.fd-shellbar__action--desktop]="!enableSearchComponentOnMobileMode"
+    [class.fd-shellbar__action--desktop]="!openComboboxInMobileMode"
 >
     <div style="display: flex; align-items: center">
         <ng-content select="fd-combobox"></ng-content>
         <button
-            *ngIf="enableSearchComponentOnMobileMode"
+            *ngIf="openComboboxInMobileMode"
             fd-button
             style="padding: 0 1rem"
             fdType="transparent"
             class="fd-shellbar__button"
-            (click)="handleCancleInMobileMode(false)"
+            (click)="openOrCloseSearchInMobileMode(false)"
         >
             Cancel
         </button>
@@ -21,8 +21,9 @@
 
 <div class="fd-shellbar__action fd-shellbar__action--mobile">
     <fd-shellbar-actions-mobile
-        [isSearch]="enableSearchComponentOnMobileMode"
-        (enableSearchInMobile)="handleClickSearch($event)"
+        [isComboboxExist]="isCombobox"
+        [isComboboxShowed]="openComboboxInMobileMode"
+        (enableSearchInMobile)="openOrCloseSearchInMobileMode($event)"
         [shellbarActions]="shellbarActions"
         [collapsedItemMenuLabel]="collapsedItemMenuLabel"
     ></fd-shellbar-actions-mobile>
@@ -34,7 +35,7 @@
 
 <ng-content select="fd-shellbar-action"></ng-content>
 
-<ng-container *ngIf="userItem && !enableSearchComponentOnMobileMode">
+<ng-container *ngIf="userItem && !openComboboxInMobileMode">
     <ng-container *ngIf="!userComponent">
         <fd-shellbar-user-menu
             placement="bottom-end"
@@ -44,11 +45,11 @@
         ></fd-shellbar-user-menu>
     </ng-container>
 
-    <ng-container *ngIf="userComponent && !enableSearchComponentOnMobileMode">
+    <ng-container *ngIf="userComponent && !openComboboxInMobileMode">
         <ng-content select="fd-shellbar-user-menu"></ng-content>
     </ng-container>
 </ng-container>
 
-<div *ngIf="productSwitchComponent && !enableSearchComponentOnMobileMode" class="fd-shellbar__action">
+<div *ngIf="productSwitchComponent && !openComboboxInMobileMode" class="fd-shellbar__action">
     <ng-content select="fd-product-switch"></ng-content>
 </div>

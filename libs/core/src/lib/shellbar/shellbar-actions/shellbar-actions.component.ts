@@ -8,7 +8,8 @@ import {
     ViewChild,
     ChangeDetectionStrategy,
     ElementRef,
-    AfterViewInit
+    AfterViewInit,
+    AfterContentInit
 } from '@angular/core';
 
 import { ComboboxComponent } from '@fundamental-ngx/core/combobox';
@@ -49,7 +50,7 @@ import { ShellbarUserMenuComponent } from '../user-menu/shellbar-user-menu.compo
         '[class.fd-shellbar__group--actions]': 'true'
     }
 })
-export class ShellbarActionsComponent implements AfterViewInit {
+export class ShellbarActionsComponent implements AfterViewInit, AfterContentInit {
     /** The user data. */
     @Input()
     user: ShellbarUser;
@@ -93,16 +94,14 @@ export class ShellbarActionsComponent implements AfterViewInit {
     @ViewChild('shellBarCombobox')
     shellBarCombobox: ElementRef<HTMLInputElement>;
 
+    /** For mobile mode ('s' size): true when user selects search from popover, false by default and when user selects cancel button  */
     @Input()
-    enableSearchComponentOnMobileMode = false;
+    openComboboxInMobileMode = false;
 
-    handleClickSearch(data: boolean): void {
-        this.enableSearchComponentOnMobileMode = data;
-        this.applyComboboxFullLengthMode();
-    }
+    isCombobox: boolean;
 
-    handleCancleInMobileMode(data: boolean): void {
-        this.enableSearchComponentOnMobileMode = data;
+    openOrCloseSearchInMobileMode(data: boolean): void {
+        this.openComboboxInMobileMode = data;
         this.applyComboboxFullLengthMode();
     }
 
@@ -127,11 +126,16 @@ export class ShellbarActionsComponent implements AfterViewInit {
     }
 
     applyComboboxFullLengthMode(): void {
-        if (this.enableSearchComponentOnMobileMode) {
+        if (this.openComboboxInMobileMode) {
             this.shellBarCombobox.nativeElement.style.cssText = `width:100%; z-index:3; position: absolute; left: 0px; padding: 0 0.3rem; margin:0;`;
         } else {
             this.shellBarCombobox.nativeElement.style.cssText = 'width:100%;';
         }
+    }
+
+    /** @hidden */
+    ngAfterContentInit(): void {
+        this.comboboxComponent && (this.isCombobox = true);
     }
 
     /** @hidden */

@@ -19,9 +19,6 @@ import { ActionSheetComponent } from '@fundamental-ngx/core/action-sheet';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellbarActionsMobileComponent implements AfterContentChecked {
-    @ViewChild(ActionSheetComponent)
-    actionSheetComponent: ActionSheetComponent;
-
     /** @hidden */
     @Input()
     shellbarActions: QueryList<ShellbarActionComponent>;
@@ -31,12 +28,18 @@ export class ShellbarActionsMobileComponent implements AfterContentChecked {
     collapsedItemMenuLabel: string;
 
     @Input()
-    isSearch: boolean;
+    isComboboxShowed: boolean;
+
+    @Input()
+    isComboboxExist = false;
 
     @Output() enableSearchInMobile = new EventEmitter();
 
     /** @hidden */
     totalNotifications: number;
+
+    @ViewChild(ActionSheetComponent)
+    actionSheetComponent: ActionSheetComponent;
 
     /** @hidden */
     actionClicked(item: ShellbarActionComponent, event: MouseEvent): void {
@@ -46,9 +49,9 @@ export class ShellbarActionsMobileComponent implements AfterContentChecked {
         this.actionSheetComponent.close();
     }
 
-    showSearchField(): void {
-        this.isSearch = true;
-        this.enableSearchInMobile.emit(this.isSearch);
+    showCombobox(): void {
+        this.isComboboxShowed = true;
+        this.enableSearchInMobile.emit(this.isComboboxShowed);
         this.actionSheetComponent.close();
     }
 
