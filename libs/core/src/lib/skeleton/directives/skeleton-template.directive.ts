@@ -10,8 +10,8 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-
 import { Nullable } from '@fundamental-ngx/core/shared';
+
 import { getChangesSource$ } from '../helpers/get-changes-source';
 import { SkeletonGlobalService } from '../services/skeleton-global.service';
 import { SkeletonStateDirective } from './skeleton-state.directive';

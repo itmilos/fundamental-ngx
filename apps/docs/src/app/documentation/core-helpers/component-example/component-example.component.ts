@@ -24,7 +24,7 @@ let componentExampleUniqueId = 0;
         </div>
 
         <!-- TODO: Remove after skeleton styles migration -->
-        <fd-skeleton></fd-skeleton>
+        <fd-skeleton style="display: none"></fd-skeleton>
     `,
     styleUrls: ['./component-example.component.scss'],
     providers: [

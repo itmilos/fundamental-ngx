@@ -18,6 +18,7 @@ $block: fd-skeleton;
     opacity: 1 !important;
     border-radius: 0.25rem !important;
     min-height: 1em !important;
+    min-width: 1em !important;
 
     *,
     &::placeholder {
@@ -41,8 +42,6 @@ $block: fd-skeleton;
     }
 
     &--native {
-        width: var(--fdSkeletonWidth) !important;
-
         &::after {
             display: none !important;
         }
