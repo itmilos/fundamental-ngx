@@ -28,7 +28,6 @@ import { TabInfo } from './tab-utils/tab-info.class';
 import { ENTER, SPACE } from '@angular/cdk/keycodes';
 import { MenuComponent } from '@fundamental-ngx/core/menu';
 import { ContentDensityObserver, contentDensityObserverProviders } from '@fundamental-ngx/core/content-density';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 export type TabModes = 'icon-only' | 'process' | 'filter';
 
@@ -46,7 +45,7 @@ export type TabSizes = 's' | 'm' | 'l' | 'xl' | 'xxl';
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [contentDensityObserverProviders(), DestroyedService, skeletonConsumerProviders()]
+    providers: [contentDensityObserverProviders(), DestroyedService]
 })
 export class TabListComponent implements AfterContentInit, AfterViewInit, OnDestroy {
     /** Size of tab, it's mostly about adding spacing on tab container, available sizes 's' | 'm' | 'l' | 'xl' | 'xxl' */
@@ -150,11 +149,8 @@ export class TabListComponent implements AfterContentInit, AfterViewInit, OnDest
         readonly _contentDensityObserver: ContentDensityObserver,
         private _elRef: ElementRef,
         private readonly _changeDetectorRef: ChangeDetectorRef,
-        private readonly _onDestroy$: DestroyedService,
-        private readonly _skeletonConsumer: SkeletonConsumerDirective
-    ) {
-        _skeletonConsumer.consume();
-    }
+        private readonly _onDestroy$: DestroyedService
+    ) {}
 
     /** @hidden */
     ngAfterContentInit(): void {

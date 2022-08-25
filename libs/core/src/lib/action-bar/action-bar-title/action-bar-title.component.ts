@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * The action bar title component.
@@ -24,12 +23,6 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
         class: 'fd-action-bar__title'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders()
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ActionBarTitleComponent {
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
-}
+export class ActionBarTitleComponent {}

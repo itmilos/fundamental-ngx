@@ -1,5 +1,4 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundamental-ngx/core/skeleton';
 
 /**
  * The action bar description.
@@ -17,19 +16,13 @@ import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundament
     selector: '[fd-action-bar-description]',
     host: {
         class: 'fd-action-bar__description'
-    },
-    providers: skeletonConsumerProviders()
+    }
 })
 export class ActionBarDescriptionDirective {
-    /*
-     Whether the action bar also has a back button.
+    /**
+     * Whether the action bar also has a back button.
      */
     @Input()
     @HostBinding('class.fd-action-bar__description--back')
     withBackBtn = false;
-
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
 }
