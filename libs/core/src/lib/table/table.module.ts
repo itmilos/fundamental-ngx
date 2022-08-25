@@ -21,9 +21,10 @@ import { TableIconDirective } from './directives/table-icon.directive';
 import { TableService } from './table.service';
 import { DeprecatedTableCompactDirective } from './deprecated-table-compact.directive';
 import { DeprecatedTableCondensedDirective } from './deprecated-table-condensed.directive';
+import { RepeatModule } from '@fundamental-ngx/core/utils';
 
 @NgModule({
-    imports: [CommonModule, ContentDensityModule, SkeletonModule],
+    imports: [CommonModule, ContentDensityModule, SkeletonModule, RepeatModule],
     declarations: [
         TableComponent,
         TableResponsiveWrapperDirective,

@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
     Input,
     OnChanges,
@@ -52,10 +51,7 @@ export class SkeletonComponent implements OnChanges {
 
     /** @hidden */
     @HostBinding('class')
-    private readonly _class = 'fd-skeleton fd-skeleton--component';
-
-    /** @hidden */
-    constructor(private readonly _elRef: ElementRef) {}
+    readonly _class = 'fd-skeleton fd-skeleton--component';
 
     /** @hidden */
     ngOnChanges(changes: SimpleChanges): void {

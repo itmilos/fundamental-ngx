@@ -1,4 +1,14 @@
-import { AfterContentInit, Component, ContentChild, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
+import {
+    AfterContentInit,
+    ChangeDetectionStrategy,
+    Component,
+    ContentChild,
+    forwardRef,
+    HostBinding,
+    HostListener,
+    Input,
+    ViewEncapsulation
+} from '@angular/core';
 import { IconComponent } from '@fundamental-ngx/core/icon';
 import { ListComponent } from '../list.component';
 import { ListNavigationItemArrowDirective } from '../directives/list-navigation-item-arrow.directive';
@@ -8,7 +18,9 @@ import { ListNavigationItemTextDirective } from '../directives/list-navigation-i
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[fd-list-navigation-item], [fdListNavigaitonItem]',
     templateUrl: './list-navigation-item.component.html',
-    styleUrls: ['./list-navigation-item.component.scss']
+    styleUrls: ['./list-navigation-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None
 })
 export class ListNavigationItemComponent implements AfterContentInit {
     /** Whether or not the list item is expanded. */
@@ -66,7 +78,7 @@ export class ListNavigationItemComponent implements AfterContentInit {
         if (this._iconComponent) {
             this._iconComponent._navigationItemIcon = true;
         }
-        this._innerText = this._text.elementRef.nativeElement.innerText;
+        this._innerText = this._text?.elementRef.nativeElement.innerText;
     }
 
     /** @hidden */
