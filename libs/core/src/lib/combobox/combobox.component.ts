@@ -407,7 +407,6 @@ export class ComboboxComponent
     /** @hidden */
     ngAfterViewInit(): void {
         this._addShellbarClass();
-        this.inShellbar && this.hideShowInputField();
         if (this.mobile) {
             this._setUpMobileMode();
         }
@@ -574,7 +573,7 @@ export class ComboboxComponent
             this.isOpenChangeHandle(!this.open);
             this.searchInputElement.nativeElement.focus();
             this.filterHighlight = false;
-            if (this.open && this.listComponent) {
+            if (this.open && this.listComponent && !this.inShellbar) {
                 this.listComponent.setItemActive(0);
             }
         }
@@ -592,7 +591,7 @@ export class ComboboxComponent
             this.openChange.emit(isOpen);
         }
 
-        if (!this.open && !this.mobile) {
+        if (!this.open && !this.mobile && !this.inShellbar) {
             this.handleBlur();
             this.searchInputElement.nativeElement.focus();
         }
@@ -625,6 +624,11 @@ export class ComboboxComponent
                 forceClose: false
             });
         }
+    }
+
+    /* when input field focussed */
+    handleFocusIn(): void {
+        this.inShellbar && this.isOpenChangeHandle(true);
     }
 
     /** @hidden */
@@ -663,6 +667,7 @@ export class ComboboxComponent
             if (this.inputGroup) {
                 this.inputGroup.setInShellbar(true);
             }
+            this.hideShowInputField();
         }
     }
 
