@@ -26,7 +26,7 @@ const INLINE_HELP_ICON_CLASS = 'fd-popover__inline-help--icon';
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[fd-inline-help], [fd-inline-help-template]',
-    providers: [PopoverService, skeletonConsumerProviders({ native: true })],
+    providers: [PopoverService, skeletonConsumerProviders()],
     host: {
         '[class.fd-inline-help__trigger]': 'true'
     }
