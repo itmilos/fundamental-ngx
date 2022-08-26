@@ -1,5 +1,4 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 let panelTitleUniqueId = 0;
 
@@ -12,8 +11,7 @@ let panelTitleUniqueId = 0;
  */
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[fd-panel-title]',
-    providers: skeletonConsumerProviders()
+    selector: '[fd-panel-title]'
 })
 export class PanelTitleDirective {
     /** @hidden */
@@ -24,9 +22,4 @@ export class PanelTitleDirective {
     @Input()
     @HostBinding('attr.id')
     id: string = 'fd-panel-title-' + panelTitleUniqueId++;
-
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
 }

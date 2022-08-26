@@ -1,7 +1,6 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
 import { Nullable } from '@fundamental-ngx/core/shared';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 let panelContentUniqueId = 0;
 
@@ -14,8 +13,7 @@ let panelContentUniqueId = 0;
  */
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[fd-panel-content]',
-    providers: skeletonConsumerProviders()
+    selector: '[fd-panel-content]'
 })
 export class PanelContentDirective {
     /** @hidden */
@@ -68,9 +66,4 @@ export class PanelContentDirective {
 
     /** @hidden */
     private _id: string = this._defaultId;
-
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        this._skeletonConsumer.consume();
-    }
 }

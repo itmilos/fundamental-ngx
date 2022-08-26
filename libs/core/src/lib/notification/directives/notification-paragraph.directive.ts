@@ -1,17 +1,10 @@
 import { Directive, HostBinding } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Directive({
-    selector: '[fdNotificationParagraph], [fd-notification-paragraph]',
-    providers: skeletonConsumerProviders()
+    selector: '[fdNotificationParagraph], [fd-notification-paragraph]'
 })
 export class NotificationParagraphDirective {
     /** @hidden */
     @HostBinding('class.fd-notification__paragraph')
     fdNotificationParagraphClass = true;
-
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
 }
