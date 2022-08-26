@@ -14,6 +14,7 @@ import { ScrollSpyModule } from '@fundamental-ngx/core/scroll-spy';
 import { DeprecatedWizardCompactDirective } from './deprecated-wizard-compact.directive';
 import { ContentDensityModule } from '@fundamental-ngx/core/content-density';
 import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
+import { RepeatModule } from '@fundamental-ngx/core/utils';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
         ActionSheetModule,
         ScrollingModule,
         ContentDensityModule,
-        SkeletonModule
+        SkeletonModule,
+        RepeatModule
     ],
     exports: [
         WizardComponent,

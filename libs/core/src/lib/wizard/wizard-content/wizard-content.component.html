@@ -8,8 +8,14 @@
         "
         [class.fd-wizard-tall-content]="tallContent"
     >
-        <div class="fd-wizard__step-content-container" fdSkeletonConsumer>
-            <ng-content></ng-content>
+        <div class="fd-wizard__step-content-container">
+            <ng-container *fdSkeletonTemplate="skeletonTemplate">
+                <ng-content></ng-content>
+            </ng-container>
+
+            <ng-template #skeletonTemplate>
+                <fd-skeleton width="60%"></fd-skeleton>
+            </ng-template>
         </div>
     </section>
 </ng-template>
