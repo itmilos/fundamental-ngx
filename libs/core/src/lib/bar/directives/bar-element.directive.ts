@@ -1,13 +1,11 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * An element of the Bar.
  */
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: 'fd-bar-element',
-    providers: skeletonConsumerProviders()
+    selector: 'fd-bar-element'
 })
 export class BarElementDirective {
     /** Whether the element should take the whole width of the container. */
@@ -22,9 +20,4 @@ export class BarElementDirective {
     /** @hidden */
     @HostBinding('class.fd-bar__element')
     barElement = true;
-
-    /** @hidden */
-    constructor(protected readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
 }

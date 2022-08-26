@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { BarElementDirective } from '@fundamental-ngx/core/bar';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * @deprecated
@@ -8,12 +7,6 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
  */
 @Component({
     selector: 'fd-dialog-footer-button',
-    template: '<ng-content></ng-content>',
-    providers: skeletonConsumerProviders()
+    template: '<ng-content></ng-content>'
 })
-export class DialogFooterButtonComponent extends BarElementDirective {
-    /** @hidden */
-    constructor(protected override readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        super(_skeletonConsumer);
-    }
-}
+export class DialogFooterButtonComponent extends BarElementDirective {}

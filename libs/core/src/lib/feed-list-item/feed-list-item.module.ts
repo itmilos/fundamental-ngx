@@ -13,6 +13,7 @@ import { PipeModule } from '@fundamental-ngx/core/utils';
 import { I18nModule } from '@fundamental-ngx/i18n';
 import { TruncateModule } from '@fundamental-ngx/core/utils';
 import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
+import { ListModule } from '@fundamental-ngx/core/list';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,16 @@ import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
         FeedListFooterComponent,
         FeedListFooterBylineDirective
     ],
-    imports: [CommonModule, PipeModule, FormattedTextModule, LinkModule, I18nModule, TruncateModule, SkeletonModule],
+    imports: [
+        CommonModule,
+        PipeModule,
+        FormattedTextModule,
+        LinkModule,
+        I18nModule,
+        TruncateModule,
+        SkeletonModule,
+        ListModule
+    ],
     exports: [
         FeedListComponent,
         FeedListItemComponent,
