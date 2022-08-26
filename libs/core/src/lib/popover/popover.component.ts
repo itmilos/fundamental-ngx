@@ -161,7 +161,7 @@ export class PopoverComponent
     /** @hidden */
     ngAfterContentInit(): void {
         if (this.popoverControl && this.triggers.includes('click')) {
-            this.popoverControl.makeTabbable();
+            this.popoverControl._tabbable = true;
         }
     }
 
