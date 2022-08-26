@@ -22,6 +22,7 @@ import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundament
     }
 })
 export class InputFormControlDirective {
+    /** @hidden */
     constructor(
         private _contentDensityObserver: ContentDensityObserver,
         private readonly _skeletonConsumer: SkeletonConsumerDirective

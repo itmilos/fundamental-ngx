@@ -42,6 +42,8 @@ $block: fd-skeleton;
     }
 
     &--native {
+        width: var(--fdSkeletonWidth) !important;
+
         &::after {
             display: none !important;
         }

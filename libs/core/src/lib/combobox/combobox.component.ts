@@ -34,7 +34,6 @@ import {
     TAB,
     UP_ARROW
 } from '@angular/cdk/keycodes';
-import { skeletonConsumerProviders, SkeletonConsumerDirective } from '@fundamental-ngx/core/skeleton';
 import { Subscription } from 'rxjs';
 
 import { ListComponent, ListMessageDirective } from '@fundamental-ngx/core/list';
@@ -79,8 +78,7 @@ let comboboxUniqueId = 0;
         },
         registerFormItemControl(ComboboxComponent),
         MenuKeyboardService,
-        contentDensityObserverProviders(),
-        skeletonConsumerProviders()
+        contentDensityObserverProviders()
     ],
     host: {
         '[class.fd-combobox-custom-class]': 'true',
@@ -364,11 +362,8 @@ export class ComboboxComponent
         private readonly _injector: Injector,
         private readonly _viewContainerRef: ViewContainerRef,
         private readonly _dynamicComponentService: DynamicComponentService,
-        readonly _contentDensityObserver: ContentDensityObserver,
-        private readonly _skeletonConsumer: SkeletonConsumerDirective
-    ) {
-        _skeletonConsumer.consume();
-    }
+        readonly _contentDensityObserver: ContentDensityObserver
+    ) {}
 
     /** @hidden */
     ngOnInit(): void {
