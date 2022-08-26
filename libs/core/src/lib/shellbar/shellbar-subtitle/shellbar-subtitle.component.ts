@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * The component that represents a shellbar subtitle.
@@ -21,12 +20,6 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
                 display: flex;
             }
         `
-    ],
-    providers: skeletonConsumerProviders()
+    ]
 })
-export class ShellbarSubtitleComponent {
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
-}
+export class ShellbarSubtitleComponent {}

@@ -37,11 +37,11 @@ export class SkeletonComponent implements OnChanges {
 
     /** @hidden */
     @HostBinding('style.width')
-    _width: string;
+    _width = '100%';
 
     /** @hidden */
     @HostBinding('style.height')
-    _height: string;
+    _height = 'auto';
 
     /** @hidden */
     @HostBinding('class.fd-skeleton--circle')

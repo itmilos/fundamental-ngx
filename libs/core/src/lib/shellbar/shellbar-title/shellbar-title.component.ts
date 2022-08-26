@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * The component that represents a shellbar title.
@@ -14,12 +13,6 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     selector: 'fd-shellbar-title',
     templateUrl: './shellbar-title.component.html',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders()
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShellbarTitleComponent {
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
-}
+export class ShellbarTitleComponent {}
