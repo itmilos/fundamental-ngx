@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 /**
  * Layout Panel level filters that is specific to the data being displayed within the panel.
@@ -19,16 +18,10 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
         '[class.fd-has-display-block]': 'true'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: skeletonConsumerProviders()
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LayoutPanelFiltersComponent {
     /** @hidden */
     @HostBinding('class.fd-layout-panel__filters')
     fdLayoutPanelFiltersClass = true;
-
-    /** @hidden */
-    constructor(private readonly _skeletonConsumer: SkeletonConsumerDirective) {
-        _skeletonConsumer.consume();
-    }
 }
