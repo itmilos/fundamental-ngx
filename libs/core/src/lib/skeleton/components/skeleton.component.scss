@@ -19,6 +19,7 @@ $block: fd-skeleton;
     border-radius: 0.25rem !important;
     min-height: 1em !important;
     min-width: 1em !important;
+    overflow: hidden !important;
 
     *,
     &::placeholder {
