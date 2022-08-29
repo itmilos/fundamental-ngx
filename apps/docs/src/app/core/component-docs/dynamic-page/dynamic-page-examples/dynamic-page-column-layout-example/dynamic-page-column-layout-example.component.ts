@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MessageToastService } from '@fundamental-ngx/core/message-toast';
 
 import { FlexibleColumnLayout } from '@fundamental-ngx/core/flexible-column-layout';
@@ -9,7 +9,10 @@ import { FlexibleColumnLayout } from '@fundamental-ngx/core/flexible-column-layo
     styleUrls: ['../dynamic-page-example.component.scss']
 })
 export class DynamicPageColumnLayoutExampleComponent {
-    visible = false;
+    @ViewChild('overlay')
+    overlay: ElementRef<HTMLElement>;
+
+    fullscreen = false;
 
     pageTitle = 'Balenciaga Tripple S Trainers';
 
@@ -46,12 +49,14 @@ export class DynamicPageColumnLayoutExampleComponent {
     }
 
     openPage(): void {
-        this.visible = true;
+        this.fullscreen = true;
+        this.overlay.nativeElement.style.width = '100%';
         this._openToast('Dynamic Page has been opened');
     }
 
     closePage(): void {
-        this.visible = false;
+        this.fullscreen = false;
+        this.overlay.nativeElement.style.width = '0%';
     }
 
     handleAction(action: string): void {

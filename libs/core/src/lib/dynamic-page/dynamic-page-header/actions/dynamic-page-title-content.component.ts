@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { DynamicPageResponsiveSize } from '../../constants';
 import { ContentDensityObserver, contentDensityObserverProviders } from '@fundamental-ngx/core/content-density';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 @Component({
     selector: 'fd-dynamic-page-title-content',
@@ -31,20 +30,14 @@ import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundament
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    providers: [contentDensityObserverProviders(), skeletonConsumerProviders()]
+    providers: [contentDensityObserverProviders()]
 })
 export class DynamicPageTitleContentComponent {
     /** @hidden */
     _size: DynamicPageResponsiveSize;
 
     /** @hidden */
-    constructor(
-        private _changeDetRef: ChangeDetectorRef,
-        readonly _contentDensityObserver: ContentDensityObserver,
-        private readonly _skeletonConsumer: SkeletonConsumerDirective
-    ) {
-        _skeletonConsumer.consume();
-    }
+    constructor(private _changeDetRef: ChangeDetectorRef, readonly _contentDensityObserver: ContentDensityObserver) {}
 
     /** @hidden */
     _setSize(size: DynamicPageResponsiveSize): void {

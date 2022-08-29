@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'fd-dynamic-page-facets-example',
@@ -6,17 +6,22 @@ import { Component } from '@angular/core';
     styleUrls: ['../dynamic-page-example.component.scss']
 })
 export class DynamicPageFacetsExampleComponent {
-    visible = false;
+    @ViewChild('overlay')
+    overlay: ElementRef<HTMLElement>;
+
+    fullscreen = false;
 
     onCollapseChange(): void {
         console.log('collapse changed');
     }
 
     openPage(): void {
-        this.visible = true;
+        this.fullscreen = true;
+        this.overlay.nativeElement.style.width = '100%';
     }
 
     closePage(): void {
-        this.visible = false;
+        this.fullscreen = false;
+        this.overlay.nativeElement.style.width = '0%';
     }
 }

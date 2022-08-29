@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'fd-dynamic-page-dynamic-container-height-example',
@@ -8,7 +8,10 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     styleUrls: ['../dynamic-page-example.component.scss']
 })
 export class DynamicPageDynamicContainerHeightExampleComponent {
-    visible = false;
+    @ViewChild('overlay')
+    overlay: ElementRef<HTMLElement>;
+
+    fullscreen = false;
     spacingItems: string[] = [];
 
     onCollapseChange(): void {
@@ -16,11 +19,13 @@ export class DynamicPageDynamicContainerHeightExampleComponent {
     }
 
     openPage(): void {
-        this.visible = true;
+        this.fullscreen = true;
+        this.overlay.nativeElement.style.width = '100%';
     }
 
     closePage(): void {
-        this.visible = false;
+        this.fullscreen = false;
+        this.overlay.nativeElement.style.width = '0%';
     }
 
     addSpace(): void {
