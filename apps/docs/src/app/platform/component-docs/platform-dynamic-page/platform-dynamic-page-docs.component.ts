@@ -21,11 +21,9 @@ import dynamicPageNonCollapsibleExample from '!./platform-dynamic-page-examples/
 import dynamicPageNonCollapsibleExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-non-collapsible-example.component.ts?raw';
 
 import dynamicPageFlexibleColumnExample from '!./platform-dynamic-page-examples/platform-dynamic-page-flexible-column-example.component.html?raw';
-import dynamicPageFlexibleColumnExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-flexible-column-example.component.scss?raw';
 import dynamicPageFlexibleColumnExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-flexible-column-example.component.ts?raw';
 
 import dynamicPageFacetsExample from '!./platform-dynamic-page-examples/platform-dynamic-page-facets-example/platform-dynamic-page-facets-example.component.html?raw';
-import dynamicPageFacetsExampleScss from '!./platform-dynamic-page-examples/platform-dynamic-page-facets-example/platform-dynamic-page-facets-example.component.scss?raw';
 import dynamicPageFacetsExampleTsCode from '!./platform-dynamic-page-examples/platform-dynamic-page-facets-example/platform-dynamic-page-facets-example.component.ts?raw';
 
 import platformDynamicPagePageOverflowServiceTs from '!./platform-dynamic-page-examples/platform-dynamic-page-page-overflow.service.ts?raw';
@@ -158,8 +156,7 @@ export class PlatformDynamicPageDocsComponent implements OnInit, OnDestroy {
         {
             language: 'html',
             code: dynamicPageFlexibleColumnExample,
-            fileName: 'platform-dynamic-page-flexible-column-example',
-            scssFileCode: dynamicPageFlexibleColumnExampleScss
+            fileName: 'platform-dynamic-page-flexible-column-example'
         },
         {
             language: 'typescript',
@@ -181,8 +178,7 @@ export class PlatformDynamicPageDocsComponent implements OnInit, OnDestroy {
         {
             language: 'html',
             code: dynamicPageFacetsExample,
-            fileName: 'platform-dynamic-page-facets-example',
-            scssFileCode: dynamicPageFacetsExampleScss
+            fileName: 'platform-dynamic-page-facets-example'
         },
         {
             language: 'typescript',
