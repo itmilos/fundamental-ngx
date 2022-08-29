@@ -4,7 +4,6 @@ import { ListModule } from '@fundamental-ngx/core/list';
 import { AvatarModule } from '@fundamental-ngx/core/avatar';
 import { CardModule } from '@fundamental-ngx/core/card';
 import { ButtonModule } from '@fundamental-ngx/core/button';
-import { SkeletonModule } from '@fundamental-ngx/core/skeleton';
 import { TableModule } from '@fundamental-ngx/core/table';
 
 import { ApiComponent } from '../../../documentation/core-helpers/api/api.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedDocumentationModule,
         SharedDocumentationPageModule,
-        SkeletonModule,
         AvatarModule,
         CardModule,
         ButtonModule,
