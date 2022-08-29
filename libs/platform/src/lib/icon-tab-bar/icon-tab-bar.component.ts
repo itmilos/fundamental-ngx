@@ -10,7 +10,6 @@ import {
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { SkeletonConsumerDirective, skeletonConsumerProviders } from '@fundamental-ngx/core/skeleton';
 
 import { IconTabBarItem } from './interfaces/icon-tab-bar-item.interface';
 import { TabConfig } from './interfaces/tab-config.interface';
@@ -26,8 +25,7 @@ import { TabColorAssociations } from './interfaces/tab-color-associations.interf
     templateUrl: './icon-tab-bar.component.html',
     styleUrls: ['./icon-tab-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
-    providers: skeletonConsumerProviders()
+    encapsulation: ViewEncapsulation.None
 })
 export class IconTabBarComponent implements OnInit, OnDestroy {
     /**
@@ -116,11 +114,8 @@ export class IconTabBarComponent implements OnInit, OnDestroy {
     constructor(
         private _cd: ChangeDetectorRef,
         @Optional() private _contentDensityService: ContentDensityService,
-        @Optional() private _rtlService: RtlService,
-        private readonly _skeletonConsumer: SkeletonConsumerDirective
-    ) {
-        _skeletonConsumer.consume();
-    }
+        @Optional() private _rtlService: RtlService
+    ) {}
 
     /** @hidden */
     ngOnInit(): void {
