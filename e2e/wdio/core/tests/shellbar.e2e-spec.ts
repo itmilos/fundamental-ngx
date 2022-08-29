@@ -32,7 +32,6 @@ describe('shellbar test suite', () => {
         sizeButtons,
         collapsableShellbar,
         searchbarButton,
-        searchField,
         collapsableShellbarTitle,
         searchMenuItem,
         actionButton,
@@ -125,7 +124,6 @@ describe('shellbar test suite', () => {
         it('should check search with text', () => {
             scrollIntoView(collapsableExample);
             click(searchbarButton);
-            click(searchField);
             sendKeys('App');
 
             expect(isElementDisplayed(popover)).toBe(true, 'search popover is not displayed');
