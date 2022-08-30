@@ -14,7 +14,7 @@ let componentExampleUniqueId = 0;
                 <div class="component-example__features" fdCompact *fdSkeletonState="false">
                     <rtl-switch [label]="id2"></rtl-switch>
                     <background-switch [label]="id"></background-switch>
-                    <skeleton-switch></skeleton-switch>
+                    <skeleton-switch *ngIf="skeletonSwitch"></skeleton-switch>
                 </div>
 
                 <div class="fd-doc-component" [id]="id2">
@@ -39,6 +39,9 @@ let componentExampleUniqueId = 0;
 export class ComponentExampleComponent implements OnInit {
     @Input()
     hasBackground = true;
+
+    @Input()
+    skeletonSwitch = true;
 
     id: string;
     id2: string;
