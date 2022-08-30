@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { ButtonComponent } from '@fundamental-ngx/core/button';
 import { ComboboxComponent } from '@fundamental-ngx/core/combobox';
+import { SelectComponent } from '@fundamental-ngx/core/select';
 
 export type ShellbarSizes = 's' | 'm' | 'l' | 'xl';
 
@@ -50,6 +51,10 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     comboboxComponent: ComboboxComponent;
 
     /** @hidden */
+    @ContentChild(SelectComponent, { static: false })
+    selectComponent: SelectComponent;
+
+    /** @hidden */
     @ContentChildren(forwardRef(() => ButtonComponent))
     buttons: QueryList<ButtonComponent>;
 
@@ -72,9 +77,16 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
         }
     }
 
+    applyShellbarModeToSelect(): void {
+        if (this.selectComponent) {
+            this.selectComponent.inShellbar = true;
+        }
+    }
+
     /** @hidden */
     ngAfterContentInit(): void {
         this.applyShellbarModeToCombobox();
+        this.applyShellbarModeToSelect();
         this.applyShellbarModeToButtons();
     }
 
@@ -88,7 +100,7 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     }
 
     ngOnChanges(): void {
-        if (this.comboboxComponent) {
+        if (this.comboboxComponent && this.comboboxComponent.inShellbar) {
             this.handleComboboxOnSizeChange();
             this.comboboxComponent.hideShowInputField();
         }

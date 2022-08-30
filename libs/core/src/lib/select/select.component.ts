@@ -260,6 +260,8 @@ export class SelectComponent
     /** @hidden */
     _selectionModel: SelectionModel<OptionComponent>;
 
+    inShellbar = false;
+
     /**
      * @hidden
      * Triggers when component is destroyed
@@ -408,6 +410,10 @@ export class SelectComponent
     /** @hidden */
     ngAfterViewInit(): void {
         this._keyManagerService._initKeyManager(this);
+        /* removes top margin of select-control in shellbar */
+        if (this.inShellbar) {
+            this._controlElementRef.nativeElement.style.margin = '0';
+        }
         this._setupMobileMode();
     }
 

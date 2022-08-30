@@ -10,6 +10,9 @@ import sideNavShellbarScss from '!./examples/shellbar-side-nav/shellbar-side-nav
 import sideNavResponsiveShellbarTs from '!./examples/shellbar-side-nav-responsive/shellbar-side-nav-responsive-example.component.ts?raw';
 import sideNavResponsiveShellbarScss from '!./examples/shellbar-side-nav-responsive/shellbar-side-nav-responsive-example.component.scss?raw';
 import sideNavResponsiveShellbarHtml from '!./examples/shellbar-side-nav-responsive/shellbar-side-nav-responsive-example.component.html?raw';
+import shellbarSelectExampleHTMLSrc from '!./examples/shellbar-select-example.component.html?raw';
+import shellbarSelectExampleTSSrc from '!./examples/shellbar-select-example.component.ts?raw';
+
 import { ExampleFile } from '../../../documentation/core-helpers/code-example/example-file';
 
 @Component({
@@ -86,6 +89,20 @@ export class ShellbarDocsComponent {
             fileName: 'shellbar-side-nav-responsive-example',
             component: 'ShellbarSideNavResponsiveExampleComponent',
             scssFileCode: sideNavResponsiveShellbarScss
+        }
+    ];
+
+    shellbarWithSelect: ExampleFile[] = [
+        {
+            language: 'html',
+            code: shellbarSelectExampleHTMLSrc,
+            fileName: 'shellbar-select-example'
+        },
+        {
+            language: 'typescript',
+            component: 'ShellbarSelectExampleComponent',
+            code: shellbarSelectExampleTSSrc,
+            fileName: 'shellbar-select-example'
         }
     ];
 }
