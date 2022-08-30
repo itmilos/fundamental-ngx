@@ -2,7 +2,7 @@
 
 <fd-skeleton width="100px" height="50px"></fd-skeleton>
 
-<fd-skeleton type="circle" height="50px"></fd-skeleton>
+<fd-skeleton type="circle" width="50px" height="50px"></fd-skeleton>
 
 <!-- When no content & height is specified, the skeleton will be displayed as a line with height set to the font-size property. -->
 <fd-skeleton width="30%"></fd-skeleton>
@@ -11,21 +11,7 @@
 
 <fd-skeleton width="100px" height="50px" [animation]="false"></fd-skeleton>
 
-<fd-skeleton type="circle" width="50px" [animation]="false"></fd-skeleton>
+<fd-skeleton type="circle" height="50px" width="50px" [animation]="false"></fd-skeleton>
 
 <!-- When no content & height is specified, the skeleton will be displayed as a line with height set to the font-size property. -->
 <fd-skeleton width="30%" [animation]="false"></fd-skeleton>
-
-<p>Size inherited from the content</p>
-
-<fd-skeleton>
-    <div style="width: 100px; height: 100px"></div>
-</fd-skeleton>
-
-<fd-skeleton>
-    <div style="width: 150px; height: 50px"></div>
-</fd-skeleton>
-
-<fd-skeleton>
-    <div style="width: 300px; height: 50px"></div>
-</fd-skeleton>

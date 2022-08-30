@@ -62,13 +62,5 @@ export class SkeletonComponent implements OnChanges {
         if (changes['width']) {
             this._width = this.width;
         }
-
-        if (changes['type'] && this.type === 'circle') {
-            if (this._width && !this._height) {
-                this._height = this._width;
-            } else if (this._height && !this._width) {
-                this._width = this._height;
-            }
-        }
     }
 }
