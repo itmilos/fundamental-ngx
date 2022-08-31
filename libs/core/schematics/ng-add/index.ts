@@ -2,7 +2,7 @@ import { chain, Rule, SchematicContext, SchematicsException, Tree } from '@angul
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { addPackageJsonDependency, NodeDependency, NodeDependencyType } from '@schematics/angular/utility/dependencies';
 import { WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
-import { updateWorkspace } from '@schematics/angular/utility/workspace';
+import { updateWorkspace, WorkspaceDefinition } from '@schematics/angular/utility/workspace';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import {
     addModuleImportToModule,
@@ -105,6 +105,7 @@ function addDependencies(options: Schema): Rule {
                 overwrite: true
             });
         }
+
         dependencies.forEach((dependency) => {
             addPackageJsonDependency(tree, dependency);
 
@@ -123,21 +124,9 @@ function endInstallTask(): Rule {
     };
 }
 
-function getWorkspaceJson(tree: Tree): WorkspaceSchema {
-    const workspaceConfig = tree.read(angularConfigPath);
-
-    if (!workspaceConfig) {
-        throw new SchematicsException(
-            `Unable to find angular.json. Please manually configure your assets & styles arrays.`
-        );
-    }
-
-    return JSON.parse(workspaceConfig.toString());
-}
-
 function addStylesToConfig(options: Schema): Rule {
     return (tree: Tree, context: SchematicContext) => {
-        const workspaceJson = getWorkspaceJson(tree);
+        const workspaceJson = _getWorkspaceJson(tree);
 
         try {
             const additionalStyles = ['./node_modules/@fundamental-ngx/core/styles/fundamental-ngx-core.css'];
@@ -193,7 +182,7 @@ function addStylesToConfig(options: Schema): Rule {
 
 function addAssetsToConfig(options: Schema): Rule {
     return (tree: Tree, context: SchematicContext) => {
-        const workspaceJson = getWorkspaceJson(tree);
+        const workspaceJson = _getWorkspaceJson(tree);
 
         try {
             const additionalAssets: AngularAssets[] = [
@@ -254,7 +243,6 @@ function addTheming(options: Schema): Rule {
                 return;
             }
 
-            const workspaceJson = getWorkspaceJson(tree);
             const targetOptions = getProjectTargetOptions(workspace.projects.get(options.project)!, 'build');
             const styles = targetOptions.styles as (string | { input: string })[];
 
@@ -285,6 +273,7 @@ Try to replace theme in application manually, or use ThemingService to manage mu
                 }
             }
 
+            const workspaceJson = _getWorkspaceJson(tree);
             const iconFonts = ['sap_fiori_3_fonts', 'sap_horizon_fonts'];
             let stylesArray: (string | AngularStyle)[] = (
                 workspaceJson!.projects[options.project]!.architect!.build!.options as any
@@ -317,87 +306,9 @@ Try to replace theme in application manually, or use ThemingService to manage mu
             }
 
             try {
-                const projectDef = workspace.projects.get(options.project);
-                const mainPath = getProjectMainFile(projectDef!);
-                const bootstrapModuleCall = findBootstrapModuleCall(tree, mainPath);
+                _addThemingModuleInit(options, tree, workspace);
 
-                if (!bootstrapModuleCall) {
-                    throw new SchematicsException(`❌ No bootstrap module call found.`);
-                }
-
-                const appModulePath = getAppModulePath(tree, mainPath);
-                const appModuleName = bootstrapModuleCall.arguments[0].getText();
-
-                const appModuleSourceFile = getSourceFile(tree, appModulePath);
-                const appModuleClassIdentifierNode = findNode(
-                    appModuleSourceFile,
-                    ts.SyntaxKind.Identifier,
-                    appModuleName
-                );
-                if (!appModuleClassIdentifierNode) {
-                    throw new SchematicsException(`❌ No root module declaration found.`);
-                }
-
-                const themeModuleConfig =
-                    `ThemingModule.withConfig({ defaultTheme: '${options.theme}'` +
-                    (!options.readThemeFromURL ? `, loadStylesFromURL: false` : '') +
-                    ' })';
-
-                addModuleImportToModule(tree, appModulePath, themeModuleConfig, '@fundamental-ngx/core/theming');
-
-                if (options.readThemeFromURL && !hasModuleImport(tree, appModulePath, 'RouterModule')) {
-                    addModuleImportToModule(tree, appModulePath, 'RouterModule.forRoot([])', '@angular/router');
-                }
-
-                const changes: Change[] = [];
-
-                changes.push(
-                    insertImport(appModuleSourceFile, appModulePath, `ThemingService`, `@fundamental-ngx/core/theming`)
-                );
-
-                const appModuleClassDeclarationNode = appModuleClassIdentifierNode.parent;
-                const appModuleConstructorNode = findNodes(appModuleClassDeclarationNode, ts.SyntaxKind.Constructor)[0];
-                if (appModuleConstructorNode) {
-                    const appModuleConstructorBlockNode = findNodes(appModuleConstructorNode, ts.SyntaxKind.Block)[0];
-                    const appModuleConstructorParameters = (appModuleConstructorNode as ts.ConstructorDeclaration)
-                        .parameters;
-
-                    changes.push(
-                        new InsertChange(
-                            appModulePath,
-                            (appModuleConstructorParameters.length
-                                ? appModuleConstructorParameters[appModuleConstructorParameters.length - 1].pos
-                                : appModuleConstructorBlockNode.pos) - 1,
-                            (appModuleConstructorParameters.length ? ', ' : '') + `themingService: ThemingService`
-                        )
-                    );
-
-                    changes.push(
-                        new InsertChange(
-                            appModulePath,
-                            appModuleConstructorBlockNode.end - 1,
-                            '\nthemingService.init();\n'
-                        )
-                    );
-                } else {
-                    changes.push(
-                        new InsertChange(
-                            appModulePath,
-                            appModuleClassDeclarationNode.getEnd() - 1,
-                            `\nconstructor(themingService: ThemingService) {\nthemingService.init();\n}\n`
-                        )
-                    );
-                }
-
-                const exportRecorder = tree.beginUpdate(appModulePath);
-                for (const change of changes) {
-                    if (change instanceof InsertChange) {
-                        exportRecorder.insertLeft(change.pos, change.toAdd);
-                    }
-                }
-                tree.commitUpdate(exportRecorder);
-
-                context.logger.info(`✅️ Added Theming initialization to root module.`);
+                context.logger.info(`✅️ Added Theming initialization to app module.`);
             } catch (e) {
                 context.logger.info(`ℹ️ Please process adding Theming to root module by yourself.
 [Instructions: https://sap.github.io/fundamental-ngx/#/core/theming]`);
@@ -412,9 +323,9 @@ function addAnimations(options: Schema): any {
         const modulePath = await findModuleFromOptions(tree, options as any);
 
         if (!modulePath) {
-            context.logger.warn(`
-                ⚠️ Could not set up animations because root module not found. Please manually set up animations.
-            `);
+            context.logger.warn(
+                `⚠️ Could not set up animations because root module not found. Please manually set up animations.`
+            );
             return;
         }
 
@@ -429,7 +340,7 @@ function addAnimations(options: Schema): any {
 
             if (hasModuleImport(tree, modulePath, browserAnimationsModuleName)) {
                 context.logger.info(
-                    `✅️ Import of ${browserAnimationsModuleName} already present in root module. Skipping.`
+                    `✅️ Import of ${browserAnimationsModuleName} already present in app module. Skipping.`
                 );
 
                 return tree;
@@ -442,7 +353,7 @@ function addAnimations(options: Schema): any {
                 '@angular/platform-browser/animations'
             );
 
-            context.logger.info(`✅️ Added ${browserAnimationsModuleName} to root module.`);
+            context.logger.info(`✅️ Added ${browserAnimationsModuleName} to app module.`);
 
             return tree;
         }
@@ -450,9 +361,95 @@ function addAnimations(options: Schema): any {
         if (!hasModuleImport(tree, modulePath, browserAnimationsModuleName)) {
             addModuleImportToModule(tree, modulePath, noopAnimationsModuleName, '@angular/platform-browser/animations');
 
-            context.logger.info(`✅️ Added ${noopAnimationsModuleName} to root module.`);
+            context.logger.info(`✅️ Added ${noopAnimationsModuleName} to app module.`);
         }
 
         return tree;
     };
+}
+
+function _getWorkspaceJson(tree: Tree): WorkspaceSchema {
+    const workspaceConfig = tree.read(angularConfigPath);
+
+    if (!workspaceConfig) {
+        throw new SchematicsException(
+            `Unable to find angular.json. Please manually configure your assets & styles arrays.`
+        );
+    }
+
+    return JSON.parse(workspaceConfig.toString());
+}
+
+function _addThemingModuleInit(options: Schema, tree: Tree, workspace: WorkspaceDefinition): void {
+    const projectDef = workspace.projects.get(options.project);
+    const mainPath = getProjectMainFile(projectDef!);
+    const bootstrapModuleCall = findBootstrapModuleCall(tree, mainPath);
+
+    if (!bootstrapModuleCall) {
+        throw new SchematicsException(`❌ No bootstrap module call found.`);
+    }
+
+    const appModulePath = getAppModulePath(tree, mainPath);
+    const appModuleName = bootstrapModuleCall.arguments[0].getText();
+    const appModuleSourceFile = getSourceFile(tree, appModulePath);
+    const appModuleClassIdentifierNode = findNode(appModuleSourceFile, ts.SyntaxKind.Identifier, appModuleName);
+
+    if (!appModuleClassIdentifierNode) {
+        throw new SchematicsException(`❌ App module declaration not found.`);
+    }
+
+    const themeModuleConfig =
+        `ThemingModule.withConfig({ defaultTheme: '${options.theme}'` +
+        (!options.readThemeFromURL ? `, loadStylesFromURL: false` : '') +
+        ' })';
+
+    addModuleImportToModule(tree, appModulePath, themeModuleConfig, '@fundamental-ngx/core/theming');
+
+    if (options.readThemeFromURL && !hasModuleImport(tree, appModulePath, 'RouterModule')) {
+        addModuleImportToModule(tree, appModulePath, 'RouterModule.forRoot([])', '@angular/router');
+    }
+
+    const changes: Change[] = [];
+
+    changes.push(insertImport(appModuleSourceFile, appModulePath, `ThemingService`, `@fundamental-ngx/core/theming`));
+
+    const appModuleClassDeclarationNode = appModuleClassIdentifierNode.parent;
+    const appModuleConstructorNode = findNodes(appModuleClassDeclarationNode, ts.SyntaxKind.Constructor)[0];
+
+    if (appModuleConstructorNode) {
+        const appModuleConstructorBlockNode = findNodes(appModuleConstructorNode, ts.SyntaxKind.Block)[0];
+        const appModuleConstructorParameters = (appModuleConstructorNode as ts.ConstructorDeclaration).parameters;
+
+        changes.push(
+            new InsertChange(
+                appModulePath,
+                (appModuleConstructorParameters.length
+                    ? appModuleConstructorParameters[appModuleConstructorParameters.length - 1].pos
+                    : appModuleConstructorBlockNode.pos) - 1,
+                (appModuleConstructorParameters.length ? ', ' : '') + `themingService: ThemingService`
+            )
+        );
+
+        changes.push(
+            new InsertChange(appModulePath, appModuleConstructorBlockNode.end - 1, '\nthemingService.init();\n')
+        );
+    } else {
+        changes.push(
+            new InsertChange(
+                appModulePath,
+                appModuleClassDeclarationNode.getEnd() - 1,
+                `\nconstructor(themingService: ThemingService) {\nthemingService.init();\n}\n`
+            )
+        );
+    }
+
+    const exportRecorder = tree.beginUpdate(appModulePath);
+
+    for (const change of changes) {
+        if (change instanceof InsertChange) {
+            exportRecorder.insertLeft(change.pos, change.toAdd);
+        }
+    }
+
+    tree.commitUpdate(exportRecorder);
 }
