@@ -9,8 +9,9 @@
         <div class="fd-shellbar__product">
             <ng-content select="fd-product-menu"></ng-content>
         </div>
-
-        <ng-content select="fd-shellbar-subtitle"></ng-content>
+        <div *ngIf="size !== 'm'">
+            <ng-content select="fd-shellbar-subtitle"></ng-content>
+        </div>
     </div>
 
     <ng-content select="fd-shellbar-actions"></ng-content>

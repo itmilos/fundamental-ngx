@@ -1,18 +1,22 @@
 import {
     AfterContentInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     ContentChildren,
+    ElementRef,
     forwardRef,
     Input,
     OnChanges,
+    OnInit,
     QueryList,
     ViewEncapsulation
 } from '@angular/core';
 import { ButtonComponent } from '@fundamental-ngx/core/button';
 import { ComboboxComponent } from '@fundamental-ngx/core/combobox';
 import { SelectComponent } from '@fundamental-ngx/core/select';
+import { debounceTime, fromEvent, Subject, takeUntil } from 'rxjs';
 
 export type ShellbarSizes = 's' | 'm' | 'l' | 'xl';
 
@@ -28,10 +32,10 @@ export type ShellbarSizes = 's' | 'm' | 'l' | 'xl';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShellbarComponent implements OnChanges, AfterContentInit {
+export class ShellbarComponent implements OnChanges, AfterContentInit, OnInit {
     /** Size of Shellbar component 's' | 'm' | 'l' | 'xl' */
     @Input()
-    size: ShellbarSizes = 'm';
+    size: ShellbarSizes = 'xl';
 
     /**
      * Whether the Shellbar is used with Side Navigation
@@ -46,6 +50,19 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     @Input()
     disableInputHide = false;
 
+    @Input()
+    responsive = false;
+
+    /**
+     * @hidden
+     * An RxJS Subject that will kill the data stream upon component’s destruction (for unsubscribing)
+     */
+    private readonly _onDestroy$: Subject<void> = new Subject<void>();
+
+    /** @hidden */
+    @ContentChildren(forwardRef(() => ButtonComponent))
+    buttons: QueryList<ButtonComponent>;
+
     /** @hidden */
     @ContentChild(ComboboxComponent, { static: false })
     comboboxComponent: ComboboxComponent;
@@ -55,20 +72,56 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
     selectComponent: SelectComponent;
 
     /** @hidden */
-    @ContentChildren(forwardRef(() => ButtonComponent))
-    buttons: QueryList<ButtonComponent>;
+    constructor(private readonly _elementRef: ElementRef, private readonly _cdr: ChangeDetectorRef) {}
 
     /** @hidden */
-    applyShellbarModeToCombobox(): void {
+    ngOnInit(): void {
+        this._attachResizeListener();
+    }
+
+    /** @hidden */
+    ngOnChanges(): void {
+        if (this.comboboxComponent && this.comboboxComponent.inShellbar) {
+            this._handleComboboxOnSizeChange();
+            this.comboboxComponent.hideShowInputField();
+        }
+    }
+
+    /** @hidden */
+    ngAfterContentInit(): void {
+        this._applyShellbarModeToCombobox();
+        this._applyShellbarModeToSelect();
+        this._applyShellbarModeToButtons();
+    }
+
+    /** @hidden */
+    _applyShellbarModeToButtons(): void {
+        if (this.buttons && this.buttons.length) {
+            this.buttons.forEach((button) => {
+                button.elementRef().nativeElement.classList.add('fd-shellbar__button');
+            });
+        }
+    }
+
+    /** @hidden */
+    _applyShellbarModeToCombobox(): void {
         if (this.comboboxComponent) {
             this.comboboxComponent.inShellbar = true;
             this.comboboxComponent.fullWidth = true;
             this.comboboxComponent.showInput = this.showComboboxInput;
-            this.handleComboboxOnSizeChange();
+            this._handleComboboxOnSizeChange();
         }
     }
 
-    handleComboboxOnSizeChange(): void {
+    /** @hidden */
+    _applyShellbarModeToSelect(): void {
+        if (this.selectComponent) {
+            this.selectComponent.inShellbar = true;
+        }
+    }
+
+    /** @hidden */
+    _handleComboboxOnSizeChange(): void {
         if (this.size === 's') {
             this.comboboxComponent.showInput = true;
             this.comboboxComponent.disableHideShowOfInput = true;
@@ -77,32 +130,26 @@ export class ShellbarComponent implements OnChanges, AfterContentInit {
         }
     }
 
-    applyShellbarModeToSelect(): void {
-        if (this.selectComponent) {
-            this.selectComponent.inShellbar = true;
-        }
+    /** @hidden */
+    private _attachResizeListener(): void {
+        fromEvent(window, 'resize')
+            .pipe(debounceTime(10), takeUntil(this._onDestroy$))
+            .subscribe(() => this._onResize());
     }
 
     /** @hidden */
-    ngAfterContentInit(): void {
-        this.applyShellbarModeToCombobox();
-        this.applyShellbarModeToSelect();
-        this.applyShellbarModeToButtons();
-    }
-
-    /** @hidden */
-    applyShellbarModeToButtons(): void {
-        if (this.buttons && this.buttons.length) {
-            this.buttons.forEach((button) => {
-                button.elementRef().nativeElement.classList.add('fd-shellbar__button');
-            });
-        }
-    }
-
-    ngOnChanges(): void {
-        if (this.comboboxComponent && this.comboboxComponent.inShellbar) {
-            this.handleComboboxOnSizeChange();
-            this.comboboxComponent.hideShowInputField();
+    private _onResize(): void {
+        if (this.responsive) {
+            if (this._elementRef.nativeElement.offsetWidth > 1024) {
+                this.size = 'xl';
+            } else if (this._elementRef.nativeElement.offsetWidth > 601) {
+                this.size = 'l';
+            } else if (this._elementRef.nativeElement.offsetWidth > 414) {
+                this.size = 'm';
+            } else {
+                this.size = 's';
+            }
+            this._cdr.markForCheck();
         }
     }
 }
