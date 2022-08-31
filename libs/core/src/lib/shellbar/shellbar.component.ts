@@ -1,5 +1,6 @@
 import {
     AfterContentInit,
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -32,7 +33,7 @@ export type ShellbarSizes = 's' | 'm' | 'l' | 'xl';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShellbarComponent implements OnChanges, AfterContentInit, OnInit {
+export class ShellbarComponent implements OnChanges, AfterContentInit, AfterViewInit, OnInit {
     /** Size of Shellbar component 's' | 'm' | 'l' | 'xl' */
     @Input()
     size: ShellbarSizes = 'xl';
@@ -92,6 +93,11 @@ export class ShellbarComponent implements OnChanges, AfterContentInit, OnInit {
         this._applyShellbarModeToCombobox();
         this._applyShellbarModeToSelect();
         this._applyShellbarModeToButtons();
+    }
+
+    /** @hidden */
+    ngAfterViewInit(): void {
+        this._onResize();
     }
 
     /** @hidden */
