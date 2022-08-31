@@ -122,7 +122,7 @@ function removeFontStyles(): Rule {
 
 function noticeAddSchematics(): Rule {
     return (_: Tree, context: SchematicContext) => {
-        // Unfortunately we cannot run it on our own because ng-update doesn't respect schema so there is no way to get options here and pass them further
+        // Unfortunately we cannot run it on our own because ng-update doesn't respect schema so there is no way to get options and pass them further
         context.logger.info(`ℹ️ Now you have to run ng-add schematics once again to set up things in the right way.`);
     };
 }
