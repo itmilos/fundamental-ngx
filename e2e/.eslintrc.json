@@ -22,7 +22,8 @@
                         "prefix": "fd",
                         "style": "kebab-case"
                     }
-                ]
+                ],
+                "jsdoc/require-jsdoc": "off"
             },
             "plugins": ["@angular-eslint/eslint-plugin", "@typescript-eslint"]
         },

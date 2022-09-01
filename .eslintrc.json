@@ -147,6 +147,17 @@
                 "jsdoc/check-alignment": "off",
                 "jsdoc/check-indentation": "off",
                 "jsdoc/newline-after-description": "off",
+                "jsdoc/require-jsdoc": [
+                    "error",
+                    {
+                        "publicOnly": true,
+                        "require": {
+                            "MethodDefinition": true
+                        },
+                        "contexts": ["PropertyDefinition"],
+                        "enableFixer": false
+                    }
+                ],
                 "key-spacing": [
                     "error",
                     {
